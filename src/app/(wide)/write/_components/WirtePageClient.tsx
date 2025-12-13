@@ -64,17 +64,23 @@ export default function WritePageClient() {
         .select("*")
         .eq("id", Number(postId))
         .single();
+
       if (error) {
         console.error("게시물 조회 오류:", error);
       } else if (data) {
         setPost(data);
-        setTags(data.Tags || []);
-        setTitle(data.title);
-        setGetContent(data.description);
+        setTags((prevTags) => {
+          const newTags = data.Tags || [];
+          return [...new Set([...prevTags, ...newTags])];
+        });
+
+        setTitle((prevTitle) => prevTitle || data.title);
+        setGetContent((prevContent) => prevContent || data.description);
       }
     };
+
     fetchPost();
-  }, [postId, supabase]);
+  }, [postId, supabase, post]);
 
   const [thumbnailPreview, setThumbnailPreview] =
     useState<AboutThumbnailPreview>();
@@ -200,7 +206,9 @@ export default function WritePageClient() {
   const onDeleteTag = (tagname: string) => {
     setTags((prevTags) => prevTags.filter((t) => t !== tagname));
   };
+  console.log(title, getContent);
   if (isUserLoading) return "loading...";
+  if (!post && !postId) return "Loading...";
   return (
     <main className="h-screen w-full flex flex-col sm:flex-row  gap-4  sm:gap-9 text-primary">
       <form
@@ -245,7 +253,7 @@ export default function WritePageClient() {
           type="submit"
           className="text-base py-2 px-5 bg-green-500 text-white hover:bg-green-400 cursor-pointer transition-colors duration-300 rounded-full mt-9"
         >
-          글 작성하기
+          {postId ? "글 수정하기" : "글 작성하기"}
         </button>
       </form>
       <div className="w-1/2 lg:flex flex-col  hidden">
