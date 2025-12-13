@@ -3,11 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import { ChartBar, Heart, Home, Newspaper } from "lucide-react";
+import { ChartBar, Heart, Home, List, Newspaper } from "lucide-react";
 
 const NAV = {
   "": { label: "홈", icon: Home },
-  feed: { label: "피드", icon: Heart },
+  feed: { label: "피드", icon: List },
+  like: { label: "좋아요", icon: Heart },
   news: { label: "뉴스", icon: Newspaper },
   chart: { label: "차트", icon: ChartBar },
 } as const;
@@ -16,8 +17,8 @@ export default function HeaderNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="absolute top-20 left-1/6">
-      <ul className="flex text-xl gap-8">
+    <nav className="absolute top-20 left-4 sm:left-1/6 ">
+      <ul className="flex text-xl gap-4 sm:gap-8">
         {Object.entries(NAV).map(([key, v]) => {
           const href = key === "" ? "/" : `/${key}`;
           const isActive =
