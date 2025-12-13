@@ -33,6 +33,7 @@ export interface IUser {
   created_at: string | null;
   like?: number[] | null;
   descript?: string | null;
+  github?: string | null;
 }
 
 export interface IRepple {

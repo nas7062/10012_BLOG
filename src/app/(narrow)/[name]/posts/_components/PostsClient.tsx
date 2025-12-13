@@ -10,6 +10,7 @@ import Tabs from "./Tabs";
 import { TagSlider } from "./TagSlider";
 import { useEffect, useState } from "react";
 import { getFollowCounts } from "@/src/app/_lib/getFollowCount";
+import Link from "next/link";
 
 export default function PostClient() {
   const id = usePathname().split("/")[1];
@@ -43,7 +44,7 @@ export default function PostClient() {
     };
     fetchFollow();
   }, [id]);
-
+  console.log(userData?.github);
   if (isUserLoading || isPostsLoading) return "loading...";
   if (!posts) return;
   return (
@@ -77,7 +78,11 @@ export default function PostClient() {
           </p>
         </div>
         <div className="flex gap-4">
-          <GithubIcon className="w-8 h-8 cursor-pointer" />
+          {userData?.github && (
+            <Link href={`${userData.github}`} target="_blank">
+              <GithubIcon className="w-8 h-8 cursor-pointer" />
+            </Link>
+          )}
           <MailIcon className="w-8 h-8 cursor-pointer" />
         </div>
       </div>

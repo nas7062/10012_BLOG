@@ -22,8 +22,10 @@ export default function SettingPage() {
   });
   const [name, setName] = useState("");
   const [descript, setdescript] = useState("");
+  const [github, setGibhub] = useState("");
   const [mode, setMode] = useState<"Update" | "Default">("Default");
   const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
+
   const { setTheme } = useTheme();
   const [thumbnailPreview, setThumbnailPreview] =
     useState<AboutThumbnailPreview | null>(null);
@@ -89,6 +91,7 @@ export default function SettingPage() {
         name: name,
         descript: descript,
         image: imageUrl,
+        github,
       })
       .eq("email", email);
 
@@ -106,12 +109,12 @@ export default function SettingPage() {
   const OnSave = () => {
     setName(name);
     setdescript(descript);
+    setGibhub(github);
     changeMode();
   };
 
   const OnDelete = async () => {
     const response = await userDelete(email);
-    console.log(response);
   };
 
   const imageSrc = thumbnailPreview?.url || userData?.image || "/hello.png";
@@ -120,6 +123,7 @@ export default function SettingPage() {
     if (!userData) return;
     setName(userData.name ?? "");
     setdescript(userData.descript ?? "");
+    setGibhub(userData.github ?? "");
   }, [userData]);
 
   useEffect(() => {
@@ -188,6 +192,19 @@ export default function SettingPage() {
             {mode === "Default" ? " 수정하기" : "수정완료"}
           </button>
         </div>
+      </div>
+      <div className="flex justify-between gap-4">
+        <h3 className="text-xl!">GibHub 주소</h3>
+        {mode === "Default" ? (
+          <p>{github || userData.github}</p>
+        ) : (
+          <input
+            type="email"
+            value={github}
+            className="flex-1 border border-gray-300 focus:border-gray-800 rounded-md px-2 py-1"
+            onChange={(e) => setGibhub(e.target.value)}
+          />
+        )}
       </div>
       <button
         onClick={updateInfo}
