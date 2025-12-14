@@ -6,11 +6,15 @@ export default function ReppleList({
   user,
   onDelete,
   postId,
+  onOpen,
+  onClose,
 }: {
   repples: IRepple[] | null;
   user: IUser | null;
   onDelete: (id: number) => void;
   postId: string;
+  onOpen: () => void;
+  onClose: () => void;
 }) {
   if (!repples) return;
   return repples.map((repple) => (
@@ -19,6 +23,8 @@ export default function ReppleList({
       repple={repple}
       user={user}
       onDelete={onDelete}
+      onOpen={onOpen}
+      onClose={onClose}
       postId={postId}
     />
   ));

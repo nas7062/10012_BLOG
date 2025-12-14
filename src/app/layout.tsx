@@ -6,6 +6,7 @@ import AuthSession from "./_components/AuthSession";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "./provider/themeProvider";
 import ReactQueryProvider from "./provider/reactqueryProvider";
+import { ModalProvider } from "./provider/ModalProvider";
 
 const geistNanum = Nanum_Gothic({
   weight: ["400", "700"],
@@ -39,14 +40,16 @@ export default function RootLayout({
       >
         <ReactQueryProvider>
           <ThemeProvider>
-            <AuthSession>
-              <Toaster />
-              <Header />
-              <div className="flex min-h-screen items-center justify-center font-sans ">
-                {children}
-              </div>
-              <div id="modal-root"></div>
-            </AuthSession>
+            <ModalProvider>
+              <AuthSession>
+                <Toaster />
+                <Header />
+                <div className="flex min-h-screen items-center justify-center font-sans ">
+                  {children}
+                </div>
+                <div id="modal-root"></div>
+              </AuthSession>
+            </ModalProvider>
           </ThemeProvider>
         </ReactQueryProvider>
       </body>

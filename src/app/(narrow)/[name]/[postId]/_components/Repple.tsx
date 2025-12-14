@@ -17,11 +17,15 @@ export default function Repple({
   repple,
   onDelete,
   postId,
+  onOpen,
+  onClose,
 }: {
   user: IUser | null;
   repple: IRepple;
   onDelete: (id: number) => void;
   postId: string;
+  onOpen: () => void;
+  onClose: () => void;
 }) {
   const [isUpdate, setIsUpdate] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -92,7 +96,7 @@ export default function Repple({
 
               <button
                 className="hover:text-red-400 cursor-pointer"
-                onClick={() => onDelete(repple.id)}
+                onClick={onOpen}
               >
                 삭제
               </button>

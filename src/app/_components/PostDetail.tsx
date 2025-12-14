@@ -164,6 +164,8 @@ export default function PostDetail({
         repples={comments}
         user={user}
         onDelete={handleDeleteComment}
+        onOpen={() => setIsDeleteModalOpen(true)}
+        onClose={() => setIsDeleteModalOpen(false)}
         postId={postId}
       />
 
