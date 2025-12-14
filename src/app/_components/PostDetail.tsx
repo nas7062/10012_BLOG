@@ -22,6 +22,7 @@ import { useDeleteComment } from "../(narrow)/[name]/[postId]/_hook/useDeleteCom
 import { FollowButton } from "./FollowButton";
 import DeletePostModal from "../(narrow)/[name]/posts/_components/DeletePostModal";
 import { useDeletePost } from "../(narrow)/[name]/posts/_hook/useDeletePost";
+import { useModal } from "../provider/ModalProvider";
 
 dayjs.extend(relativeTime);
 dayjs.locale("ko");
@@ -56,8 +57,10 @@ export default function PostDetail({
   postId: string;
 }) {
   const router = useRouter();
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const { openModal, closeModal } = useModal();
+
+  const openDeletePostModal = () => openModal("deletePost");
+  const openLoginModal = () => openModal("LoginModal");
 
   const { data: session } = useSession();
   const { data: writeUser, isLoading: isAuthorLoading } = usePostAuthor(
@@ -80,16 +83,16 @@ export default function PostDetail({
 
   const handleDeletePost = () => {
     deletePost({ id: Number(postId) });
+    closeModal();
   };
+
   const handleDeleteComment = (commentId: number) => {
     deleteComment({ id: commentId, postId: Number(postId) });
+    closeModal();
   };
 
   const handleToggleLike = () => {
-    toggle(() => setIsLoginModalOpen(true));
-  };
-  const deleteModalOpen = () => {
-    setIsDeleteModalOpen(true);
+    toggle(() => openLoginModal());
   };
   const isUpdate = post?.email === session?.user?.email;
   if (isAuthorLoading || isPostLoading || isUserLoading || isReppleLoading)
@@ -115,7 +118,7 @@ export default function PostDetail({
               </p>
               <p
                 className="cursor-pointer text-gray-500 hover:text-red-500"
-                onClick={deleteModalOpen}
+                onClick={openDeletePostModal}
               >
                 삭제
               </p>
@@ -164,19 +167,11 @@ export default function PostDetail({
         repples={comments}
         user={user}
         onDelete={handleDeleteComment}
-        onOpen={() => setIsDeleteModalOpen(true)}
-        onClose={() => setIsDeleteModalOpen(false)}
         postId={postId}
       />
 
-      {isLoginModalOpen && (
-        <LoginModal onClose={() => setIsLoginModalOpen(false)} />
-      )}
-      {isDeleteModalOpen && (
-        <DeletePostModal
-          onClose={() => setIsDeleteModalOpen(false)}
-          onDelete={handleDeletePost}
-        />
+      {isUpdate && (
+        <DeletePostModal onClose={closeModal} onDelete={handleDeletePost} />
       )}
     </div>
   );

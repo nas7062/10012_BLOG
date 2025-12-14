@@ -1,17 +1,20 @@
+"use client";
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import { useModal } from "../provider/ModalProvider";
+import SignInModal from "../(wide)/signin/_components/SignInModal";
 
 type ModalProps = {
   children: React.ReactNode;
+  onClose?: () => void;
 };
 
-export default function Modal({ children }: ModalProps) {
+export default function Modal({ children, onClose }: ModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const { isOpen, modalType, closeModal } = useModal();
   const router = useRouter();
-
+  console.log("modal 콘솔", modalType);
   useEffect(() => {
     if (isOpen && dialogRef.current) {
       const el = dialogRef.current;
@@ -38,7 +41,7 @@ export default function Modal({ children }: ModalProps) {
   };
 
   if (!isOpen) return null;
-
+  if (typeof window === "undefined") return null;
   return createPortal(
     <dialog
       ref={dialogRef}
@@ -51,6 +54,7 @@ export default function Modal({ children }: ModalProps) {
       }}
       onClose={safeClose}
     >
+      {modalType === "SignInModal" && <SignInModal />}
       {children}
     </dialog>,
     document.getElementById("modal-root")!

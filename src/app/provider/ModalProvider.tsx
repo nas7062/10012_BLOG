@@ -1,3 +1,4 @@
+"use client";
 import { createContext, useContext, useState, ReactNode } from "react";
 
 type ModalContextType = {
@@ -22,6 +23,7 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
   const [modalType, setModalType] = useState<string | null>(null);
 
   const openModal = (type: string) => {
+    console.log("openmoald", type);
     setModalType(type);
     setIsOpen(true);
   };

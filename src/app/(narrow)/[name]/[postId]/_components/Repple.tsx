@@ -8,6 +8,7 @@ import { useRef, useState } from "react";
 import { useCurrentUser } from "@/src/app/hook/useCurrentUser";
 import Image from "next/image";
 import { useUpdateComment } from "../_hook/useUpdateComment";
+import { useModal } from "@/src/app/provider/ModalProvider";
 
 dayjs.extend(relativeTime);
 dayjs.locale("ko");
@@ -17,19 +18,15 @@ export default function Repple({
   repple,
   onDelete,
   postId,
-  onOpen,
-  onClose,
 }: {
   user: IUser | null;
   repple: IRepple;
   onDelete: (id: number) => void;
   postId: string;
-  onOpen: () => void;
-  onClose: () => void;
 }) {
   const [isUpdate, setIsUpdate] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-
+  const { openModal } = useModal();
   const repplerUserId = repple.userid as string;
   const { user: reppleUser, isLoading: isUserLoading } = useCurrentUser({
     id: repplerUserId,
@@ -96,7 +93,7 @@ export default function Repple({
 
               <button
                 className="hover:text-red-400 cursor-pointer"
-                onClick={onOpen}
+                onClick={() => openModal("deleteComment")}
               >
                 삭제
               </button>
