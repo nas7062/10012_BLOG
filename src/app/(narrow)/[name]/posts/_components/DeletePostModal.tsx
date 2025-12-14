@@ -1,19 +1,12 @@
-"use client";
-
 import Modal from "@/src/app/_components/Modal";
-import { usePathname, useRouter } from "next/navigation";
-import { useDeletePost } from "../_hook/useDeletePost";
-export default function DeletePostModal() {
-  const pathname = usePathname();
-  const router = useRouter();
-  const postId = pathname.split("/")[2];
-  const { mutate: deleteComment } = useDeletePost();
 
-  const handleDelete = () => {
-    deleteComment({ id: Number(postId) });
-  };
+interface ModalProps {
+  onDelete: () => void;
+  onClose: () => void;
+}
+export default function DeletePostModal({ onDelete, onClose }: ModalProps) {
   return (
-    <Modal>
+    <Modal onClose={onClose}>
       <div className="flex flex-col  gap-4 p-4 ">
         <h2 className="text-2xl! font-semibold text-center">
           정말로 삭제하시겠어요??
@@ -21,13 +14,13 @@ export default function DeletePostModal() {
         <p className="text-gray-500 text-center">삭제 시 되돌릴 수 없습니다.</p>
         <div className="flex justify-around gap-4">
           <button
-            onClick={() => router.back()}
+            onClick={onClose}
             className="px-4 py-2 bg-gray-500 text-white flex-1 cursor-pointer hover:bg-gray-400  transition-colors duration-300"
           >
             취소
           </button>
           <button
-            onClick={handleDelete}
+            onClick={onDelete}
             className="px-4 py-2 bg-red-400 text-white flex-1 cursor-pointer hover:bg-red-500 transition-colors duration-300"
           >
             삭제

@@ -5,9 +5,6 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ko";
 import { useRef, useState } from "react";
-import { updateComment } from "../_lib/updateComment";
-import { toast } from "sonner";
-
 import { useCurrentUser } from "@/src/app/hook/useCurrentUser";
 import Image from "next/image";
 import { useUpdateComment } from "../_hook/useUpdateComment";

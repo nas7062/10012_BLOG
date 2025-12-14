@@ -83,7 +83,6 @@ export default function PostClient() {
               <GithubIcon className="w-8 h-8 cursor-pointer" />
             </Link>
           )}
-          <MailIcon className="w-8 h-8 cursor-pointer" />
         </div>
       </div>
       <Tabs />

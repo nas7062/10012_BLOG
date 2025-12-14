@@ -20,6 +20,8 @@ import { useGetComment } from "../hook/useGetComment";
 import { useQueryClient } from "@tanstack/react-query";
 import { useDeleteComment } from "../(narrow)/[name]/[postId]/_hook/useDeleteComment";
 import { FollowButton } from "./FollowButton";
+import DeletePostModal from "../(narrow)/[name]/posts/_components/DeletePostModal";
+import { useDeletePost } from "../(narrow)/[name]/posts/_hook/useDeletePost";
 
 dayjs.extend(relativeTime);
 dayjs.locale("ko");
@@ -55,6 +57,7 @@ export default function PostDetail({
 }) {
   const router = useRouter();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const { data: session } = useSession();
   const { data: writeUser, isLoading: isAuthorLoading } = usePostAuthor(
@@ -70,17 +73,24 @@ export default function PostDetail({
   const { comments, isLoading: isReppleLoading } = useGetComment(
     Number(post?.id)
   );
+
   const queryClient = useQueryClient();
   const { mutate: deleteComment } = useDeleteComment();
+  const { mutate: deletePost } = useDeletePost();
 
-  const handleDelete = (commentId: number) => {
+  const handleDeletePost = () => {
+    deletePost({ id: Number(postId) });
+  };
+  const handleDeleteComment = (commentId: number) => {
     deleteComment({ id: commentId, postId: Number(postId) });
   };
 
   const handleToggleLike = () => {
     toggle(() => setIsLoginModalOpen(true));
   };
-
+  const deleteModalOpen = () => {
+    setIsDeleteModalOpen(true);
+  };
   const isUpdate = post?.email === session?.user?.email;
   if (isAuthorLoading || isPostLoading || isUserLoading || isReppleLoading)
     return "loading...";
@@ -105,7 +115,7 @@ export default function PostDetail({
               </p>
               <p
                 className="cursor-pointer text-gray-500 hover:text-red-500"
-                onClick={() => router.push(`/${name}/${postId}/delete`)}
+                onClick={deleteModalOpen}
               >
                 삭제
               </p>
@@ -153,12 +163,18 @@ export default function PostDetail({
       <ReppleList
         repples={comments}
         user={user}
-        onDelete={handleDelete}
+        onDelete={handleDeleteComment}
         postId={postId}
       />
 
       {isLoginModalOpen && (
         <LoginModal onClose={() => setIsLoginModalOpen(false)} />
+      )}
+      {isDeleteModalOpen && (
+        <DeletePostModal
+          onClose={() => setIsDeleteModalOpen(false)}
+          onDelete={handleDeletePost}
+        />
       )}
     </div>
   );
