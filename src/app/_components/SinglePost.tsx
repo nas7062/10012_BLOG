@@ -8,17 +8,19 @@ import { Heart } from "lucide-react";
 import { useState } from "react";
 import { IPost } from "../(wide)/write/_components/WirtePageClient";
 import { usePostLike } from "../hook/usePostLIke";
-import LoginModal from "./LoginModal";
+
 import Image from "next/image";
+import { useModal } from "../provider/ModalProvider";
 
 export default function SinglePost({ post }: { post: IPost }) {
   const router = useRouter();
   const { data: user } = useSession();
   const email = user?.user?.email as string;
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const { openModal } = useModal();
+  const openLoginModal = () => openModal("LoginModal");
   const { liked, likeCount, toggle } = usePostLike(Number(post?.id), email);
   const handleToggleLike = () => {
-    toggle(() => setIsLoginModalOpen(true));
+    toggle(() => openLoginModal());
   };
 
   const MovePostDetail = (postId: number) => {
@@ -67,9 +69,6 @@ export default function SinglePost({ post }: { post: IPost }) {
           <span>{likeCount}</span>
         </div>
       </div>
-      {isLoginModalOpen && (
-        <LoginModal onClose={() => setIsLoginModalOpen(false)} />
-      )}
     </div>
   );
 }
