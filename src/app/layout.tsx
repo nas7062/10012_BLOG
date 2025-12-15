@@ -7,6 +7,7 @@ import { Toaster } from "sonner";
 import { ThemeProvider } from "./provider/themeProvider";
 import ReactQueryProvider from "./provider/reactqueryProvider";
 import { ModalProvider } from "./provider/ModalProvider";
+import Modal from "./_components/Modal";
 
 const geistNanum = Nanum_Gothic({
   weight: ["400", "700"],
@@ -47,6 +48,7 @@ export default function RootLayout({
                   {children}
                 </div>
                 <div id="modal-root"></div>
+                <Modal />
               </AuthSession>
             </ModalProvider>
           </ThemeProvider>

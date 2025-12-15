@@ -6,6 +6,7 @@ import z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { useModal } from "@/src/app/provider/ModalProvider";
 
 const SignUpSchema = z
   .object({
@@ -44,7 +45,12 @@ type SignupFormData = z.infer<typeof SignUpSchema>;
 
 export default function SignUpModal() {
   const router = useRouter();
+  const { closeModal } = useModal();
 
+  const goSignInPage = () => {
+    closeModal();
+    queueMicrotask(() => router.push("/signIn"));
+  };
   const {
     register,
     handleSubmit,
@@ -169,11 +175,17 @@ export default function SignUpModal() {
 
         <div className="flex justify-end gap-2 text-green-500">
           <p>이미 회원이신가요?</p>
-          <Link href="/signin">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              goSignInPage();
+            }}
+          >
             <strong className="cursor-pointer hover:text-green-400">
               로그인
             </strong>
-          </Link>
+          </button>
         </div>
 
         <div className="absolute top-0 right-0">
@@ -189,4 +201,3 @@ export default function SignUpModal() {
     </div>
   );
 }
-

@@ -8,6 +8,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
+import { useModal } from "@/src/app/provider/ModalProvider";
 
 const loginSchema = z.object({
   email: z
@@ -35,7 +36,12 @@ export default function SignInModal() {
   const router = useRouter();
   const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
+  const { closeModal } = useModal();
 
+  const goSignupPage = () => {
+    closeModal();
+    queueMicrotask(() => router.push("/signup"));
+  };
   const {
     register,
     handleSubmit,
@@ -137,11 +143,17 @@ export default function SignInModal() {
         </form>
         <div className="flex justify-end gap-2 text-green-500">
           <p>회원가입을 안했다면?</p>
-          <Link href={"/signup"}>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              goSignupPage();
+            }}
+          >
             <strong className="cursor-pointer hover:text-green-400">
               회원가입
             </strong>
-          </Link>
+          </button>
         </div>
         <div className="absolute top-0 right-0">
           <Image

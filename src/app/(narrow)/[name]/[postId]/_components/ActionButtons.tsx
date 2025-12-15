@@ -4,10 +4,11 @@ import LoginModal from "@/src/app/_components/LoginModal";
 import { Heart, Link, Share2, Waypoints } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import { usePostLike } from "@/src/app/hook/usePostLIke";
 import { usePostById } from "@/src/app/hook/usePostById";
+import { useModal } from "@/src/app/provider/ModalProvider";
 
 export default function ActionButtons() {
   const pathname = usePathname();
@@ -16,10 +17,11 @@ export default function ActionButtons() {
   const email = session?.user?.email as string;
   const { data: post, isLoading: isPostLoading } = usePostById(Number(postId));
   const { liked, likeCount, toggle } = usePostLike(Number(post?.id), email);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const { openModal } = useModal();
+  const openLoginModal = () => openModal("LoginModal");
   const [isShare, setIsShare] = useState(false);
   const handleToggleLike = () => {
-    toggle(() => setIsLoginModalOpen(true));
+    toggle(() => openLoginModal());
   };
 
   const onShared = () => {
@@ -96,10 +98,6 @@ export default function ActionButtons() {
           onClick={copyURL}
         />
       </div>
-
-      {isLoginModalOpen && (
-        <LoginModal onClose={() => setIsLoginModalOpen(false)} />
-      )}
     </div>
   );
 }

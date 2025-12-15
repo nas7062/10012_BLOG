@@ -1,19 +1,21 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useModal } from "../../provider/ModalProvider";
 import { usePathname } from "next/navigation";
-import Modal from "../../_components/Modal";
 
 export default function LoginPage() {
   const { openModal, isOpen } = useModal();
   const pathname = usePathname();
+  const openedRef = useRef(false);
 
   useEffect(() => {
-    // pathname이 /signin이고 모달이 닫혀있을 때만 모달 열기
-    if (pathname === "/signin" && !isOpen) {
-      openModal("SignInModal");
-    }
-  }, [pathname, openModal, isOpen]);
+    if (pathname !== "/signin") return;
+    if (openedRef.current) return;
+    if (isOpen) return;
 
-  return <Modal />;
+    openedRef.current = true;
+    openModal("SignInModal", { autoBack: true });
+  }, [pathname, isOpen, openModal]);
+
+  return null;
 }

@@ -39,7 +39,6 @@ export default function SinglePostLayout({
         </aside>
       </div>
       {modal}
-      <Modal />
     </main>
   );
 }

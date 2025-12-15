@@ -56,17 +56,14 @@ export default function Modal({ children, onClose }: ModalProps) {
   }, [pathname, isOpen]);
 
   const safeClose = () => {
-    closeModal(); // 모달 상태 닫기
+    closeModal();
 
-    // signin/signup 페이지에서 사용자가 명시적으로 닫았을 때만 뒤로가기
-    // (자동으로 열린 경우가 아닐 때만)
-    if (
+    const shouldBack =
       (pathname === "/signin" || pathname === "/signup") &&
-      isAutoOpeningRef.current
-    ) {
-      setTimeout(() => {
-        router.back();
-      }, 100);
+      isAutoOpeningRef.current;
+
+    if (shouldBack) {
+      setTimeout(() => router.back(), 0);
     }
   };
 
