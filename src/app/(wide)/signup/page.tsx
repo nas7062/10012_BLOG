@@ -14,6 +14,6 @@ export default function SignupPage() {
       openModal("SignUpModal"); // 회원가입 모달 열기
     }
   }, [pathname, openModal, isOpen]);
-  
+
   return <Modal />;
 }

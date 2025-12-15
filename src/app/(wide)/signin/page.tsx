@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from "react";
-import { usePathname } from "next/navigation";
 import { useModal } from "../../provider/ModalProvider";
+import { usePathname } from "next/navigation";
 import Modal from "../../_components/Modal";
 
 export default function LoginPage() {
@@ -14,6 +14,6 @@ export default function LoginPage() {
       openModal("SignInModal");
     }
   }, [pathname, openModal, isOpen]);
-  
+
   return <Modal />;
 }

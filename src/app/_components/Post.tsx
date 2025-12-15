@@ -2,16 +2,15 @@
 import { Heart } from "lucide-react";
 import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React from "react";
 import { useSession } from "next-auth/react";
 import { IPost } from "../(wide)/write/_components/WirtePageClient";
-import LoginModal from "./LoginModal";
 import Image from "next/image";
 import { usePostAuthor } from "../hook/usePostAuthor";
 import { usePostLike } from "../hook/usePostLIke";
+import { useModal } from "../provider/ModalProvider";
 
 export default function Post({ post }: { post: IPost }) {
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const router = useRouter();
   const { data: user } = useSession();
   const email = user?.user?.email as string;
@@ -20,11 +19,12 @@ export default function Post({ post }: { post: IPost }) {
     isLoading: isAuthorLoading,
     isError,
   } = usePostAuthor(post.id);
-
+  const { openModal } = useModal();
+  const openLoginModal = () => openModal("LoginModal");
   const { liked, likeCount, toggle } = usePostLike(post.id, email);
 
   const handleToggleLike = () => {
-    toggle(() => setIsLoginModalOpen(true));
+    toggle(() => openLoginModal());
   };
 
   const MovePostDetail = (postId: number) => {
@@ -118,9 +118,6 @@ export default function Post({ post }: { post: IPost }) {
           <p>{likeCount}</p>
         </div>
       </div>
-      {isLoginModalOpen && (
-        <LoginModal onClose={() => setIsLoginModalOpen(false)} />
-      )}
     </div>
   );
 }

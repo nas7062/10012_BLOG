@@ -1,10 +1,18 @@
 "use client";
 import { createContext, useContext, useState, ReactNode } from "react";
 
+type ModalType =
+  | "SignInModal"
+  | "SignUpModal"
+  | "LoginModal"
+  | "DeletePost"
+  | "DeleteComment";
+
 type ModalContextType = {
   isOpen: boolean;
-  modalType: string | null;
-  openModal: (type: string) => void;
+  modalType: ModalType | null;
+  modalData?: any;
+  openModal: (type: ModalType, data?: any) => void;
   closeModal: () => void;
 };
 
@@ -20,21 +28,24 @@ export const useModal = () => {
 
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [modalType, setModalType] = useState<string | null>(null);
-
-  const openModal = (type: string) => {
-    console.log("openmoald", type);
+  const [modalType, setModalType] = useState<ModalType | null>(null);
+  const [modalData, setModalData] = useState<any>(null);
+  const openModal = (type: ModalType, data?: any) => {
     setModalType(type);
     setIsOpen(true);
+    setModalData(data ?? null);
   };
 
   const closeModal = () => {
     setIsOpen(false);
     setModalType(null);
+    setModalData(null);
   };
 
   return (
-    <ModalContext.Provider value={{ isOpen, modalType, openModal, closeModal }}>
+    <ModalContext.Provider
+      value={{ isOpen, modalType, openModal, closeModal, modalData }}
+    >
       {children}
     </ModalContext.Provider>
   );

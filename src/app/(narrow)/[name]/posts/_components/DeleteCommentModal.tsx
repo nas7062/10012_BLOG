@@ -1,8 +1,9 @@
+
 interface ModalProps {
   onDelete: () => void;
   onClose: () => void;
 }
-export default function DeletePostModal({ onDelete, onClose }: ModalProps) {
+export default function DeleteCommentModal({ onDelete, onClose }: ModalProps) {
   return (
     <div className="flex flex-col  gap-4 p-4 ">
       <h2 className="text-2xl! font-semibold text-center">

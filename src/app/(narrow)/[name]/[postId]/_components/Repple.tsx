@@ -16,17 +16,17 @@ dayjs.locale("ko");
 export default function Repple({
   user,
   repple,
-  onDelete,
   postId,
+  onDelete,
 }: {
   user: IUser | null;
   repple: IRepple;
-  onDelete: (id: number) => void;
   postId: string;
+  onDelete: (comment: number) => void;
 }) {
   const [isUpdate, setIsUpdate] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-  const { openModal } = useModal();
+
   const repplerUserId = repple.userid as string;
   const { user: reppleUser, isLoading: isUserLoading } = useCurrentUser({
     id: repplerUserId,
@@ -93,7 +93,7 @@ export default function Repple({
 
               <button
                 className="hover:text-red-400 cursor-pointer"
-                onClick={() => openModal("deleteComment")}
+                onClick={() => onDelete(repple.id)}
               >
                 삭제
               </button>

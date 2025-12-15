@@ -5,6 +5,9 @@ import { useRouter, usePathname } from "next/navigation";
 import { useModal } from "../provider/ModalProvider";
 import SignInModal from "../(wide)/signin/_components/SignInModal";
 import SignUpModal from "../(wide)/signup/_components/SignUpModal";
+import LoginModal from "./LoginModal";
+import DeletePostModal from "../(narrow)/[name]/posts/_components/DeletePostModal";
+import DeleteCommentModal from "../(narrow)/[name]/posts/_components/DeleteCommentModal";
 
 type ModalProps = {
   children?: React.ReactNode;
@@ -13,11 +16,12 @@ type ModalProps = {
 
 export default function Modal({ children, onClose }: ModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const { isOpen, modalType, closeModal } = useModal();
+  const { isOpen, modalType, closeModal, modalData } = useModal();
   const router = useRouter();
   const pathname = usePathname();
   const isAutoOpeningRef = useRef(false); // 모달이 자동으로 열리는지 추적
 
+  console.log(modalType, modalData);
   useEffect(() => {
     if (isOpen && dialogRef.current) {
       const el = dialogRef.current;
@@ -90,6 +94,17 @@ export default function Modal({ children, onClose }: ModalProps) {
     >
       {modalType === "SignInModal" && <SignInModal />}
       {modalType === "SignUpModal" && <SignUpModal />}
+      {modalType === "LoginModal" && <LoginModal />}
+      {modalType === "DeletePost" && (
+        <DeletePostModal onDelete={modalData?.onDelete} onClose={closeModal} />
+      )}
+
+      {modalType === "DeleteComment" && (
+        <DeleteCommentModal
+          onDelete={modalData?.onDelete}
+          onClose={closeModal}
+        />
+      )}
       {children}
     </dialog>,
     modalRoot

@@ -206,7 +206,7 @@ export default function WritePageClient() {
   const onDeleteTag = (tagname: string) => {
     setTags((prevTags) => prevTags.filter((t) => t !== tagname));
   };
-  console.log(title, getContent);
+
   if (isUserLoading) return "loading...";
   if (!post && !postId) return "Loading...";
   return (

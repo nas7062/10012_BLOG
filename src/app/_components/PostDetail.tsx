@@ -59,7 +59,6 @@ export default function PostDetail({
   const router = useRouter();
   const { openModal, closeModal } = useModal();
 
-  const openDeletePostModal = () => openModal("deletePost");
   const openLoginModal = () => openModal("LoginModal");
 
   const { data: session } = useSession();
@@ -84,6 +83,7 @@ export default function PostDetail({
   const handleDeletePost = () => {
     deletePost({ id: Number(postId) });
     closeModal();
+    router.replace("/");
   };
 
   const handleDeleteComment = (commentId: number) => {
@@ -91,10 +91,28 @@ export default function PostDetail({
     closeModal();
   };
 
+  const openDeletePostModal = () => {
+    console.log("Opening DeletePost Modal");
+    openModal("DeletePost", {
+      onDelete: handleDeletePost,
+      postId: Number(postId),
+    });
+  };
+
+  const openDeleteCommentModal = (commentId: number) => {
+    console.log("Opening DeleteComment Modal");
+    openModal("DeleteComment", {
+      onDelete: () => handleDeleteComment(commentId),
+      commentId,
+      postId: Number(postId),
+    });
+  };
   const handleToggleLike = () => {
     toggle(() => openLoginModal());
   };
+
   const isUpdate = post?.email === session?.user?.email;
+
   if (isAuthorLoading || isPostLoading || isUserLoading || isReppleLoading)
     return "loading...";
   if (isError) return;
@@ -166,13 +184,9 @@ export default function PostDetail({
       <ReppleList
         repples={comments}
         user={user}
-        onDelete={handleDeleteComment}
         postId={postId}
+        onDelete={openDeleteCommentModal}
       />
-
-      {isUpdate && (
-        <DeletePostModal onClose={closeModal} onDelete={handleDeletePost} />
-      )}
     </div>
   );
 }

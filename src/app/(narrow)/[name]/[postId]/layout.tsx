@@ -1,3 +1,5 @@
+import Modal from "@/src/app/_components/Modal";
+
 export default function SinglePostLayout({
   children,
   sidebar,
@@ -37,6 +39,7 @@ export default function SinglePostLayout({
         </aside>
       </div>
       {modal}
+      <Modal />
     </main>
   );
 }
