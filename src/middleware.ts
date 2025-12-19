@@ -56,7 +56,6 @@ export default auth((req) => {
   const isPublicPage =
     pathname === "/" ||
     pathname.startsWith("/news") ||
-    pathname.startsWith("/feed") ||
     pathname.startsWith("/chart") ||
     pathname.startsWith("/search") ||
     isPostDetailPage ||
