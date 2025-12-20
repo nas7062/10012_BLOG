@@ -1,5 +1,5 @@
-import { getSupabaseClient } from "../api/supabase";
 import type { IPost } from "../(wide)/write/_components/WirtePageClient";
+import { createSupabaseServerClient } from "../api/supabaseSever";
 
 const PAGE_SIZE = 8;
 
@@ -7,7 +7,7 @@ export async function getPostList(
   page: number,
   pageSize: number = PAGE_SIZE
 ): Promise<IPost[]> {
-  const supabase = getSupabaseClient();
+  const supabase = createSupabaseServerClient();
 
   const from = page * pageSize;
   const to = from + pageSize - 1;
