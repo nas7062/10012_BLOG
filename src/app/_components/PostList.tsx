@@ -4,8 +4,10 @@ import { useEffect, useRef } from "react";
 import Post from "./Post";
 import type { IPost } from "../(wide)/write/_components/WirtePageClient";
 import { usePostList } from "../hook/usePostList";
-
-export default function PostListClient() {
+type Props = {
+  initialPosts: IPost[];
+};
+export default function PostListClient({ initialPosts }: Props) {
   const {
     data,
     fetchNextPage,
@@ -13,7 +15,7 @@ export default function PostListClient() {
     isFetchingNextPage,
     status,
     error,
-  } = usePostList();
+  } = usePostList(initialPosts);
 
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
@@ -32,10 +34,6 @@ export default function PostListClient() {
 
     return () => observer.disconnect();
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
-
-  if (status === "pending") {
-    return <div>로딩 중...</div>;
-  }
 
   if (status === "error") {
     console.error(error);

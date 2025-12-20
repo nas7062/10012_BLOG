@@ -1,9 +1,6 @@
 import { Metadata } from "next";
-import PostList from "../_components/PostList";
-import { getPostListServer } from "@/lib/post/getPostList.server";
-import PostListClient from "@/app/_components/PostListClient";
-
-export const revalidate = 30;
+import { getPostListServer } from "../_lib/getPostList.server";
+import PostListClient from "../_components/PostList";
 
 export const metadata: Metadata = {
   title: "10012 | 정보 공유 플랫폼",
@@ -18,10 +15,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+export const revalidate = 30;
+
+export default async function Home() {
+  const initialPosts = await getPostListServer();
+  console.log(initialPosts);
   return (
     <main>
-      <PostList />
+      <PostListClient initialPosts={initialPosts} />
     </main>
   );
 }
