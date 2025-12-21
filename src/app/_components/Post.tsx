@@ -9,6 +9,7 @@ import Image from "next/image";
 import { usePostAuthor } from "../hook/usePostAuthor";
 import { usePostLike } from "../hook/usePostLIke";
 import { useModal } from "../provider/ModalProvider";
+import { SkeletonPost } from "./SkeletonPost";
 
 export default function Post({ post }: { post: IPost }) {
   const router = useRouter();
@@ -39,11 +40,7 @@ export default function Post({ post }: { post: IPost }) {
   };
 
   if (isAuthorLoading) {
-    return (
-      <div className="flex flex-col max-w-[350px] shadow-xl gap-4 pb-4 rounded-md">
-        loading...
-      </div>
-    );
+    return <SkeletonPost />;
   }
 
   if (!writeUser || isError) return;

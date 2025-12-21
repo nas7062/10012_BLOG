@@ -19,7 +19,7 @@ export const revalidate = 30;
 
 export default async function Home() {
   const initialPosts = await getPostListServer();
-  console.log(initialPosts);
+
   return (
     <main>
       <PostListClient initialPosts={initialPosts} />
