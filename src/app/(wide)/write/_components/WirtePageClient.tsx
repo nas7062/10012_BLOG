@@ -123,7 +123,6 @@ export default function WritePageClient() {
         });
 
       if (uploadError) {
-        console.log("이미지 업로드 실패:", uploadError);
         toast.error("이미지 업로드에 실패했습니다.");
         return;
       }

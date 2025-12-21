@@ -44,7 +44,7 @@ export default function PostClient() {
     };
     fetchFollow();
   }, [id]);
-  console.log(userData?.github);
+
   if (isUserLoading || isPostsLoading) return "loading...";
   if (!posts) return;
   return (

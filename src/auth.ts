@@ -103,7 +103,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           .select("*")
           .eq("email", email);
 
-        console.log("signIn users select:", data, error);
 
         // 에러 없고, 해당  아직 없을 때만 upsert
         if (!error && data && data.length === 0) {

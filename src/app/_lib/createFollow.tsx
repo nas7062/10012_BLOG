@@ -8,7 +8,6 @@ export async function createFollow(userId: string, targetId: string) {
 
   const isFollowing = await checkFollow(userId, targetId);
   if (isFollowing) {
-    console.log("이미 팔로우 중입니다.");
     return null;
   }
 

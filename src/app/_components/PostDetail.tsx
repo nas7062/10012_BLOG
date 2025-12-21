@@ -92,7 +92,6 @@ export default function PostDetail({
   };
 
   const openDeletePostModal = () => {
-    console.log("Opening DeletePost Modal");
     openModal("DeletePost", {
       onDelete: handleDeletePost,
       postId: Number(postId),
@@ -100,7 +99,6 @@ export default function PostDetail({
   };
 
   const openDeleteCommentModal = (commentId: number) => {
-    console.log("Opening DeleteComment Modal");
     openModal("DeleteComment", {
       onDelete: () => handleDeleteComment(commentId),
       commentId,

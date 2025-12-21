@@ -32,6 +32,6 @@ export async function getFollowPosts(userId: string) {
     }
     followingPosts = data ?? [];
   }
-  console.log(followingRows, followingIds, followingPosts);
+
   return followingPosts;
 }

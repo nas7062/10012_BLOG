@@ -17,7 +17,7 @@ export default function FeedPage() {
   const { user: userData, isLoading: isUserLoading } = useCurrentUser({
     email,
   });
-  console.log(userData);
+
   useEffect(() => {
     if (!userData?.id) return;
     const fetchFeed = async () => {
