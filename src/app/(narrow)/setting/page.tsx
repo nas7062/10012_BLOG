@@ -76,17 +76,18 @@ export default function SettingPage() {
   };
 
   const OnDelete = async () => {
-    const response = await userDelete(email);
+    await userDelete(email);
   };
 
   const imageSrc = thumbnailPreview?.url || userData?.image || "/hello.png";
 
   useEffect(() => {
-    if (!userData) return;
+    if (mode !== "Update" || !userData) return;
+
     setName(userData.name ?? "");
     setdescript(userData.descript ?? "");
     setGibhub(userData.github ?? "");
-  }, [userData]);
+  }, [mode, userData]);
 
   useEffect(() => {
     if (!thumbnailPreview?.url) return;
