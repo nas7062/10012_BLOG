@@ -2,12 +2,11 @@
 import { useSession } from "next-auth/react";
 import { MouseEvent, useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { getSupabaseClient } from "../../api/supabase";
 import { useTheme } from "next-themes";
 import { userDelete } from "./_lib/userDelete";
 import { useCurrentUser } from "../../hook/useCurrentUser";
-import { toast } from "sonner";
 import Image from "next/image";
+import { updateInfo } from "./_lib/updateInfo";
 export interface AboutThumbnailPreview {
   url: string;
   name: string;
@@ -16,7 +15,7 @@ export interface AboutThumbnailPreview {
 
 export default function SettingPage() {
   const { data: user } = useSession();
-  const email = user?.user?.email as string;
+  const email = user?.user?.email ?? "";
   const { user: userData, isLoading: isUserLoading } = useCurrentUser({
     email,
   });
@@ -39,9 +38,8 @@ export default function SettingPage() {
     setThumbnailPreview({ url: fileURL, name: file.name, size: file.size });
   }, []);
 
-  //저장된 상태 삭제하기 ( 이미지 삭제 )
   const handleDeleteThumbnail = (e: MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation(); // 이벤트 버블링 막기
+    e.stopPropagation();
     setThumbnailPreview(null);
     setThumbnailFile(null);
   };
@@ -55,52 +53,16 @@ export default function SettingPage() {
     },
   });
 
-  const updateInfo = async () => {
+  const handleUpdateInfo = async () => {
     if (!email) return;
-    const supabase = getSupabaseClient();
-    let imageUrl = userData?.image; // 기존 이미지 URL
-
-    // 1) 이미지 새로 업로드한 경우
-    if (thumbnailFile) {
-      const { data, error } = await supabase.storage
-        .from("profile")
-        .upload(`profile-${email}`, thumbnailFile, {
-          upsert: true,
-        });
-      if (data) {
-        toast.success("이미지 업로드 성공");
-      }
-      if (error) {
-        console.error("이미지 업로드 실패:", error);
-        toast.error("이미지 업로드 실패");
-        return;
-      }
-
-      // 2) 업로드한 파일의 publicURL 만들기
-      const { data: urlData } = supabase.storage
-        .from("profile")
-        .getPublicUrl(`profile-${email}`);
-
-      imageUrl = urlData.publicUrl;
-    }
-
-    // 3) DB user table 업데이트
-    const { error: updateError } = await supabase
-      .from("users")
-      .update({
-        name: name,
-        descript: descript,
-        image: imageUrl,
-        github,
-      })
-      .eq("email", email);
-
-    if (updateError) {
-      console.log("업데이트 실패:", updateError);
-      return;
-    }
-
-    toast.success("내 정보 변경 완료");
+    await updateInfo({
+      name,
+      descript,
+      image: userData?.image ?? "",
+      email,
+      github,
+      thumbnailFile,
+    });
   };
 
   const changeMode = () => {
@@ -207,7 +169,7 @@ export default function SettingPage() {
         )}
       </div>
       <button
-        onClick={updateInfo}
+        onClick={handleUpdateInfo}
         className="px-4 py-2 text-sm bg-green-400 text-white hover:bg-green-500 rounded-lg cursor-pointer ml-auto"
       >
         저장하기
