@@ -9,7 +9,7 @@ export function HeaderClient() {
   const { data: session } = useSession();
 
   return (
-    <div className="ml-auto flex items-center gap-10 ">
+    <div className="ml-auto flex items-center gap-4 ">
       {!session?.user ? (
         <Link
           href={"/signin"}
@@ -21,7 +21,7 @@ export function HeaderClient() {
         <>
           <Link
             href={"/write"}
-            className="md:block hidden px-4 py-2 rounded-2xl bg-green-400 text-white cursor-pointer hover:bg-green-500 transition-all duration-200"
+            className="md:block hidden px-3 py-1.5 text-sm rounded-2xl bg-green-400 text-white cursor-pointer hover:bg-green-500 transition-all duration-200"
           >
             글 작성
           </Link>

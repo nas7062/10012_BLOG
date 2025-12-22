@@ -46,7 +46,7 @@ export default function Post({ post }: { post: IPost }) {
   if (!writeUser || isError) return;
   return (
     <div
-      className="flex flex-col max-w-[350px] shadow-xl gap-4 pb-4 rounded-md
+      className="flex flex-col max-w-[350px] shadow-xl gap-2 pb-4 rounded-md
                 transition-transform duration-350
                 hover:-translate-y-2 hover:shadow-2xl
                 cursor-pointer relative"
@@ -71,10 +71,10 @@ export default function Post({ post }: { post: IPost }) {
         }}
       >
         <p className="text-lg text-primary font-semibold">{post.title}</p>
-        <p className="whitespace-normal wrap-break-word line-clamp-5">
+        <p className="whitespace-normal text-sm wrap-break-word line-clamp-3">
           {post.description}
         </p>
-        <div className="flex gap-4">
+        <div className="flex justify-between text-xs">
           <p>{dayjs(post.createdAt).format("YYYY년 MM월 DD일")}</p>
           <p>{post.reppleCount}개의 댓글</p>
         </div>
@@ -88,7 +88,9 @@ export default function Post({ post }: { post: IPost }) {
             alt="프로필 이미지"
             className="rounded-full w-10 h-10"
           />
-          <p className="font-semibold">by {writeUser?.name || "글쓴이"}</p>
+          <p className="font-semibold text-sm">
+            by {writeUser?.name || "글쓴이"}
+          </p>
         </div>
 
         <div className="ml-auto flex gap-1">

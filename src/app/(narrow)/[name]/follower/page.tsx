@@ -32,7 +32,7 @@ export default async function FollowerPage({ params }: Props) {
         <ChevronRight />
         <div>팔로워</div>
       </div>
-      <h2>{followInfo?.followerCount ?? 0}명의 팔로워</h2>
+      <h3>{followInfo?.followerCount ?? 0}명의 팔로워</h3>
       <FollowerClient followers={followInfo?.followers ?? []} user={user} />
     </div>
   );

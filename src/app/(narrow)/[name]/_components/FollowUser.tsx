@@ -6,10 +6,14 @@ import Link from "next/link";
 export default function FollowUser({
   follow,
   user,
+  userId,
 }: {
   follow: IUser;
   user: IUser | null;
+  userId: string;
 }) {
+  console.log("userId", user?.id);
+  console.log("current", userId);
   return (
     <div key={follow.id}>
       <div className="flex gap-4 items-center">
@@ -26,7 +30,7 @@ export default function FollowUser({
             <div>{follow.descript}</div>
           </div>
         </Link>
-        {user && (
+        {user?.id === userId && (
           <div className="ml-auto">
             <FollowButton userId={user?.id} targetId={follow.id} />
           </div>
