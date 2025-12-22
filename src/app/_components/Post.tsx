@@ -79,8 +79,8 @@ export default function Post({ post }: { post: IPost }) {
         <div className="flex items-center gap-2" onClick={MoveUserPosts}>
           <Image
             src={writeUser?.image ? writeUser?.image : "/nextImage.png"}
-            width={50}
-            height={50}
+            width={40}
+            height={40}
             alt="프로필 이미지"
             className="rounded-full w-10 h-10"
           />
