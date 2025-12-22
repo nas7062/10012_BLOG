@@ -1,3 +1,5 @@
+"use server";
+import { revalidatePath } from "next/cache";
 import { getSupabaseClient } from "../api/supabase";
 import { checkFollow } from "./checkFollow";
 
@@ -20,6 +22,9 @@ export async function createFollow(userId: string, targetId: string) {
     console.error("팔로우 추가 오류", insertError);
     return null;
   }
-
+  revalidatePath(`/${userId}/posts`);
+  revalidatePath(`/${targetId}/posts`);
+  revalidatePath(`/${userId}/following`);
+  revalidatePath(`/${targetId}/follower`);
   return insertData;
 }
