@@ -101,7 +101,7 @@ export default function FrameworkStatsPage() {
       <div className={containerClass}>
         <div className="min-h-screen min-w-7xl  text-slate-900 dark:text-slate-50 flex items-center justify-center">
           <div className="px-6 py-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
-            로딩 중입니다...
+            차트 그리는중...
           </div>
         </div>
       </div>
