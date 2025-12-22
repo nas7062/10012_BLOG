@@ -12,7 +12,7 @@ type Props = {
 
 export default async function FollowerPage({ params }: Props) {
   const { name } = await params;
-  console.log(name);
+
   const user = await getUserById(name);
   const followInfo = await getFollowInfo(name);
 
@@ -20,7 +20,6 @@ export default async function FollowerPage({ params }: Props) {
 
   return (
     <div className="flex flex-col gap-4 text-primary">
-      {/* 헤더 */}
       <div className="flex gap-2 items-center">
         <Image
           src={user.image ?? "/hello.png"}

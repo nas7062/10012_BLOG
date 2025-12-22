@@ -1,50 +1,39 @@
-"use client";
-import { FollowButton } from "@/src/app/_components/FollowButton";
-import { IUser } from "@/src/app/_components/PostDetail";
-import { getFollowInfo } from "@/src/app/_lib/getFollowInfo";
-import { useCurrentUser } from "@/src/app/hook/useCurrentUser";
-import { ChevronRight } from "lucide-react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import FollowUser from "../_components/FollowUser";
+import { ChevronRight } from "lucide-react";
+import { getFollowInfo } from "@/src/app/_lib/getFollowInfo";
+import { getUserById } from "@/src/app/_lib/getUserById";
+import FollowerClient from "../_components/FollowClient";
 
-export default function FollowingPage() {
-  const id = usePathname().split("/")[1];
-  const { user: user, isLoading: isUserLoading } = useCurrentUser({
-    id,
-  });
-  const [following, setFollowing] = useState<IUser[] | undefined>([]);
-  const [followingCount, setFollowingCount] = useState(0);
-  useEffect(() => {
-    if (!id) return;
-    const fetchFollow = async () => {
-      const data = await getFollowInfo(id);
-      if (data?.followings) setFollowing(data?.followings);
-      if (data?.followingCount) setFollowingCount(data?.followingCount);
-    };
-    fetchFollow();
-  }, [id]);
-  if (isUserLoading) return "loading...";
+type Props = {
+  params: {
+    name: string;
+  };
+};
+
+export default async function FollowingPage({ params }: Props) {
+  const { name } = await params;
+
+  const user = await getUserById(name);
+  const followInfo = await getFollowInfo(name);
+
+  if (!user) return null;
 
   return (
     <div className="flex flex-col gap-4 text-primary">
-      <div className="flex gap-2  items-center">
+      <div className="flex gap-2 items-center">
         <Image
-          src={user?.image ? user?.image : "/hello.png"}
+          src={user.image ?? "/hello.png"}
           alt="유저 이미지"
           width={40}
           height={40}
           className="rounded-full"
         />
-        <div>{user?.name}</div>
+        <div>{user.name}</div>
         <ChevronRight />
-        <div>팔로우</div>
+        <div>팔로잉</div>
       </div>
-      <h2>{followingCount}명을 팔로우 중</h2>
-      {following?.map((follow) => (
-        <FollowUser follow={follow} user={user} key={follow.id} />
-      ))}
+      <h2>{followInfo?.followingCount ?? 0}명을 팔로우 중</h2>
+      <FollowerClient followers={followInfo?.followings ?? []} user={user} />
     </div>
   );
 }
