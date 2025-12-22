@@ -15,11 +15,7 @@ export default function Post({ post }: { post: IPost }) {
   const router = useRouter();
   const { data: user } = useSession();
   const email = user?.user?.email as string;
-  const {
-    data: writeUser,
-    isLoading: isAuthorLoading,
-    isError,
-  } = usePostAuthor(post.id);
+  const { data: writeUser, isError } = usePostAuthor(post.id);
   const { openModal } = useModal();
   const openLoginModal = () => openModal("LoginModal");
   const { liked, likeCount, toggle } = usePostLike(post.id, email);
@@ -39,8 +35,8 @@ export default function Post({ post }: { post: IPost }) {
     router.push(`/${writeUser?.id}/posts`);
   };
 
-  if (isAuthorLoading) {
-    return <SkeletonPost />;
+  if (!post) {
+    return Array.from({ length: 5 }).map((_, i) => <SkeletonPost key={i} />);
   }
 
   if (!writeUser || isError) return;

@@ -53,7 +53,7 @@ export function MyCombo({ user }: { user: User }) {
           />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[100px] p-0">
+      <PopoverContent className="w-20 p-0">
         <Command>
           <CommandList>
             <CommandGroup className="p-0!">
@@ -64,7 +64,7 @@ export function MyCombo({ user }: { user: User }) {
                       <Link
                         href={framework.href}
                         key={framework.label}
-                        className="block md:hidden cursor-pointer border-b py-2 bg-gray-300 hover:bg-gray-400 text-primary"
+                        className="block md:hidden cursor-pointer border-b py-2 bg-gray-300 hover:bg-gray-400 text-primary text-sm"
                       >
                         {framework.label}
                       </Link>
@@ -74,7 +74,7 @@ export function MyCombo({ user }: { user: User }) {
                       <Link
                         href={framework.href}
                         key={framework.label}
-                        className="cursor-pointer border-b  bg-gray-300 hover:bg-gray-400 py-2"
+                        className="cursor-pointer border-b  bg-gray-300 hover:bg-gray-400 py-2 text-sm"
                       >
                         {framework.label}
                       </Link>
@@ -82,7 +82,7 @@ export function MyCombo({ user }: { user: User }) {
                 })}
                 <button
                   onClick={() => signOut({ redirectTo: "/" })}
-                  className="block md:hidden py-2 bg-gray-300 hover:bg-gray-400 cursor-pointer transition-all duration-200"
+                  className="block md:hidden py-2 bg-gray-300 text-sm hover:bg-gray-400 cursor-pointer transition-all duration-200"
                 >
                   로그아웃
                 </button>
