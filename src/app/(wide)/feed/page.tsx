@@ -6,17 +6,27 @@ import { useRouter } from "next/navigation";
 import { useCurrentUser } from "../../hook/useCurrentUser";
 import Post from "../../_components/Post";
 import { useFollowPosts } from "../../hook/useFollowPosts";
+import { SkeletonPost } from "../../_components/SkeletonPost";
 
 export default function FeedPage() {
   const router = useRouter();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const email = session?.user?.email as string;
   const { user: userData } = useCurrentUser({
     email,
   });
-  const { posts, isLoading: isPostLoading } = useFollowPosts(userData?.id);
-  if (isPostLoading) return "loading...";
-  if (!posts)
+  const { posts, isLoading } = useFollowPosts(userData?.id);
+  if (status === "loading") {
+    return (
+      <div className="grid max-[450px]:grid-cols-1 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-8">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <SkeletonPost key={i} />
+        ))}
+      </div>
+    );
+  }
+
+  if (status === "unauthenticated" || !email)
     return (
       <div className="flex flex-col justify-center items-center gap-4">
         <Image
@@ -35,7 +45,17 @@ export default function FeedPage() {
         </button>
       </div>
     );
-  if (posts.length === 0) {
+
+  if (isLoading) {
+    return (
+      <div className="grid max-[450px]:grid-cols-1 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-8">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <SkeletonPost key={i} />
+        ))}
+      </div>
+    );
+  }
+  if (!posts || posts.length === 0) {
     return (
       <div className="flex flex-col justify-center items-center gap-4">
         <Image

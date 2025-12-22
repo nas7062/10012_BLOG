@@ -1,19 +1,30 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import Post from "../../_components/Post";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Post from "../../_components/Post";
 import { useLikePosts } from "../../hook/useLikePosts";
+import { SkeletonPost } from "../../_components/SkeletonPost";
 
 export default function LikePage() {
   const router = useRouter();
-  const { data: session } = useSession();
-  const email = session?.user?.email as string;
-  const { posts, isLoading: isPostLoading } = useLikePosts(email);
+  const { data: session, status } = useSession();
 
-  if (isPostLoading) return "loading...";
-  if (!posts)
+  const email = session?.user?.email ?? "";
+  const { posts, isLoading } = useLikePosts(email);
+
+  if (status === "loading") {
+    return (
+      <div className="grid max-[450px]:grid-cols-1 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-8">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <SkeletonPost key={i} />
+        ))}
+      </div>
+    );
+  }
+
+  if (status === "unauthenticated" || !email) {
     return (
       <div className="flex flex-col justify-center items-center gap-4">
         <Image
@@ -32,7 +43,19 @@ export default function LikePage() {
         </button>
       </div>
     );
-  if (posts.length === 0) {
+  }
+
+  if (isLoading) {
+    return (
+      <div className="grid max-[450px]:grid-cols-1 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-8">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <SkeletonPost key={i} />
+        ))}
+      </div>
+    );
+  }
+
+  if (!posts || posts.length === 0) {
     return (
       <div className="flex flex-col justify-center items-center gap-4">
         <Image
@@ -52,6 +75,7 @@ export default function LikePage() {
       </div>
     );
   }
+
   return (
     <div className="grid max-[450px]:grid-cols-1 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-8">
       {posts.map((post) => (
