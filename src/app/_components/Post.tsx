@@ -10,6 +10,7 @@ import { usePostAuthor } from "../hook/usePostAuthor";
 import { usePostLike } from "../hook/usePostLIke";
 import { useModal } from "../provider/ModalProvider";
 import { SkeletonPost } from "./SkeletonPost";
+import PostImage from "./PostImage";
 
 export default function Post({ post }: { post: IPost }) {
   const router = useRouter();
@@ -52,14 +53,7 @@ export default function Post({ post }: { post: IPost }) {
           MovePostDetail(post.id);
         }}
       >
-        <Image
-          src={post.coverImgUrl ? post.coverImgUrl : "/noImage.jpg"}
-          alt={post.title}
-          width={300}
-          height={300}
-          priority
-          className="rounded-md max-h-60 aspect-square"
-        />
+        <PostImage src={post.coverImgUrl} alt={post.title} />
       </div>
       <div
         className="max-w-[330px] px-4 flex flex-col justify-around h-32 mt-auto"
