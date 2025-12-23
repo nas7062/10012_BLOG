@@ -57,6 +57,7 @@ export default function Post({ post }: { post: IPost }) {
           alt={post.title}
           width={300}
           height={300}
+          priority
           className="rounded-md max-h-60 aspect-square"
         />
       </div>
