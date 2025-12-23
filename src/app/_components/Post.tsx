@@ -55,8 +55,8 @@ export default function Post({ post }: { post: IPost }) {
         <Image
           src={post.coverImgUrl ? post.coverImgUrl : "/noImage.jpg"}
           alt={post.title}
-          width={350}
-          height={200}
+          width={300}
+          height={300}
           className="rounded-md max-h-60 aspect-square"
         />
       </div>
@@ -98,6 +98,7 @@ export default function Post({ post }: { post: IPost }) {
               handleToggleLike();
             }}
             className="cursor-pointer"
+            aria-label="heart-button"
           >
             <Heart
               size={22}
