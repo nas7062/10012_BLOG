@@ -12,6 +12,7 @@ export default function PostImage({ src, alt, priority }: Props) {
       src={src}
       alt={alt}
       width={300}
+      loading={!priority ? "lazy" : "eager"}
       height={300}
       sizes="
       (max-width: 450px) 100vw,
