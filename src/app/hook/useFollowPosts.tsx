@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { IPost } from "../(wide)/write/_components/WirtePageClient";
 import { getFollowPosts } from "../_lib/getFollowPosts";
+import { IPost } from "../type";
 
 type UseFollowPostsResult = {
   posts: IPost[] | null;

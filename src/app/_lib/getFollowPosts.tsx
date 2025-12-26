@@ -1,5 +1,5 @@
-import { IPost } from "../(wide)/write/_components/WirtePageClient";
 import { getSupabaseClient } from "../api/supabase";
+import { IPost } from "../type";
 
 export async function getFollowPosts(userId: string) {
   const supabase = getSupabaseClient();

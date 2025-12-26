@@ -14,7 +14,7 @@ export default function UserImage({ src, alt, priority }: Props) {
       width={40}
       height={40}
       priority={priority}
-      className="rounded-full aspect-square"
+      className="rounded-full aspect-square cursor-pointer"
     />
   );
 }

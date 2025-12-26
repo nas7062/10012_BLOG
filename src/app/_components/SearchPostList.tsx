@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useSearchPost } from "../hook/useSearchPost";
 import SinglePostList from "./SinglePostList";
-import type { IPost } from "../(wide)/write/_components/WirtePageClient";
+import { IPost } from "../type";
 
 type SortType = "relevance" | "latest";
 

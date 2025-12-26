@@ -2,9 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import Post from "./Post";
-import type { IPost } from "../(wide)/write/_components/WirtePageClient";
 import { usePostList } from "../hook/usePostList";
 import { SkeletonPost } from "./SkeletonPost";
+import { IPost } from "../type";
 
 type Props = {
   initialPosts: IPost[];
@@ -48,7 +48,6 @@ export default function PostListClient({ initialPosts }: Props) {
 
   const allPosts: IPost[] = data?.pages.flatMap((page) => page) ?? [];
 
-  console.log(allPosts);
   return (
     <>
       {isLoading && (

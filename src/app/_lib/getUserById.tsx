@@ -1,5 +1,5 @@
-import { IUser } from "../_components/PostDetail";
 import { getSupabaseClient } from "../api/supabase";
+import { IUser } from "../type";
 
 export async function getUserById(id: string): Promise<IUser | null> {
   const supabase = getSupabaseClient();

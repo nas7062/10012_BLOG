@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { IPost } from "@/src/app/(wide)/write/_components/WirtePageClient";
 import { getMyPost } from "@/src/app/_lib/getMyPosts";
+import { IPost } from "@/src/app/type";
 
 type UseCurrentUserResult = {
   posts: IPost[] | null;

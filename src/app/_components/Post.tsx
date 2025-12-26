@@ -1,11 +1,11 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { IPost } from "../(wide)/write/_components/WirtePageClient";
 import { usePostAuthor } from "../hook/usePostAuthor";
 import { SkeletonPost } from "./SkeletonPost";
 import PostImage from "./PostImage";
 import { PostContent } from "./PostContent";
+import { IPost } from "../type";
 
 export default function Post({
   post,

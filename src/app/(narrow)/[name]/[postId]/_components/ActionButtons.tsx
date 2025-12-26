@@ -1,6 +1,5 @@
 "use client";
 
-import LoginModal from "@/src/app/_components/LoginModal";
 import { Heart, Link, Share2, Waypoints } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";

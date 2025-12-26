@@ -1,6 +1,5 @@
 "use client";
 
-import { IRepple, IUser } from "@/src/app/_components/PostDetail";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ko";
@@ -8,7 +7,7 @@ import { useRef, useState } from "react";
 import { useCurrentUser } from "@/src/app/hook/useCurrentUser";
 import Image from "next/image";
 import { useUpdateComment } from "../_hook/useUpdateComment";
-import { useModal } from "@/src/app/provider/ModalProvider";
+import { IRepple, IUser } from "@/src/app/type";
 
 dayjs.extend(relativeTime);
 dayjs.locale("ko");

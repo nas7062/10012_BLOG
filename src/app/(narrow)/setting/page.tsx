@@ -7,11 +7,8 @@ import { userDelete } from "./_lib/userDelete";
 import { useCurrentUser } from "../../hook/useCurrentUser";
 import Image from "next/image";
 import { updateInfo } from "./_lib/updateInfo";
-export interface AboutThumbnailPreview {
-  url: string;
-  name: string;
-  size: number;
-}
+import { AboutThumbnailPreview } from "../../type";
+
 
 export default function SettingPage() {
   const { data: user } = useSession();

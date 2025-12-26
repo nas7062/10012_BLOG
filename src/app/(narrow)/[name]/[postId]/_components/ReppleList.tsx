@@ -1,4 +1,4 @@
-import { IRepple, IUser } from "@/src/app/_components/PostDetail";
+import { IRepple, IUser } from "@/src/app/type";
 import Repple from "./Repple";
 
 export default function ReppleList({

@@ -14,28 +14,13 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 import { useDropzone } from "react-dropzone";
-import { AboutThumbnailPreview } from "@/src/app/(narrow)/setting/page";
 import TuiEditor from "./TuiEditor";
 import TagList from "@/src/app/_components/TagList";
 import Viewer from "./View";
 import { getSupabaseClient } from "@/src/app/api/supabase";
 import Image from "next/image";
 import { useCurrentUser } from "@/src/app/hook/useCurrentUser";
-
-export interface IPost {
-  coverImgUrl: string;
-  createdAt: string;
-  description: string;
-  id: number;
-  searchIndex?: string | null;
-  title: string;
-  updatedAt: string;
-  userId: string | null;
-  Tags?: string[] | null;
-  likeCount?: number | null;
-  email?: string | null;
-  reppleCount?: number;
-}
+import { AboutThumbnailPreview, IPost } from "@/src/app/type";
 
 export default function WritePageClient() {
   const [tags, setTags] = useState<string[]>([]);

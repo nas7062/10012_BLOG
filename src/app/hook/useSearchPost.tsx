@@ -2,7 +2,7 @@
 
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getSearchPost, SEARCH_PAGE_SIZE } from "../_lib/getSearchPost";
-import type { IPost } from "../(wide)/write/_components/WirtePageClient";
+import { IPost } from "../type";
 
 export function useSearchPost(q: string) {
   return useInfiniteQuery<IPost[], Error>({

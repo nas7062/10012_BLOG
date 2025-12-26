@@ -20,31 +20,10 @@ import { useDeleteComment } from "../(narrow)/[name]/[postId]/_hook/useDeleteCom
 import { FollowButton } from "./FollowButton";
 import { useDeletePost } from "../(narrow)/[name]/posts/_hook/useDeletePost";
 import { useModal } from "../provider/ModalProvider";
+import { IRepple } from "../type";
 
 dayjs.extend(relativeTime);
 dayjs.locale("ko");
-
-export interface IUser {
-  id: string;
-  email: string | null;
-  name: string | null;
-  image: string | null;
-  provider: string | null;
-  created_at: string | null;
-  like?: number[] | null;
-  descript?: string | null;
-  github?: string | null;
-}
-
-export interface IRepple {
-  id: number;
-  postId: number | null;
-  content: string | null;
-  name: string | null;
-  userid?: string | null;
-  createdAt: string;
-  updatedat?: string | null;
-}
 
 export default function PostDetail({
   name,

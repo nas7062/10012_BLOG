@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import type { IRepple } from "../_components/PostDetail";
+
 import { getCommentsByPost } from "../(narrow)/[name]/[postId]/_lib/getComment";
+import { IRepple } from "../type";
 
 type UseCurrentUserResult = {
   comments: IRepple[] | null;

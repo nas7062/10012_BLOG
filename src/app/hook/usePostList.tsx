@@ -2,7 +2,7 @@
 
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getPostList, PAGE_SIZE } from "../_lib/getPostList";
-import type { IPost } from "../(wide)/write/_components/WirtePageClient";
+import { IPost } from "../type";
 
 export function usePostList(initialPosts: IPost[]) {
   return useInfiniteQuery<IPost[], Error>({

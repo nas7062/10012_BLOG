@@ -1,15 +1,13 @@
 "use client ";
 import { useRef } from "react";
-import { createComment } from "../_lib/createComment";
-import { IRepple, IUser } from "@/src/app/_components/PostDetail";
-import { toast } from "sonner";
+
 import { useCreateComment } from "../_hook/useCreateComment";
+import { IRepple, IUser } from "@/src/app/type";
 
 export default function ReppleForm({
   user,
   postId,
   reppleCount,
-  onCreated,
 }: {
   user: IUser | null;
   postId: string;

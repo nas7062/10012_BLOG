@@ -1,8 +1,8 @@
 "use client";
 
-import { IUser } from "@/src/app/_components/PostDetail";
 import FollowUser from "../_components/FollowUser";
 import { useCurrentUser } from "@/src/app/hook/useCurrentUser";
+import { IUser } from "@/src/app/type";
 import { useSession } from "next-auth/react";
 
 type Props = {

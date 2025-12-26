@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { IPost } from "../(wide)/write/_components/WirtePageClient";
 import { getLikePosts } from "../_lib/getLikePosts";
+import { IPost } from "../type";
 
 type UseLikePostsResult = {
   posts: IPost[] | null;

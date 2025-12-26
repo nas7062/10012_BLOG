@@ -1,9 +1,8 @@
 import dayjs from "dayjs";
-import { IPost } from "../(wide)/write/_components/WirtePageClient";
-import { IUser } from "./PostDetail";
 import React from "react";
 import PostActions from "./PostActions";
 import UserImage from "./UserImage";
+import { IPost, IUser } from "../type";
 
 interface PostContentProps {
   post: IPost;

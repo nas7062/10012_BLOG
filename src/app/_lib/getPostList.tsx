@@ -1,5 +1,5 @@
-import type { IPost } from "../(wide)/write/_components/WirtePageClient";
 import { getSupabaseClient } from "../api/supabase";
+import { IPost } from "../type";
 
 const PAGE_SIZE = 5;
 
