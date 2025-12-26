@@ -35,7 +35,7 @@ export default function Post({
   if (!writeUser || isError) return;
   return (
     <div
-      className="flex flex-col max-w-[300px] shadow-xl gap-2 pb-4 rounded-md
+      className="flex flex-col  w-[300px] h-[420px] shadow-xl gap-2 pb-4 rounded-md
                 transition-transform duration-350
                 hover:-translate-y-2 hover:shadow-2xl
                 cursor-pointer relative"
