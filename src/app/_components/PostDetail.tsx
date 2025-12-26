@@ -8,19 +8,17 @@ import Viewer from "../(wide)/write/_components/View";
 import { useSession } from "next-auth/react";
 import ReppleForm from "../(narrow)/[name]/[postId]/_components/ReppleForm";
 import ReppleList from "../(narrow)/[name]/[postId]/_components/ReppleList";
-import { Heart } from "lucide-react";
-import clsx from "clsx";
 import { usePostAuthor } from "../hook/usePostAuthor";
 import { usePostById } from "../hook/usePostById";
 import { useCurrentUser } from "../hook/useCurrentUser";
-import { usePostLike } from "../hook/usePostLIke";
 import { useGetComment } from "../hook/useGetComment";
 import { useQueryClient } from "@tanstack/react-query";
 import { useDeleteComment } from "../(narrow)/[name]/[postId]/_hook/useDeleteComment";
-import { FollowButton } from "./FollowButton";
 import { useDeletePost } from "../(narrow)/[name]/posts/_hook/useDeletePost";
 import { useModal } from "../provider/ModalProvider";
 import { IRepple } from "../type";
+import { Spinner } from "@/components/ui/spinner";
+import { UpdateOrHeart } from "./UpdateOrHeart";
 
 dayjs.extend(relativeTime);
 dayjs.locale("ko");
@@ -35,8 +33,6 @@ export default function PostDetail({
   const router = useRouter();
   const { openModal, closeModal } = useModal();
 
-  const openLoginModal = () => openModal("LoginModal");
-
   const { data: session } = useSession();
   const { data: writeUser, isLoading: isAuthorLoading } = usePostAuthor(
     Number(postId)
@@ -46,7 +42,7 @@ export default function PostDetail({
   const email = session?.user?.email ?? "";
 
   // 좋아요 상태 조회
-  const { liked, likeCount, toggle } = usePostLike(Number(post?.id), email);
+
   const { user, isLoading: isUserLoading, isError } = useCurrentUser({ email });
   const { comments, isLoading: isReppleLoading } = useGetComment(
     Number(post?.id)
@@ -81,16 +77,13 @@ export default function PostDetail({
       postId: Number(postId),
     });
   };
-  const handleToggleLike = () => {
-    toggle(() => openLoginModal());
-  };
 
   const isUpdate = post?.email === session?.user?.email;
 
   if (isAuthorLoading || isPostLoading || isUserLoading || isReppleLoading)
-    return "loading...";
-  if (isError) return;
-  if (!writeUser?.id) return;
+    return <Spinner className="size-6 text-green-500" />;
+  if (isError || !writeUser?.id) return;
+
   return (
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-4">
@@ -100,41 +93,13 @@ export default function PostDetail({
             <p className="font-semibold">{writeUser?.name || "글쓴이"}</p>
             <p>{dayjs(post?.updatedAt).format("YYYY년 MM월 DD일")}</p>
           </div>
-          {isUpdate ? (
-            <div className="flex gap-2">
-              <p
-                className="cursor-pointer text-gray-500 hover:text-green-500"
-                onClick={() => router.push(`/write?id=${postId}`)}
-              >
-                수정
-              </p>
-              <p
-                className="cursor-pointer text-gray-500 hover:text-red-500"
-                onClick={openDeletePostModal}
-              >
-                삭제
-              </p>
-            </div>
-          ) : (
-            <div className="flex gap-1">
-              <FollowButton userId={user?.id} targetId={writeUser.id} />
-              <button
-                onClick={handleToggleLike}
-                className="flex gap-1 border border-gray-300 px-2 py-1 rounded-lg lg:hidden"
-              >
-                <Heart
-                  className={clsx(
-                    liked
-                      ? "text-rose-500 fill-rose-500"
-                      : "text-gray-500 fill-transparent"
-                  )}
-                  fill={liked ? "currentColor" : "none"}
-                  strokeWidth={liked ? 1.75 : 2}
-                />
-                <p>{likeCount}</p>
-              </button>
-            </div>
-          )}
+          <UpdateOrHeart
+            isUpdate={isUpdate}
+            openDeletePostModal={openDeletePostModal}
+            postId={postId}
+            user={user}
+            writeUser={writeUser}
+          />
         </div>
         <div
           className="wmde-markdown wmde-markdown-color

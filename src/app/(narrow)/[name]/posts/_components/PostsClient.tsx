@@ -11,6 +11,7 @@ import { TagSlider } from "./TagSlider";
 import { useEffect, useState } from "react";
 import { getFollowCounts } from "@/src/app/_lib/getFollowCount";
 import Link from "next/link";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function PostClient() {
   const id = usePathname().split("/")[1];
@@ -45,7 +46,8 @@ export default function PostClient() {
     fetchFollow();
   }, [id]);
 
-  if (isUserLoading || isPostsLoading) return "loading...";
+  if (isUserLoading || isPostsLoading)
+    return <Spinner className="size-6 text-green-500" />;
   if (!posts) return;
   return (
     <div className="bg-primary text-primary-foreground flex flex-col gap-4">

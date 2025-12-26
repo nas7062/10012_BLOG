@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import PostClient from "./_components/PostsClient";
 import { getUserById } from "@/src/app/_lib/getUserById";
+import { Spinner } from "@/components/ui/spinner";
 
 type RouteParams = {
   name: string;
@@ -31,7 +32,13 @@ export const revalidate = 0;
 
 export default function PostPage() {
   return (
-    <Suspense fallback={<main>로딩 중...</main>}>
+    <Suspense
+      fallback={
+        <main>
+          <Spinner className="size-6 text-green-500" />
+        </main>
+      }
+    >
       <PostClient />
     </Suspense>
   );
