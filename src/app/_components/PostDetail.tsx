@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ko";
@@ -10,7 +9,6 @@ import { useSession } from "next-auth/react";
 import ReppleForm from "../(narrow)/[name]/[postId]/_components/ReppleForm";
 import ReppleList from "../(narrow)/[name]/[postId]/_components/ReppleList";
 import { Heart } from "lucide-react";
-import LoginModal from "./LoginModal";
 import clsx from "clsx";
 import { usePostAuthor } from "../hook/usePostAuthor";
 import { usePostById } from "../hook/usePostById";
@@ -20,7 +18,6 @@ import { useGetComment } from "../hook/useGetComment";
 import { useQueryClient } from "@tanstack/react-query";
 import { useDeleteComment } from "../(narrow)/[name]/[postId]/_hook/useDeleteComment";
 import { FollowButton } from "./FollowButton";
-import DeletePostModal from "../(narrow)/[name]/posts/_components/DeletePostModal";
 import { useDeletePost } from "../(narrow)/[name]/posts/_hook/useDeletePost";
 import { useModal } from "../provider/ModalProvider";
 

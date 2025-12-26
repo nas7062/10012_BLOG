@@ -1,29 +1,15 @@
 "use client";
-import { Heart } from "lucide-react";
-import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { useSession } from "next-auth/react";
 import { IPost } from "../(wide)/write/_components/WirtePageClient";
-import Image from "next/image";
 import { usePostAuthor } from "../hook/usePostAuthor";
-import { usePostLike } from "../hook/usePostLIke";
-import { useModal } from "../provider/ModalProvider";
 import { SkeletonPost } from "./SkeletonPost";
 import PostImage from "./PostImage";
+import { PostContent } from "./PostContent";
 
 export default function Post({ post }: { post: IPost }) {
   const router = useRouter();
-  const { data: user } = useSession();
-  const email = user?.user?.email as string;
   const { data: writeUser, isError } = usePostAuthor(post.id);
-  const { openModal } = useModal();
-  const openLoginModal = () => openModal("LoginModal");
-  const { liked, likeCount, toggle } = usePostLike(post.id, email);
-
-  const handleToggleLike = () => {
-    toggle(() => openLoginModal());
-  };
 
   const MovePostDetail = (postId: number) => {
     if (!writeUser) return;
@@ -61,53 +47,11 @@ export default function Post({ post }: { post: IPost }) {
           MovePostDetail(post.id);
         }}
       >
-        <p className="text-lg text-primary font-semibold">{post.title}</p>
-        <p className="whitespace-normal text-sm wrap-break-word line-clamp-3">
-          {post.description}
-        </p>
-        <div className="flex justify-between text-xs">
-          <p>{dayjs(post.createdAt).format("YYYY년 MM월 DD일")}</p>
-          <p>{post.reppleCount}개의 댓글</p>
-        </div>
-      </div>
-      <div className="flex  items-center gap-2 px-4 mt-auto">
-        <div className="flex items-center gap-2" onClick={MoveUserPosts}>
-          <Image
-            src={writeUser?.image ? writeUser?.image : "/nextImage.png"}
-            width={40}
-            height={40}
-            alt="프로필 이미지"
-            className="rounded-full w-10 h-10"
-          />
-          <p className="font-semibold text-sm">
-            by {writeUser?.name || "글쓴이"}
-          </p>
-        </div>
-
-        <div className="ml-auto flex gap-1">
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              e.preventDefault();
-              handleToggleLike();
-            }}
-            className="cursor-pointer"
-            aria-label="heart-button"
-          >
-            <Heart
-              size={22}
-              className={
-                liked
-                  ? "text-rose-500 fill-rose-500"
-                  : "text-gray-500 fill-transparent"
-              }
-              fill={liked ? "currentColor" : "none"}
-              strokeWidth={liked ? 1.75 : 2}
-            />
-          </button>
-          <p>{likeCount}</p>
-        </div>
+        <PostContent
+          post={post}
+          writeUser={writeUser}
+          MoveUserPosts={MoveUserPosts}
+        />
       </div>
     </div>
   );
