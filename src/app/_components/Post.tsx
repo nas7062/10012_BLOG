@@ -42,7 +42,7 @@ export default function Post({ post }: { post: IPost }) {
         <PostImage src={post.coverImgUrl} alt={post.title} />
       </div>
       <div
-        className="max-w-[330px] px-4 flex flex-col justify-around h-32 mt-auto"
+        className="max-w-[330px] px-4 flex flex-col justify-around max-h-40 mt-0"
         onClick={() => {
           MovePostDetail(post.id);
         }}

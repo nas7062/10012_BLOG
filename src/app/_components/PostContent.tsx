@@ -17,9 +17,9 @@ export function PostContent({
   MoveUserPosts,
 }: PostContentProps) {
   return (
-    <div className="gap-2 flex flex-col">
-      <p className="text-lg text-primary font-semibold">{post.title}</p>
-      <p className="whitespace-normal text-sm wrap-break-word line-clamp-3">
+    <div className="gap-2 flex flex-col ">
+      <p className="text-lg text-primary font-semibold ">{post.title}</p>
+      <p className="whitespace-normal text-sm h-[58px] wrap-break-word line-clamp-3">
         {post.description}
       </p>
       <div className="flex justify-between text-xs">
