@@ -1,9 +1,9 @@
 import dayjs from "dayjs";
 import { IPost } from "../(wide)/write/_components/WirtePageClient";
-import Image from "next/image";
 import { IUser } from "./PostDetail";
 import React from "react";
 import PostActions from "./PostActions";
+import UserImage from "./UserImage";
 
 interface PostContentProps {
   post: IPost;
@@ -29,12 +29,10 @@ export function PostContent({
 
       <div className="flex  items-center justify-between gap-2  mt-auto">
         <div className="flex items-center gap-2" onClick={MoveUserPosts}>
-          <Image
+          <UserImage
             src={writeUser?.image ? writeUser?.image : "/nextImage.png"}
-            width={40}
-            height={40}
             alt="프로필 이미지"
-            className="rounded-full w-10 h-10"
+            priority={true}
           />
           <p className="font-semibold text-sm">
             by {writeUser?.name || "글쓴이"}
