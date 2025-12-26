@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Nanum_Gothic } from "next/font/google";
+import { Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 import Header from "./_components/Header";
 import AuthSession from "./_components/AuthSession";
@@ -9,15 +9,10 @@ import ReactQueryProvider from "./provider/reactqueryProvider";
 import { ModalProvider } from "./provider/ModalProvider";
 import Modal from "./_components/Modal";
 
-const geistNanum = Nanum_Gothic({
-  weight: ["400", "700"],
-  variable: "--font-geist-sans",
+const noto = Noto_Sans_KR({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  preload: true,
+  fallback: ["system-ui", "Apple SD Gothic Neo", "Malgun Gothic", "sans-serif"],
 });
 
 export const metadata: Metadata = {
@@ -34,10 +29,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" suppressHydrationWarning>
-      <body
-        className={`${geistNanum.className} ${geistMono.className} antialiased`}
-      >
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${noto.className} antialiased`}
+    >
+      <body>
         <ReactQueryProvider>
           <ThemeProvider>
             <ModalProvider>

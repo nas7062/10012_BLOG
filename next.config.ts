@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
         hostname: "shopping-phinf.pstatic.net",
       },
     ],
+    formats:['image/avif','image/webp'],
     domains: [
       "example.com",
       "k.kakaocdn.net",

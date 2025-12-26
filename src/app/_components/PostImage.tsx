@@ -13,6 +13,12 @@ export default function PostImage({ src, alt, priority }: Props) {
       alt={alt}
       width={300}
       height={300}
+      sizes="
+      (max-width: 450px) 100vw,
+      (max-width: 768px) 50vw,
+      (max-width: 1280px) 25vw,
+      300px
+    "
       priority={priority}
       className="rounded-md max-h-60 aspect-square"
     />
