@@ -83,8 +83,8 @@ export default function PostListClient({ initialPosts }: Props) {
       <div ref={loadMoreRef} className="h-32" />
 
       {!hasNextPage && data.pages.length > 1 && !isLoading && (
-        <div className="mt-4 text-center text-sm text-gray-500">
-          마지막 게시물입니다.
+        <div className=" text-center text-sm text-gray-500">
+          더이상 게시물이 없습니다.
         </div>
       )}
     </>

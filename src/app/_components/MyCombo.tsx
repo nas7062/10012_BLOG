@@ -43,7 +43,12 @@ export function MyCombo({ user }: { user: User }) {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button variant="ghost" role="combobox" aria-expanded={open}>
+        <Button
+          variant="ghost"
+          role="combobox"
+          aria-expanded={open}
+          aria-label="추가 옵션 버튼"
+        >
           <UserImage
             src={userData?.image ? userData.image : "/hello.png"}
             alt="프로필 이미지"

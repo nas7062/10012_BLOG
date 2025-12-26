@@ -22,7 +22,11 @@ export default function PostActions({ postId }: { postId: number }) {
         e.stopPropagation();
       }}
     >
-      <button onClick={handleToggle} className="cursor-pointer">
+      <button
+        onClick={handleToggle}
+        className="cursor-pointer"
+        aria-label="좋아요 버튼"
+      >
         <Heart
           size={22}
           className={
