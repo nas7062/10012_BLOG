@@ -1,7 +1,5 @@
 "use client";
 
-import * as React from "react";
-
 import { Button } from "@/components/ui/button";
 import { Command, CommandGroup, CommandList } from "@/components/ui/command";
 import {
@@ -15,9 +13,10 @@ import { signOut } from "next-auth/react";
 import { User } from "next-auth";
 import Image from "next/image";
 import { useCurrentUser } from "../hook/useCurrentUser";
+import { useState } from "react";
 
 export function MyCombo({ user }: { user: User }) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const email = user?.email as string;
   const {
     user: userData,

@@ -15,7 +15,7 @@ export default function SearchInput({ searchParams }: Props) {
         defaultValue={searchParams}
         autoComplete="off"
         enterKeyHint="search"
-        className="w-full h-10 rounded-2xl border border-gray-300 pl-10 pr-4 outline-none transition-colors duration-200 focus:border-gray-500"
+        className="w-full h-10 rounded-2xl border font-normal  border-gray-300 pl-10 pr-4 outline-none transition-colors duration-200 focus:border-gray-500"
         aria-label="검색어 입력"
       />
       <Search

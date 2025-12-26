@@ -7,7 +7,13 @@ import { SkeletonPost } from "./SkeletonPost";
 import PostImage from "./PostImage";
 import { PostContent } from "./PostContent";
 
-export default function Post({ post }: { post: IPost }) {
+export default function Post({
+  post,
+  priority,
+}: {
+  post: IPost;
+  priority?: boolean;
+}) {
   const router = useRouter();
   const { data: writeUser, isError } = usePostAuthor(post.id);
 
@@ -39,7 +45,11 @@ export default function Post({ post }: { post: IPost }) {
           MovePostDetail(post.id);
         }}
       >
-        <PostImage src={post.coverImgUrl} alt={post.title} />
+        <PostImage
+          src={post.coverImgUrl}
+          alt={post.title}
+          priority={priority}
+        />
       </div>
       <div
         className="max-w-[330px] px-4 flex flex-col justify-around max-h-40 mt-0"

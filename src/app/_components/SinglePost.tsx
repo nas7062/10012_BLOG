@@ -5,10 +5,8 @@ import { useRouter } from "next/navigation";
 import TagList from "./TagList";
 import { useSession } from "next-auth/react";
 import { Heart } from "lucide-react";
-
 import { IPost } from "../(wide)/write/_components/WirtePageClient";
 import { usePostLike } from "../hook/usePostLIke";
-
 import Image from "next/image";
 import { useModal } from "../provider/ModalProvider";
 
