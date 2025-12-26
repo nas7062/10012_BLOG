@@ -15,6 +15,7 @@ export default async function Header() {
         <Image
           src="/logo10.png"
           alt="로고"
+          priority
           width={50}
           height={50}
           className="w-20 h-20 sm:w-28 sm:h-28"

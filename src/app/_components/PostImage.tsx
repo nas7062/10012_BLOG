@@ -7,6 +7,7 @@ interface Props {
 }
 
 export default function PostImage({ src, alt, priority }: Props) {
+  console.log(priority);
   return (
     <Image
       src={src}
