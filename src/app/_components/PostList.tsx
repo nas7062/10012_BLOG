@@ -25,11 +25,17 @@ export default function PostListClient({ initialPosts }: Props) {
   useEffect(() => {
     if (!loadMoreRef.current || !hasNextPage) return;
 
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && !isFetchingNextPage) {
-        fetchNextPage();
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && hasNextPage && !isFetchingNextPage) {
+          fetchNextPage();
+        }
+      },
+      {
+        rootMargin: "0px 0px -100px 0px",
+        threshold: 0.1,
       }
-    });
+    );
 
     observer.observe(loadMoreRef.current);
     return () => observer.disconnect();
@@ -42,6 +48,7 @@ export default function PostListClient({ initialPosts }: Props) {
 
   const allPosts: IPost[] = data?.pages.flatMap((page) => page) ?? [];
 
+  console.log(allPosts);
   return (
     <>
       {isLoading && (
@@ -60,9 +67,6 @@ export default function PostListClient({ initialPosts }: Props) {
         </div>
       )}
 
-      {/* 다음 페이지 트리거 */}
-      <div ref={loadMoreRef} className="h-4" />
-
       {/*  다음 페이지 로딩 */}
       {isFetchingNextPage && (
         <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
@@ -71,6 +75,8 @@ export default function PostListClient({ initialPosts }: Props) {
           ))}
         </div>
       )}
+      {/* 다음 페이지 트리거 */}
+      <div ref={loadMoreRef} className="h-32" />
 
       {!hasNextPage && data.pages.length > 1 && !isLoading && (
         <div className="mt-4 text-center text-sm text-gray-500">

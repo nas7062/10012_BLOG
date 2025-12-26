@@ -9,7 +9,7 @@ export function usePostList(initialPosts: IPost[]) {
     queryKey: ["posts"],
     initialData: {
       pages: [initialPosts],
-      pageParams: [null],
+      pageParams: [0],
     },
     initialPageParam: 0,
     queryFn: ({ pageParam = 0 }) => getPostList(pageParam as number, PAGE_SIZE),

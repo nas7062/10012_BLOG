@@ -207,7 +207,7 @@ export default function WritePageClient() {
   };
 
   if (isUserLoading) return "loading...";
-  if (!post && !postId) return "Loading...";
+
   return (
     <main className="h-screen w-full flex flex-col sm:flex-row  gap-4  sm:gap-9 text-primary">
       <form

@@ -1,7 +1,7 @@
 import type { IPost } from "../(wide)/write/_components/WirtePageClient";
 import { getSupabaseClient } from "../api/supabase";
 
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 5;
 
 export async function getPostList(
   page: number,
