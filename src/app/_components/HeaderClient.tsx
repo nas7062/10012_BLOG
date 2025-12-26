@@ -21,7 +21,7 @@ export function HeaderClient() {
         <>
           <Link
             href={"/write"}
-            className="md:block hidden px-3 py-1.5 text-sm rounded-2xl bg-green-400 text-white cursor-pointer hover:bg-green-500 transition-all duration-200"
+            className="md:block hidden px-3 py-1.5 text-sm rounded-2xl bg-green-400 border border-green-400 text-white cursor-pointer hover:bg-green-500 transition-all duration-200"
           >
             글 작성
           </Link>
