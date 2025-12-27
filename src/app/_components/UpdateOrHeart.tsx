@@ -57,7 +57,7 @@ export function UpdateOrHeart({
           <FollowButton userId={user?.id} targetId={writeUser.id} />
           <button
             onClick={handleToggleLike}
-            className="flex gap-1 border border-gray-300 px-2 py-1 rounded-lg lg:hidden"
+            className="flex gap-1 border border-gray-300 px-2 py-1 rounded-lg lg:hidden items-center"
           >
             <Heart
               className={clsx(
@@ -67,6 +67,7 @@ export function UpdateOrHeart({
               )}
               fill={liked ? "currentColor" : "none"}
               strokeWidth={liked ? 1.75 : 2}
+              size={20}
             />
             <p>{likeCount}</p>
           </button>

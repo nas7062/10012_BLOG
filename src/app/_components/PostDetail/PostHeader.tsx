@@ -26,9 +26,13 @@ export function PostHeader({
     <div className="flex flex-col gap-4">
       <h2 className="text-4xl font-semibold py-4">{title}</h2>
       <div className="flex justify-between">
-        <div className="flex gap-2">
-          <p className="font-semibold">{author.name || "글쓴이"}</p>
-          <p>{dayjs(updatedAt).format("YYYY년 MM월 DD일")}</p>
+        <div className="flex gap-1 sm:gap-2">
+          <p className="font-semibold sm:text-base text-xs">
+            {author.name || "글쓴이"}
+          </p>
+          <p className=" sm:text-base text-xs">
+            {dayjs(updatedAt).format("YYYY년 MM월 DD일")}
+          </p>
         </div>
         <UpdateOrHeart
           isUpdate={isUpdate}
