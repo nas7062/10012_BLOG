@@ -18,10 +18,10 @@ export function PostContent({
   return (
     <div className="gap-2 flex flex-col h-full">
       <div className="flex flex-col gap-2 shrink-0">
-        <p className="text-lg text-primary font-semibold line-clamp-2 min-h-14">
+        <p className="text-lg text-primary font-semibold line-clamp-2 min-h-2">
           {post.title}
         </p>
-        <p className="whitespace-normal text-sm h-[58px] wrap-break-word line-clamp-3 overflow-hidden">
+        <p className="whitespace-normal text-sm h-[60px] wrap-break-word line-clamp-3 overflow-hidden">
           {post.description || ""}
         </p>
       </div>
@@ -30,7 +30,7 @@ export function PostContent({
         <p>{post.reppleCount}개의 댓글</p>
       </div>
 
-      <div className="flex items-center justify-between gap-2 mt-auto shrink-0">
+      <div className="flex items-center justify-between gap-2 mb-auto shrink-0">
         <div className="flex items-center gap-2" onClick={MoveUserPosts}>
           <UserImage
             src={writeUser?.image ? writeUser?.image : "/nextImage.png"}
