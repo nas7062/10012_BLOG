@@ -4,13 +4,11 @@ import { getFollowInfo } from "@/src/app/_lib/getFollowInfo";
 import { getUserById } from "@/src/app/_lib/getUserById";
 import FollowerClient from "../_components/FollowClient";
 
-type Props = {
-  params: {
-    name: string;
-  };
-};
-
-export default async function FollowerPage({ params }: Props) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ name: string }>;
+}) {
   const { name } = await params;
 
   const user = await getUserById(name);

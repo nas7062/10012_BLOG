@@ -1,12 +1,11 @@
 import SearchInput from "./_components/SearchInput";
 import SearchResultList from "../../_components/SearchPostList";
-import { Metadata } from "next";
 
 export async function generateMetadata({
   searchParams,
 }: {
-  searchParams: { q?: string };
-}): Promise<Metadata> {
+  searchParams: Promise<{ q?: string }>;
+}) {
   const { q } = await searchParams;
 
   const baseTitle = "검색 | 10012";
