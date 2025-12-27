@@ -41,6 +41,54 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   experimental: {
     optimizeCss: true,
+    optimizePackageImports: [
+      "@radix-ui/react-dialog",
+      "@radix-ui/react-popover",
+      "@radix-ui/react-progress",
+      "lucide-react",
+      "dayjs",
+    ],
+  },
+  // 웹팩 최적화
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      // 클라이언트 번들 최적화
+      config.optimization = {
+        ...config.optimization,
+        moduleIds: "deterministic",
+        runtimeChunk: "single",
+        splitChunks: {
+          chunks: "all",
+          cacheGroups: {
+            default: false,
+            vendors: false,
+            // 큰 라이브러리들을 별도 청크로 분리
+            chartjs: {
+              name: "chartjs",
+              test: /[\\/]node_modules[\\/](chart\.js|react-chartjs-2)[\\/]/,
+              priority: 30,
+            },
+            mdeditor: {
+              name: "mdeditor",
+              test: /[\\/]node_modules[\\/]@uiw[\\/]react-md-editor[\\/]/,
+              priority: 30,
+            },
+            reactVendor: {
+              name: "react-vendor",
+              test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+              priority: 40,
+            },
+            common: {
+              name: "common",
+              minChunks: 2,
+              priority: 10,
+              reuseExistingChunk: true,
+            },
+          },
+        },
+      };
+    }
+    return config;
   },
 };
 

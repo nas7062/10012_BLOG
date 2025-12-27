@@ -1,25 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Doughnut, Bar } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  ArcElement,
-  Tooltip,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-} from "chart.js";
-
-ChartJS.register(
-  ArcElement,
-  Tooltip,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  BarElement
-);
+import { Doughnut, Bar } from "./_components/ChartComponents";
 
 type Item = {
   name: string;
@@ -62,7 +44,6 @@ export default function FrameworkStatsPage() {
   const [loading, setLoading] = useState(true);
   const [period, setPeriod] = useState<string>("last-month");
   const [stack, setStack] = useState<StackType>("frontend");
-  const [darkMode, setDarkMode] = useState<boolean>(false);
 
   useEffect(() => {
     async function load() {
@@ -81,8 +62,8 @@ export default function FrameworkStatsPage() {
     load();
   }, [period]);
 
-  const frontendItems = data?.frontend ?? [];
-  const backendItems = data?.backend ?? [];
+  const frontendItems = useMemo(() => data?.frontend ?? [], [data?.frontend]);
+  const backendItems = useMemo(() => data?.backend ?? [], [data?.backend]);
 
   const frontendTotal = useMemo(
     () => frontendItems.reduce((acc, v) => acc + v.downloads, 0),
@@ -94,15 +75,11 @@ export default function FrameworkStatsPage() {
     [backendItems]
   );
 
-  const containerClass = darkMode ? "dark" : "";
-
   if (loading) {
     return (
-      <div className={containerClass}>
-        <div className="min-h-screen min-w-7xl  text-slate-900 dark:text-slate-50 flex items-center justify-center">
-          <div className="px-6 py-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
-            차트 그리는중...
-          </div>
+      <div className="min-h-screen min-w-7xl text-slate-900 dark:text-slate-50 flex items-center justify-center">
+        <div className="px-6 py-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+          차트 그리는중...
         </div>
       </div>
     );
@@ -110,11 +87,9 @@ export default function FrameworkStatsPage() {
 
   if (!data || data.error) {
     return (
-      <div className={containerClass}>
-        <div className="min-h-screen min-w-7xl text-slate-900 dark:text-slate-50 flex items-center justify-center">
-          <div className="px-6 py-4 rounded-xl border border-red-200 dark:border-red-800 bg-red-50/60 dark:bg-red-950/40 text-red-700 dark:text-red-200">
-            데이터를 불러오지 못했습니다.
-          </div>
+      <div className="min-h-screen min-w-7xl text-slate-900 dark:text-slate-50 flex items-center justify-center">
+        <div className="px-6 py-4 rounded-xl border border-red-200 dark:border-red-800 bg-red-50/60 dark:bg-red-950/40 text-red-700 dark:text-red-200">
+          데이터를 불러오지 못했습니다.
         </div>
       </div>
     );

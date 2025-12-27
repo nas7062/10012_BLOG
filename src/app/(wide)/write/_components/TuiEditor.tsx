@@ -1,6 +1,13 @@
 "use client";
-import MDEditor from "@uiw/react-md-editor";
+import dynamic from "next/dynamic";
 import React from "react";
+
+const MDEditor = dynamic(() => import("@uiw/react-md-editor"), {
+  ssr: false,
+  loading: () => (
+    <div className="animate-pulse bg-muted rounded-lg w-full h-[500px]" />
+  ),
+});
 
 interface TuiEditorProps {
   content: string;
