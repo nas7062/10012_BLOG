@@ -1,6 +1,6 @@
 export default function PostClone() {
   return (
-    <div className="flex flex-col gap-2 h-[420px] justify-between">
+    <div className="flex flex-col gap-2 w-[330px] sm:w-[270px] h-[420px] justify-between">
       <div className="flex flex-col gap-2 shrink-0">
         <div className="h-8 bg-muted animate-pulse rounded w-3/4" />
         <div className="h-12 bg-muted animate-pulse rounded" />

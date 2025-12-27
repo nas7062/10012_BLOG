@@ -38,7 +38,7 @@ function Post({ post, priority }: { post: IPost; priority?: boolean }) {
 
   return (
     <div
-      className="flex flex-col max-w-[330px] w-full h-[420px] shadow-xl gap-2 pb-4 rounded-md
+      className="flex flex-col max-w-[300px] w-full h-[420px] shadow-xl gap-2 pb-4 rounded-md
                 transition-transform duration-350
                 hover:-translate-y-2 hover:shadow-2xl
                 cursor-pointer relative overflow-hidden"
