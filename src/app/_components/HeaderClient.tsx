@@ -13,7 +13,7 @@ export function HeaderClient() {
       {!session?.user ? (
         <Link
           href={"/signin"}
-          className="px-4 py-2  rounded-2xl bg-gray-700 hover:bg-gray-900 text-white  cursor-pointer transition-all duration-200"
+          className="px-3  text-xs sm:text-base sm:px-4 py-2  rounded-2xl bg-gray-700 hover:bg-gray-900 text-white  cursor-pointer transition-all duration-200"
         >
           로그인
         </Link>

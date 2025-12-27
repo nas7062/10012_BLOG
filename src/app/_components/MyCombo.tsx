@@ -11,7 +11,6 @@ import {
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { User } from "next-auth";
-import Image from "next/image";
 import { useCurrentUser } from "../hook/useCurrentUser";
 import { useState } from "react";
 import UserImage from "./UserImage";
@@ -19,11 +18,7 @@ import UserImage from "./UserImage";
 export function MyCombo({ user }: { user: User }) {
   const [open, setOpen] = useState(false);
   const email = user?.email as string;
-  const {
-    user: userData,
-    isLoading: isUserLoading,
-    isError,
-  } = useCurrentUser({ email });
+  const { user: userData } = useCurrentUser({ email });
   const id = userData?.id;
   const frameworks = [
     {
@@ -66,6 +61,7 @@ export function MyCombo({ user }: { user: User }) {
                       <Link
                         href={framework.href}
                         key={framework.label}
+                        onClick={() => setOpen(false)}
                         className="block md:hidden cursor-pointer border-b py-2 bg-gray-300 hover:bg-gray-400 text-primary text-sm"
                       >
                         {framework.label}
@@ -76,6 +72,7 @@ export function MyCombo({ user }: { user: User }) {
                       <Link
                         href={framework.href}
                         key={framework.label}
+                        onClick={() => setOpen(false)}
                         className="cursor-pointer border-b  bg-gray-300 hover:bg-gray-400 py-2 text-sm"
                       >
                         {framework.label}
