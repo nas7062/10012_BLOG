@@ -16,9 +16,11 @@ export default async function Header() {
           src="/logo10.png"
           alt="로고"
           priority
-          width={50}
-          height={50}
+          width={112}
+          height={112}
+          sizes="(max-width: 640px) 80px, 112px"
           className="w-20 h-20 sm:w-28 sm:h-28"
+          quality={90}
         />
       </Link>
       <HeaderNav />

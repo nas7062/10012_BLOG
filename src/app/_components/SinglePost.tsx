@@ -38,7 +38,12 @@ export default function SinglePost({ post }: { post: IPost }) {
           alt={post.title}
           width={400}
           height={600}
-          className="rounded-xl overflow-hidden  w-80 mx-auto "
+          sizes="(max-width: 768px) 100vw, 400px"
+          loading="lazy"
+          className="rounded-xl overflow-hidden w-80 mx-auto object-cover"
+          quality={85}
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGBkRMU/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAZEQADAAMAAAAAAAAAAAAAAAAAAQIDESH/2gAMAwEAAhEDEQA/AD1wu5lKrWwKCiRdkJZPFSCHONVWNKLB7BGkqYSNMG5I2MkWk3bBtShIk2N2Mc8xY2Mk2NR6Q2NgqNPYq7h4EGxUamxkpNL1N0W8Xk/"
         />
       </div>
       <div className="max-w-[740px] px-4 flex flex-col justify-around min-h-32 gap-4">

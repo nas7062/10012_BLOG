@@ -12,7 +12,10 @@ import Modal from "./_components/Modal";
 const noto = Noto_Sans_KR({
   subsets: ["latin"],
   preload: true,
+  display: "swap",
   fallback: ["system-ui", "Apple SD Gothic Neo", "Malgun Gothic", "sans-serif"],
+  adjustFontFallback: true,
+  variable: "--font-noto-sans-kr",
 });
 
 export const metadata: Metadata = {
@@ -20,6 +23,19 @@ export const metadata: Metadata = {
   description: "10012에 오신걸 환영합니다.",
   icons: {
     icon: "/favicon.ico",
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+  },
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_LOCAL_URL || "http://localhost:3000"
+  ),
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    siteName: "10012",
   },
 };
 

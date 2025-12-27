@@ -1,4 +1,14 @@
-import MDEditor from "@uiw/react-md-editor";
+import dynamic from "next/dynamic";
+
+const MDEditorMarkdown = dynamic(
+  () => import("@uiw/react-md-editor").then((mod) => mod.default.Markdown),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="animate-pulse bg-muted rounded-md h-64 w-full" />
+    ),
+  }
+);
 
 export default function Viewer({ content }: { content: string }) {
   return (
@@ -6,7 +16,7 @@ export default function Viewer({ content }: { content: string }) {
       className="wmde-markdown wmde-markdown-color
                  bg-background text-foreground "
     >
-      <MDEditor.Markdown source={content} />
+      <MDEditorMarkdown source={content} />
     </div>
   );
 }
