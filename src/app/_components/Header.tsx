@@ -7,7 +7,7 @@ import { HeaderClient } from "./HeaderClient";
 
 export default async function Header() {
   return (
-    <header className="h-20 relative flex items-center md:px-10 gap-2 md:gap-10 ">
+    <header className="h-20 relative flex items-center px-2 md:px-10 gap-2 md:gap-10 ">
       <Link
         className="text-2xl md:text-4xl font-semibold cursor-pointer"
         href="/"
