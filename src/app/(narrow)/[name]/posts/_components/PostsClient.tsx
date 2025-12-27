@@ -81,7 +81,11 @@ export default function PostClient() {
         </div>
         <div className="flex gap-4">
           {userData?.github && (
-            <Link href={`${userData.github}`} target="_blank">
+            <Link
+              href={`${userData.github}`}
+              target="_blank"
+              aria-label="깃허브 링크"
+            >
               <GithubIcon className="w-8 h-8 cursor-pointer" />
             </Link>
           )}

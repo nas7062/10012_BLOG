@@ -62,6 +62,7 @@ export default function SinglePost({ post }: { post: IPost }) {
               handleToggleLike();
             }}
             className="cursor-pointer"
+            aria-label="좋아요 버튼"
           >
             {liked ? (
               <Heart className="w-6 h-6 group-hover:fill-gray-500 fill-red-500" />
