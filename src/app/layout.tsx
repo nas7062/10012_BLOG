@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_KR } from "next/font/google";
+import { IBM_Plex_Sans_KR } from "next/font/google";
 import "./globals.css";
 import Header from "./_components/Header";
 import AuthSession from "./_components/AuthSession";
@@ -9,13 +9,14 @@ import ReactQueryProvider from "./provider/reactqueryProvider";
 import { ModalProvider } from "./provider/ModalProvider";
 import Modal from "./_components/Modal";
 
-const noto = Noto_Sans_KR({
+const font = IBM_Plex_Sans_KR({
   subsets: ["latin"],
   preload: true,
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
   fallback: ["system-ui", "Apple SD Gothic Neo", "Malgun Gothic", "sans-serif"],
   adjustFontFallback: true,
-  variable: "--font-noto-sans-kr",
+  variable: "--font-ibm-plex",
 });
 
 export const metadata: Metadata = {
@@ -56,7 +57,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${noto.className} antialiased`}
+      className={`${font.className} antialiased`}
     >
       <body>
         <ReactQueryProvider>

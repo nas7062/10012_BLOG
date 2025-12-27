@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
@@ -79,13 +79,13 @@ export default function SignInModal() {
   };
   return (
     <div>
-      <div className="flex flex-col justify-center py-2 gap-4">
-        <h2 className="text-3xl text-center">로그인</h2>
+      <div className="flex flex-col justify-center py-2 px-4 gap-4">
+        <h2 className="text-2xl! text-center text-white">로그인</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <div className="flex gap-1 ">
             <label
               htmlFor="email"
-              className=" text-xs  sm:text-sm bg-gray-400 px-2 py-2 rounded-md w-28 flex justify-center items-center"
+              className=" text-xs  sm:text-sm bg-green-700 border border-green-500 text-white px-2 py-2 rounded-md w-28 flex justify-center items-center"
             >
               이메일
             </label>
@@ -96,7 +96,7 @@ export default function SignInModal() {
               disabled={loading}
               {...register("email")}
               placeholder="이메일을 입력하세요"
-              className="border border-gray-300 rounded-md flex-1 px-2 outline-none focus:border-2 focus:border-gray-700 "
+              className="border border-gray-300 rounded-md placeholder:text-sm flex-1 px-2 outline-none focus:border-2 focus:border-green-700 "
             />
           </div>
           {errors.email && (
@@ -105,7 +105,7 @@ export default function SignInModal() {
           <div className="flex gap-1 ">
             <label
               htmlFor="password"
-              className="text-xs  sm:text-sm bg-gray-400 px-2 py-2 rounded-md  w-28 flex justify-center items-center "
+              className="text-xs  sm:text-sm bg-green-700 border border-green-500 text-white px-2 py-2 rounded-md  w-28 flex justify-center items-center "
             >
               비밀번호
             </label>
@@ -115,7 +115,7 @@ export default function SignInModal() {
               disabled={loading}
               {...register("password")}
               placeholder="비밀번호를 입력하세요"
-              className="border border-gray-300 rounded-md flex-1 px-2   outline-none focus:border-2 focus:border-gray-700"
+              className="border border-gray-300  placeholder:text-sm rounded-md flex-1 px-2   outline-none focus:border-2 focus:border-green-700"
             />
           </div>
           {errors.password && (
@@ -123,10 +123,18 @@ export default function SignInModal() {
           )}
           <button
             type="submit"
-            className=" bg-green-400 py-3 text-2xl hover:bg-emerald-400 rounded-lg text-white cursor-pointer transition-colors duration-300"
+            className=" bg-green-400 py-2 text-lg border border-green-500 hover:bg-emerald-400 rounded-lg text-white cursor-pointer transition-colors duration-300"
           >
             로그인
           </button>
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-white/20"></div>
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-4 bg-transparent text-white/60">또는</span>
+            </div>
+          </div>
           <button
             type="button"
             className="f-full"
@@ -136,12 +144,12 @@ export default function SignInModal() {
               src={"/kakao_btn.png"}
               alt="카카오 로그인 버튼"
               width={300}
-              height={30}
-              className="w-full h-14 cursor-pointer rounded-lg overflow-hidden"
+              height={25}
+              className="w-full h-12 cursor-pointer rounded-lg overflow-hidden"
             />
           </button>
         </form>
-        <div className="flex justify-end gap-2 text-green-500">
+        <div className="flex justify-end gap-2 text-white text-sm">
           <p>회원가입을 안했다면?</p>
           <button
             type="button"
@@ -150,7 +158,7 @@ export default function SignInModal() {
               goSignupPage();
             }}
           >
-            <strong className="cursor-pointer hover:text-green-400">
+            <strong className="cursor-pointer hover:text-green-700">
               회원가입
             </strong>
           </button>
