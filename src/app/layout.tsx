@@ -36,6 +36,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ko_KR",
     siteName: "10012",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "10012 블로그",
+      },
+    ],
   },
 };
 
