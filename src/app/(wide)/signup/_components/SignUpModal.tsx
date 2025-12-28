@@ -83,7 +83,7 @@ export default function SignUpModal() {
   return (
     <div>
       <div className="flex flex-col justify-center py-2 gap-4 overflow-y-hidden">
-        <h2 className="text-3xl text-center">회원가입</h2>
+        <h2 className="text-2xl! text-center text-white">회원가입</h2>
 
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -92,7 +92,7 @@ export default function SignUpModal() {
           <div className="flex gap-1">
             <label
               htmlFor="name"
-              className="text-xs  sm:text-sm bg-gray-400 px-2 py-2 rounded-md w-28 flex justify-center items-center"
+              className="text-xs  sm:text-sm  bg-green-700 border border-green-500 text-white px-2 py-2 rounded-md w-28 flex justify-center items-center"
             >
               이름
             </label>
@@ -100,7 +100,7 @@ export default function SignUpModal() {
               type="text"
               id="name"
               placeholder="이름을 입력하세요"
-              className="border border-gray-300 rounded-md flex-1 px-2 outline-none focus:border-2 focus:border-gray-700"
+              className="border border-gray-300 placeholder:text-sm rounded-md flex-1 px-2 outline-none focus:border-2 focus:border-green-700"
               {...register("name")}
             />
           </div>
@@ -111,7 +111,7 @@ export default function SignUpModal() {
           <div className="flex gap-1">
             <label
               htmlFor="email"
-              className="text-xs  sm:text-sm bg-gray-400 px-2 py-2 rounded-md w-28 flex justify-center items-center"
+              className="text-xs  sm:text-sm  bg-green-700 border border-green-500 text-white px-2 py-2 rounded-md w-28 flex justify-center items-center"
             >
               이메일
             </label>
@@ -119,7 +119,7 @@ export default function SignUpModal() {
               type="text"
               id="email"
               placeholder="이메일을 입력하세요"
-              className="border border-gray-300 rounded-md flex-1 px-2 outline-none focus:border-2 focus:border-gray-700"
+              className="border border-gray-300 rounded-md placeholder:text-sm flex-1 px-2 outline-none focus:border-2 focus:border-green-700"
               {...register("email")}
             />
           </div>
@@ -130,7 +130,7 @@ export default function SignUpModal() {
           <div className="flex gap-1">
             <label
               htmlFor="password"
-              className="text-xs  sm:text-sm bg-gray-400 px-2 py-2 rounded-md w-28 flex justify-center items-center"
+              className="text-xs  sm:text-sm  bg-green-700 border border-green-500 text-white px-2 py-2 rounded-md w-28 flex justify-center items-center"
             >
               비밀번호
             </label>
@@ -138,7 +138,7 @@ export default function SignUpModal() {
               type="password"
               id="password"
               placeholder="비밀번호를 입력하세요"
-              className="border border-gray-300 rounded-md flex-1 px-2 outline-none focus:border-2 focus:border-gray-700"
+              className="border border-gray-300 rounded-md placeholder:text-sm flex-1 px-2 outline-none focus:border-2 focus:border-green-700"
               {...register("password")}
             />
           </div>
@@ -149,7 +149,7 @@ export default function SignUpModal() {
           <div className="flex gap-1 items-center">
             <label
               htmlFor="passwordConfirm"
-              className="text-xs  sm:text-sm bg-gray-400 px-2 py-2 rounded-md w-28 flex justify-center items-center text-center"
+              className="text-xs  sm:text-sm  bg-green-700 border border-green-500 text-white px-2 py-2 rounded-md w-28 flex justify-center items-center text-center"
             >
               비밀번호 확인
             </label>
@@ -157,7 +157,7 @@ export default function SignUpModal() {
               type="password"
               id="passwordConfirm"
               placeholder="비밀번호를 다시 입력하세요"
-              className="border border-gray-300 rounded-md flex-1 px-2 py-2 outline-none focus:border-2 focus:border-gray-700"
+              className="border border-gray-300 rounded-md placeholder:text-sm flex-1 px-2 py-2 outline-none focus:border-2 focus:border-green-700"
               {...register("passwordConfirm")}
             />
           </div>
@@ -176,7 +176,7 @@ export default function SignUpModal() {
           </button>
         </form>
 
-        <div className="flex justify-end gap-2 text-green-500">
+        <div className="flex justify-end gap-2 text-sm text-white">
           <p>이미 회원이신가요?</p>
           <button
             type="button"
@@ -185,7 +185,7 @@ export default function SignUpModal() {
               goSignInPage();
             }}
           >
-            <strong className="cursor-pointer hover:text-green-400">
+            <strong className="cursor-pointer hover:text-green-700">
               로그인
             </strong>
           </button>

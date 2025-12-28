@@ -96,7 +96,7 @@ export default function SignInModal() {
               disabled={loading}
               {...register("email")}
               placeholder="이메일을 입력하세요"
-              className="border border-gray-300 rounded-md placeholder:text-sm flex-1 px-2 outline-none focus:border-2 focus:border-green-700 "
+              className="border  border-gray-300 rounded-md placeholder:text-sm flex-1 px-2 outline-none focus:border-2 focus:border-green-700 "
             />
           </div>
           {errors.email && (

@@ -7,9 +7,9 @@ export default function LoginModal() {
   return (
     <div className="flex flex-col  gap-4 p-4">
       <h2 className="text-lg!  sm:text-2xl! font-semibold text-center">
-        로그인을 해야만 가능합니다.
+        로그인 후 이용 가능합니다.
       </h2>
-      <p className="text-gray-500 text-center">
+      <p className="text-gray-700 text-center">
         로그인 후 다양한 기능과 나만의 기록을 남겨봐요.
       </p>
       <div className="flex justify-around gap-4 ">
