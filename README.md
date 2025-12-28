@@ -18,8 +18,9 @@ Next.js 14 App Router와 Supabase 기반의 모던 웹 애플리케이션입니�
 - [개발 가이드](#-개발-가이드)
 - [Path Alias 시스템](#-path-alias-시스템)
 - [메타데이터 전략](#-메타데이터-전략)
-- [인증 시스템](#-인증-시스템)
-- [배포](#-배포)
+- [성능 최적화](#-성능-최적화)
+- [코딩 컨벤션](#-코딩-컨벤션)
+
 
 ## 🎯 프로젝트 개요
 
@@ -64,6 +65,49 @@ Next.js 14 App Router와 Supabase 기반의 모던 웹 애플리케이션입니�
 - **ESLint** - 코드 품질 검사
 - **Prettier** (권장) - 코드 포매팅
 - **PostCSS** - CSS 처리
+
+## 주요 화면 
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/d788e74e-5042-4f12-bbc5-1417dcd055ab" width="100%" />
+      <br />
+      <b>무한 스크롤</b>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/a487b178-7828-48d3-a27a-8921f9a48cea" width="100%" />
+      <br />
+      <b>내 게시글 목록</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/b021fd00-a4dd-40c3-9949-31e38817b45e" width="100%" />
+      <br />
+      <b>상세 페이지 및 댓글기능 </b>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/e4392667-0004-448b-8a87-1178e443e429b" width="100%" />
+      <br />
+      <b>글 작성</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/0ec49b0b-89b5-4eb5-b384-1b0df5d24de8" width="100%" />
+      <br />
+      <b> 정보 수정 및 다크모드 적용 </b>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/d45bffff-a461-4435-b18f-840ce9beadda" width="100%" />
+      <br />
+      <b> 뉴스,차트 페이지 </b>
+    </td>
+  </tr>
+</table>
+
+
+
 
 ## ✨ 주요 기능
 
@@ -328,6 +372,61 @@ export const metadata: Metadata = {
 - **공개 페이지**: 검색 엔진 최적화 (OpenGraph, keywords)
 - **비공개 페이지**: 검색 엔진 제외 (`noindex, nofollow`)
 - **개인정보 보호**: 사용자 데이터가 포함된 페이지는 색인 방지
+
+## 📝  성능 최적화
+
+### 1. 이미지 최적화
+- `sizes` 속성 최적화로 적절한 이미지 크기 로드
+- `quality={85}` 설정으로 이미지 품질과 파일 크기 균형
+- `placeholder="blur"` 및 `blurDataURL` 추가로 레이아웃 시프트 감소
+- `object-cover` 클래스 추가로 이미지 표시 최적화
+- `loading="lazy"` 설정
+
+### 2. Next.js 설정 최적화
+
+####  `next.config.ts` 개선
+
+- **deprecated `domains` 제거**: `remotePatterns`로 통합
+- **이미지 최적화 옵션**:
+  - `deviceSizes`: 다양한 디바이스 크기 지원
+  - `formats`: 이미지 avif or webp로 변환
+  - `imageSizes`: 적절한 이미지 크기 정의
+  - `minimumCacheTTL: 60`: 캐시 TTL 설정
+- **성능 옵션**:
+  - `compress: true`: Gzip 압축 활성화
+  - `poweredByHeader: false`: 보안 개선
+  - `reactStrictMode: true`: React 엄격 모드
+  - `swcMinify: true`: SWC로 빠른 빌드
+  - `experimental.optimizeCss: true`: CSS 최적화
+
+### 3. 폰트 최적화
+
+####  Font Loading 전략
+
+- `display: "swap"`: 폰트 로딩 중 텍스트 표시 (FOUT)
+- `adjustFontFallback: true`: 폰트 로딩 실패 시 폴백 최적화
+- `variable` 추가: CSS 변수로 폰트 관리
+- 적절한 `fallback` 폰트 설정
+
+### 4. 메타데이터 및 SEO 최적화
+
+####  Layout 메타데이터
+
+- `viewport` 설정 최적화
+- `metadataBase` 추가로 절대 URL 설정
+- OpenGraph 메타데이터 추가
+
+### 5. 컴포넌트 최적화
+
+####  Post 컴포넌트
+- `React.memo` 적용으로 불필요한 리렌더링 방지
+- `useCallback`으로 함수 메모이제이션
+- 이벤트 핸들러 최적화
+
+####  동적 임포트 (Code Splitting)
+- **View 컴포넌트**: MDEditor를 동적 임포트로 지연 로딩
+- `ssr: false`로 클라이언트 사이드만 로드
+- 로딩 스켈레톤 추가
 
 ## 📝 코딩 컨벤션
 
