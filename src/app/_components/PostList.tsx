@@ -64,7 +64,7 @@ export default function PostListClient({ initialPosts }: Props) {
             <Post
               key={post.id}
               post={post}
-              priority={idx < 10 ? true : false}
+              priority={idx > 5 && idx < 10 ? true : false}
             />
           ))}
         </div>
