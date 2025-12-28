@@ -66,6 +66,49 @@ Next.js 14 App Router와 Supabase 기반의 모던 웹 애플리케이션입니�
 - **Prettier** (권장) - 코드 포매팅
 - **PostCSS** - CSS 처리
 
+## 주요 화면 
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/d788e74e-5042-4f12-bbc5-1417dcd055ab" width="100%" />
+      <br />
+      <b>무한 스크롤</b>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/a487b178-7828-48d3-a27a-8921f9a48cea" width="100%" />
+      <br />
+      <b>내 게시글 목록</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/b021fd00-a4dd-40c3-9949-31e38817b45e" width="100%" />
+      <br />
+      <b>상세 페이지 및 댓글기능 </b>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/e4392667-0004-448b-8a87-1178e443e429b" width="100%" />
+      <br />
+      <b>글 작성</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/0ec49b0b-89b5-4eb5-b384-1b0df5d24de8" width="100%" />
+      <br />
+      <b> 정보 수정 및 다크모드 적용 </b>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/d45bffff-a461-4435-b18f-840ce9beadda" width="100%" />
+      <br />
+      <b> 뉴스,차트 페이지 </b>
+    </td>
+  </tr>
+</table>
+
+
+
+
 ## ✨ 주요 기능
 
 ### 1. 인증 시스템
