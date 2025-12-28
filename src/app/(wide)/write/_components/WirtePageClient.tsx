@@ -80,7 +80,7 @@ export default function WritePageClient() {
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: onDropThumbnail,
     accept: {
-      "image/*": [".jpeg", ".jpg", ".png"],
+      "image/*": [".jpeg", ".jpg", ".png",".avif",".webp"],
     },
   });
 

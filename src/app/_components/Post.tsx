@@ -44,7 +44,7 @@ function Post({ post, priority }: { post: IPost; priority?: boolean }) {
                 cursor-pointer relative overflow-hidden"
     >
       <div
-        className="relative w-full h-[240px] shrink-0"
+        className="relative w-full h-60 shrink-0"
         onClick={() => {
           if (writeUser) MovePostDetail(post.id);
         }}
