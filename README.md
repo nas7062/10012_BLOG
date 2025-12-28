@@ -2,7 +2,7 @@
 
 **10012는 여러사람들과 기술과 많은 것들을 공유하는 플랫폼입니다.**
 
-Next.js 14 App Router와 Supabase 기반의 모던 웹 애플리케이션입니다.
+Next.js 16 App Router와 React19,Supabase 기반의 모던 웹 애플리케이션입니다.
 
 ## 개발 인원
 ### 김민석 - 개인 프로젝트
