@@ -79,7 +79,7 @@ export default function SignInModal() {
   };
   return (
     <div>
-      <div className="flex flex-col justify-center py-2 px-4 gap-4">
+      <div className="flex flex-col justify-center py-2  gap-4">
         <h2 className="text-2xl! text-center text-white">로그인</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <div className="flex gap-1 ">

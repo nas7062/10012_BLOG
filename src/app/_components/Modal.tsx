@@ -80,7 +80,7 @@ export default function Modal({ children }: ModalProps) {
   return createPortal(
     <dialog
       ref={dialogRef}
-      className="max-w-[450px] w-[70vw] max-h-[60vh] shadow-xl border overflow-y-hidden border-gray-100 bg-linear-to-br rounded-2xl from-emerald-500 via-green-300 to-teal-400 backdrop-blur-sm  p-4 absolute left-1/2 top-1/2 -translate-1/2 overflow-x-hidden"
+      className="max-w-[450px] w-[92vw] max-h-[60vh] shadow-xl border overflow-y-hidden border-gray-100 bg-linear-to-br rounded-2xl from-emerald-500 via-green-300 to-teal-400 backdrop-blur-sm  p-4 absolute left-1/2 top-1/2 -translate-1/2 overflow-x-hidden"
       aria-labelledby="modal-title"
       onClick={(e) => e.target === e.currentTarget && safeClose()}
       onCancel={(e) => {
