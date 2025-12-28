@@ -13,8 +13,6 @@ export default function FollowUser({
   user: IUser | null;
   userId: string;
 }) {
-  console.log("userId", user?.id);
-  console.log("current", userId);
   return (
     <div key={follow.id}>
       <div className="flex gap-4 items-center">

@@ -91,7 +91,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
       // 카카오가 이메일 안 주는 경우도 있어서 방어 코드
       if (!user?.email) {
-        console.log("카카오 유저에 email 없음:", user);
+      
         return true; // 일단 로그인은 통과시키고, DB는 안 건드림
       }
 

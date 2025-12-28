@@ -28,7 +28,7 @@ function Post({ post, priority }: { post: IPost; priority?: boolean }) {
     },
     [writeUser, router]
   );
-  console.log(priority);
+
   if (!post) {
     return Array.from({ length: 5 }).map((_, i) => <SkeletonPost key={i} />);
   }

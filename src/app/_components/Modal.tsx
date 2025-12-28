@@ -21,7 +21,6 @@ export default function Modal({ children }: ModalProps) {
   const pathname = usePathname();
   const isAutoOpeningRef = useRef(false); // 모달이 자동으로 열리는지 추적
 
-  console.log(modalType, modalData);
   useEffect(() => {
     if (isOpen && dialogRef.current) {
       const el = dialogRef.current;
