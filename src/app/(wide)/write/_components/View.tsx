@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-
+import "@/styles/markdown.module.css";
 const MDEditorMarkdown = dynamic(
   () => import("@uiw/react-md-editor").then((mod) => mod.default.Markdown),
   {

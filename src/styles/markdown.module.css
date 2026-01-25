@@ -1,0 +1,32 @@
+/* 라이브러리 루트 */
+:global(.wmde-markdown) {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+  
+  /* 코드 블록 */
+  :global(.wmde-markdown pre code) {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      "Liberation Mono", "Courier New", monospace;
+    font-size: 0.875rem;
+  }
+  
+  /* 다크모드 코드 블록 */
+  :global(.dark .wmde-markdown pre) {
+    background-color: #0f172a; /* slate-900 느낌 */
+    color: #e5e7eb; /* text-gray-200 */
+  }
+  
+  /* 라이트모드 코드 블록 */
+  :global(:not(.dark) .wmde-markdown pre) {
+    background-color: #f3f4f6; /* gray-100 */
+    color: #111827; /* gray-900 */
+  }
+  
+  /* 인라인 코드 */
+  :global(.dark .wmde-markdown code) {
+    background-color: rgba(148, 163, 184, 0.1);
+    padding: 0.1rem 0.25rem;
+    border-radius: 0.25rem;
+  }
+  

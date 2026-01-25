@@ -157,39 +157,3 @@ h6 {
   font-size: 1rem;
 } /* 약 16px */
 
-.wmde-markdown {
-  background-color: hsl(var(--background));
-  color: hsl(var(--foreground));
-}
-
-/* 다크모드에서만 더 세밀하게 조정 */
-.dark .wmde-markdown {
-  background-color: hsl(var(--background));
-  color: hsl(var(--foreground));
-}
-
-.wmde-markdown pre code {
-  font-family:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
-  font-size: 0.875rem;
-}
-
-/* 다크모드 */
-.dark .wmde-markdown pre {
-  background-color: #0f172a; /* 예시: slate-900 비슷하게 */
-  color: #e5e7eb; /* text-gray-200 */
-}
-
-/* 라이트모드 */
-:not(.dark) .wmde-markdown pre {
-  background-color: #f3f4f6; /* gray-100 */
-  color: #111827; /* gray-900 */
-}
-
-/* 인라인 코드 */
-.dark .wmde-markdown code {
-  background-color: rgba(148, 163, 184, 0.1);
-  padding: 0.1rem 0.25rem;
-  border-radius: 0.25rem;
-}

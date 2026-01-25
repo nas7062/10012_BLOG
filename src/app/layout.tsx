@@ -2,12 +2,9 @@ import type { Metadata } from "next";
 import { IBM_Plex_Sans_KR } from "next/font/google";
 import "./globals.css";
 import Header from "./_components/Header";
-import AuthSession from "./_components/AuthSession";
 import { Toaster } from "sonner";
-import { ThemeProvider } from "./provider/themeProvider";
-import ReactQueryProvider from "./provider/reactqueryProvider";
-import { ModalProvider } from "./provider/ModalProvider";
 import Modal from "./_components/Modal";
+import { Providers } from "./provider/RootProvider";
 
 const font = IBM_Plex_Sans_KR({
   subsets: ["latin"],
@@ -60,10 +57,7 @@ export default function RootLayout({
       className={`${font.className} antialiased`}
     >
       <body>
-        <ReactQueryProvider>
-          <ThemeProvider>
-            <ModalProvider>
-              <AuthSession>
+        <Providers>
                 <Toaster />
                 <Header />
                 <div className="flex min-h-screen items-center justify-center font-sans ">
@@ -71,10 +65,7 @@ export default function RootLayout({
                 </div>
                 <div id="modal-root"></div>
                 <Modal />
-              </AuthSession>
-            </ModalProvider>
-          </ThemeProvider>
-        </ReactQueryProvider>
+        </Providers>
       </body>
     </html>
   );
