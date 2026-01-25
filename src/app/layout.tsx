@@ -57,13 +57,13 @@ export default function RootLayout({
       className={`${font.className} antialiased`}
     >
       <body>
-        <Providers>
-                <Toaster />
-                <Header />
+      <Header />
+        <Providers>   
                 <div className="flex min-h-screen items-center justify-center font-sans ">
                   {children}
                 </div>
                 <div id="modal-root"></div>
+                <Toaster />
                 <Modal />
         </Providers>
       </body>
