@@ -57,8 +57,8 @@ export default function RootLayout({
       className={`${font.className} antialiased`}
     >
       <body>
-      <Header />
-        <Providers>   
+        <Providers>  
+        <Header /> 
                 <div className="flex min-h-screen items-center justify-center font-sans ">
                   {children}
                 </div>
