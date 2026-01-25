@@ -113,72 +113,72 @@ Next.js 16 App Router와 React19,Supabase 기반의 모던 웹 애플리케이�
 
 ### 1. 인증 시스템
 
-- ✅ Auth.js 인증
+-  Auth.js 인증
   - Kakao OAuth 기반 로그인
   - Creational 회원가입 및 로그인 제공
   - 로그인 시 Supabase authorization · users 테이블에 바로 저장
   - Supabase 연동(유저 정보 저장·조회)
   - 자동 세션 관리(JWT)
-- ✅ 미들웨어 기반 라우트 보호
+-  미들웨어 기반 라우트 보호
   - 인증되지 않은 사용자 자동 리다이렉트
   - 보호 페이지 접근 제어
 
 ### 2. 게시글(Post) 기능
 
-- ✅ CRUD 기능
+-  CRUD 기능
   - 게시글 생성 / 수정 / 삭제 / 조회
   - 게시글 전체 목록 페이지 제공
   - 게시글 상세 페이지(detail) 제공
 
-- ✅ 유저별 게시글 페이지
+-  유저별 게시글 페이지
   - 유저 프로필 클릭 시 해당 유저의 Posts 모아보기
   - 태그(tag)별 필터링 가능
   - 태그 클릭 시 query 기반 필터링 적용
 
 ### 3. 댓글(Comment) 기능
-- ✅ 댓글 CRUD
+-  댓글 CRUD
   - 게시글 상세 페이지에서 댓글 생성 가능
   - 댓글 수정 / 삭제 가능
   - 실시간 반영 구조로 UX 안정화
 
 ### 4. 좋아요(Like) 기능
-- ✅ 토글 기반 좋아요 시스템
+-  토글 기반 좋아요 시스템
   - React Query(useMutation)으로 좋아요 옵티미스틱한  업데이트 상태 관리
   - 좋아요 목록(좋아요한 게시글만 보는 페이지) 제공
 
 ### 5. 무한 스크롤
-✅ Infinite Scroll
+ Infinite Scroll
   - homePage와 searchPage,newsPage에서 무한 스크롤 적용
   - useInfiniteQuery 기반 리스트 페이지 무한 스크롤 구현
 
 ### 7. 파일 업로드
-- ✅ 파일 업로드 기능
+-  파일 업로드 기능
   - React Dropzone 사용
   - 업로드 파일을 Supabase Storage에 저장
 
 ### 7. 차트(Charts)
-- ✅ NPM 다운로드 차트
+-  NPM 다운로드 차트
   - 백엔드 / 프론트엔드 다운로드 카운트 수집
   - 이를 차트 형태로 시각화
 ### 8. 뉴스 페이지
-- ✅ News Feed
+-  News Feed
   - 최신 뉴스 제공하는 전용 페이지 구성
 
 ### 9. 설정(Setting)
-- ✅ 다크 모드
+-  다크 모드
   - next-themes 기반 라이트/다크 모드 토글 지원
   - 유저 정보 변경 가능 (이미지,이름,설명)
   - 유저 탈퇴 기능
 ### 7. UI/UX
 
-- ✅ **반응형 디자인**
+-  **반응형 디자인**
   - 모바일, 태블릿, 데스크톱 최적화
   - Tailwind Breakpoints 활용
-- ✅ **네비게이션**
+-  **네비게이션**
   - 반응형 헤더 (Desktop/Mobile)
   - 인증 상태 기반 메뉴
   - 사용자 드롭다운
-- ✅ **SEO 최적화**
+-  **SEO 최적화**
   - 페이지별 메타데이터
   - 검색 엔진 제어 (noindex/nofollow)
   - OpenGraph 태그
