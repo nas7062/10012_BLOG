@@ -47,10 +47,10 @@ export default function PostListClient({ initialPosts }: Props) {
   }
 
   const allPosts: IPost[] = data?.pages.flatMap((page) => page) ?? [];
-
+  const hasPosts = allPosts.length > 0;
   return (
     <>
-      {isLoading && (
+      {hasPosts && (
         <div className="grid max-[450px]:grid-cols-1 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-8">
           {Array.from({ length: 8 }).map((_, i) => (
             <SkeletonPost key={i} />
@@ -58,7 +58,7 @@ export default function PostListClient({ initialPosts }: Props) {
         </div>
       )}
 
-      {!isLoading && (
+      {!hasPosts && (
         <div className="grid max-[450px]:grid-cols-1 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-8">
           {allPosts.map((post, idx) => (
             <Post key={post.id} post={post} priority={idx ===0} />
