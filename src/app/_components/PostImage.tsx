@@ -17,7 +17,7 @@ export default function PostImage({ src, alt, priority }: Props) {
        (max-width: 1024px) 45vw,
        240px"
       priority={priority}
-      fetchPriority={priority ? "high" : "auto"}
+      fetchPriority={priority ? "auto" : "low"}
       loading={priority ? "eager" : "lazy"}
       className="rounded-md h-60 aspect-square object-cover w-full"
       quality={70}
