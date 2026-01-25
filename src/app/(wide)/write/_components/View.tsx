@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
-import "@/src/styles/markdown.module.css";
+import styles from "@/src/styles/markdown.module.css";
+
 const MDEditorMarkdown = dynamic(
   () => import("@uiw/react-md-editor").then((mod) => mod.default.Markdown),
   {
@@ -12,11 +13,13 @@ const MDEditorMarkdown = dynamic(
 
 export default function Viewer({ content }: { content: string }) {
   return (
+    <div className={styles.markdown}>
     <div
       className="wmde-markdown wmde-markdown-color
                  bg-background text-foreground "
     >
       <MDEditorMarkdown source={content} />
+    </div>
     </div>
   );
 }
