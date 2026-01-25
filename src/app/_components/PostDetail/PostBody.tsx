@@ -1,5 +1,6 @@
 import Viewer from "../../(wide)/write/_components/View";
-import "@/styles/markdown.module.css";
+import "@/src/styles/markdown.module.css";
+
 interface PostBodyProps {
   content: string;
 }
