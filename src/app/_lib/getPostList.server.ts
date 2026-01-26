@@ -2,7 +2,7 @@
 import { createSupabaseServerClient } from "../api/supabaseSever";
 import { IPost } from "../type";
 
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 10;
 
 export async function getPostListServer(): Promise<IPost[]> {
   const supabase = await createSupabaseServerClient();
