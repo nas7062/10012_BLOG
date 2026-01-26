@@ -14,7 +14,7 @@ export default function PostImage({ src, alt, priority }: Props) {
       width={240}
       height={240}
       sizes="240px"
-      priority={priority}
+      priority={false}
       fetchPriority={priority ? "high" : "auto"}
       loading={priority ? "eager" : "lazy"}
       className="rounded-md h-60 aspect-square object-cover w-full"

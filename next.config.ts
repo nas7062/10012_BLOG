@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  reactCompiler:true,
   images: {
     remotePatterns: [
       {
@@ -34,7 +35,8 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 768, 1024, 1280],   
   imageSizes: [160, 240, 320, 384], 
-    minimumCacheTTL: 60,
+    minimumCacheTTL: 60 * 60,
+    dangerouslyAllowSVG: false,
   },
   compress: true,
   poweredByHeader: false,
