@@ -102,7 +102,7 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
+  --color-sidebar-background: var(--sidebar-background);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
@@ -140,20 +140,24 @@ h6 {
 
 h1 {
   font-size: 2.5rem;
-} /* 약 40px */
+}
+
 h2 {
   font-size: 2rem;
-} /* 약 32px */
+}
+
 h3 {
   font-size: 1.75rem;
-} /* 약 28px */
+}
+
 h4 {
   font-size: 1.5rem;
-} /* 약 24px */
+}
+
 h5 {
   font-size: 1.25rem;
-} /* 약 20px */
+}
+
 h6 {
   font-size: 1rem;
-} /* 약 16px */
-
+}
