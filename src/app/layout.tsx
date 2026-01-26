@@ -16,16 +16,20 @@ const font = IBM_Plex_Sans_KR({
   variable: "--font-ibm-plex",
 });
 
+export const viewport = {
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+  },
+}
+
+
 export const metadata: Metadata = {
   title: "10012 ",
   description: "10012에 오신걸 환영합니다.",
   icons: {
     icon: "/favicon.ico",
-  },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
   },
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_LOCAL_URL || "http://localhost:3000"
