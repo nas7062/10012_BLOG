@@ -8,8 +8,8 @@ import { Providers } from "./provider/RootProvider";
 
 const font = IBM_Plex_Sans_KR({
   subsets: ["latin"],
-  preload: true,
-  weight: [ "400", "500"],
+  preload: false,
+  weight: ["400"],
   display: "swap",
   fallback: ["system-ui", "Apple SD Gothic Neo", "Malgun Gothic", "sans-serif"],
   adjustFontFallback: true,
