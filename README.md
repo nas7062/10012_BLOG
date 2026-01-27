@@ -374,6 +374,7 @@ export const metadata: Metadata = {
 - **개인정보 보호**: 사용자 데이터가 포함된 페이지는 색인 방지
 
 ## 📝  성능 최적화
+<img width="1896" height="982" alt="LightHouse " src="https://github.com/user-attachments/assets/d8ba8fa6-5505-4be6-af87-2432df95de44" />
 
 ### 1. 이미지 최적화
 - `sizes` 속성 최적화로 적절한 이미지 크기 로드
@@ -381,6 +382,8 @@ export const metadata: Metadata = {
 - `placeholder="blur"` 및 `blurDataURL` 추가로 레이아웃 시프트 감소
 - `object-cover` 클래스 추가로 이미지 표시 최적화
 - `loading="lazy"` 설정
+- priority 설정을 통한 LCP 개선
+- 
 
 ### 2. Next.js 설정 최적화
 
@@ -424,9 +427,14 @@ export const metadata: Metadata = {
 - 이벤트 핸들러 최적화
 
 ####  동적 임포트 (Code Splitting)
-- **View 컴포넌트**: MDEditor를 동적 임포트로 지연 로딩
+-  View,Header 등 무거운 컴포넌트: MDEditor를 동적 임포트로 지연 로딩
 - `ssr: false`로 클라이언트 사이드만 로드
 - 로딩 스켈레톤 추가
+
+### 6. Main Page LCP 개선
+- 초기 화면에 필요한 게시글을 서버에서 미리 렌더링해 전달함으로써,
+클라이언트 측 추가 요청 없이 즉시 콘텐츠가 표시되도록 하여 LCP를 개선했습니다.
+
 
 ## 📝 코딩 컨벤션
 
