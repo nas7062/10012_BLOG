@@ -11,11 +11,12 @@ export default async function Header() {
           src="/logo10.png"
           alt="로고"
           priority
+          fetchPriority="high"
           width={112}
           height={112}
           sizes="(max-width: 640px) 80px, 112px"
           className="w-20 h-20 sm:w-28 sm:h-28"
-          quality={90}
+          quality={75}
         />
       </Link>
       <div className="flex-1">

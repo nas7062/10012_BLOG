@@ -8,7 +8,7 @@ import ReppleList from "../(narrow)/[name]/[postId]/_components/ReppleList";
 import { useDeleteComment } from "../(narrow)/[name]/[postId]/_hook/useDeleteComment";
 import { useDeletePost } from "../(narrow)/[name]/posts/_hook/useDeletePost";
 import { useModal } from "../provider/ModalProvider";
-import { IRepple } from "../type";
+import { IRepple, IPost, IUser } from "../type";
 import { PostHeader } from "./PostDetail/PostHeader";
 import { PostBody } from "./PostDetail/PostBody";
 import { PostDetailSkeleton } from "./PostDetail/PostDetailSkeleton";
@@ -17,16 +17,25 @@ import { usePostDetailData } from "./PostDetail/usePostDetailData";
 interface PostDetailProps {
   name: string;
   postId: string;
+  initialData?: {
+    post: IPost | null;
+    writeUser: IUser | null;
+    comments: IRepple[];
+    user: IUser | null;
+    isUpdate: boolean;
+  };
 }
 
-export default function PostDetail({ postId }: PostDetailProps) {
+export default function PostDetail({ postId, initialData }: PostDetailProps) {
   const router = useRouter();
   const { openModal, closeModal } = useModal();
   const queryClient = useQueryClient();
 
   const numericPostId = Number(postId);
+  
+  // initialData가 있으면 서버 데이터 사용, 없으면 클라이언트에서 가져오기
   const { writeUser, post, user, comments, isLoading, isError, isUpdate } =
-    usePostDetailData(numericPostId);
+    usePostDetailData(numericPostId, initialData);
 
   const { mutate: deleteComment } = useDeleteComment();
   const { mutate: deletePost } = useDeletePost();
@@ -77,7 +86,8 @@ export default function PostDetail({ postId }: PostDetailProps) {
 
   const commentCount = useMemo(() => comments?.length ?? 0, [comments?.length]);
 
-  if (isLoading) {
+  // initialData가 있으면 즉시 렌더링, 없으면 로딩 표시
+  if (!initialData && isLoading) {
     return <PostDetailSkeleton />;
   }
 

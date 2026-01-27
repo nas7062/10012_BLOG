@@ -1,7 +1,8 @@
 import PostDetail from "@/src/app/_components/PostDetail";
-import { getPostUser } from "@/src/app/_lib/getPostUser";
 import { Metadata } from "next";
 import { getPostById } from "./_lib/getPostById";
+import { getPostDetailData } from "./_lib/getPostDetailData";
+import { auth } from "@/src/auth";
 
 type RouteParams = {
   name: string;
@@ -14,7 +15,6 @@ export async function generateMetadata({
   params: Promise<RouteParams>;
 }): Promise<Metadata> {
   const { name, postId } = await params;
-
   const numericPostId = Number(postId);
 
   let userName: string | undefined;
@@ -24,7 +24,6 @@ export async function generateMetadata({
     userName = result?.title;
   }
 
-  // DB에 이름이 없으면 URL 세그먼트의 name 사용
   const decodedName = decodeURIComponent(name);
   const finalName = userName ?? decodedName ?? "사용자";
 
@@ -38,7 +37,7 @@ export async function generateMetadata({
   };
 }
 
-export const revalidate = 0;
+export const revalidate = 30;
 
 export default async function Page({
   params,
@@ -46,7 +45,21 @@ export default async function Page({
   params: Promise<{ name: string; postId: string }>;
 }) {
   const { name, postId } = await params;
-
+  const numericPostId = Number(postId);
   const decodedName = decodeURIComponent(name);
-  return <PostDetail name={decodedName} postId={postId} />;
+
+  
+  const session = await auth();
+  const userEmail = session?.user?.email;
+
+  // 서버에서 병렬로 모든 데이터 가져오기
+  const initialData = await getPostDetailData(numericPostId, userEmail ?? '');
+
+  return (
+    <PostDetail
+      name={decodedName}
+      postId={postId}
+      initialData={initialData}
+    />
+  );
 }
