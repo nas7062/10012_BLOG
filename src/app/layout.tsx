@@ -3,8 +3,8 @@ import { IBM_Plex_Sans_KR } from "next/font/google";
 import "./globals.css";
 import Header from "./_components/Header";
 import { Toaster } from "sonner";
-import Modal from "./_components/Modal";
 import { Providers } from "./provider/RootProvider";
+import ModalDynamic from "./_components/ModalDynamic";
 
 const font = IBM_Plex_Sans_KR({
   subsets: ["latin"],
@@ -68,7 +68,7 @@ export default function RootLayout({
                 </div>
                 <div id="modal-root"></div>
                 <Toaster />
-                <Modal />
+                <ModalDynamic />
         </Providers>
       </body>
     </html>
