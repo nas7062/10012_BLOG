@@ -1,3 +1,4 @@
+
 interface ModalProps {
   onDelete: () => void;
   onClose: () => void;
@@ -8,7 +9,7 @@ export default function DeleteCommentModal({ onDelete, onClose }: ModalProps) {
       <h2 className="text-2xl! font-semibold text-center">
         정말로 삭제하시겠어요??
       </h2>
-      <p className="text-gray-700 text-center">삭제 시 되돌릴 수 없습니다.</p>
+      <p className="text-gray-500 text-center">삭제 시 되돌릴 수 없습니다.</p>
       <div className="flex justify-around gap-4">
         <button
           onClick={onClose}
