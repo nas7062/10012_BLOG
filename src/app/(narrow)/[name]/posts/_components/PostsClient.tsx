@@ -48,7 +48,7 @@ export default function PostClient() {
 
   if (isUserLoading || isPostsLoading)
     return <Spinner className="size-6 text-green-500" />;
-  if (!posts) return;
+  if (!posts) return "게시글이 없습니다.";
   return (
     <div className="bg-primary text-primary-foreground flex flex-col gap-4">
       <div className="flex flex-col">

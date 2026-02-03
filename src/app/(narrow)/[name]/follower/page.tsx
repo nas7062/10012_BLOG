@@ -3,6 +3,7 @@ import { ChevronRight } from "lucide-react";
 import { getFollowInfo } from "@/src/app/_lib/getFollowInfo";
 import { getUserById } from "@/src/app/_lib/getUserById";
 import FollowerClient from "../_components/FollowClient";
+import { notFound } from "next/navigation";
 
 export default async function Page({
   params,
@@ -14,7 +15,9 @@ export default async function Page({
   const user = await getUserById(name);
   const followInfo = await getFollowInfo(name);
 
-  if (!user) return null;
+  if (!user) {
+    notFound();
+  }
 
   return (
     <div className="flex flex-col gap-4 text-primary">

@@ -3,6 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useCurrentUser } from "@/src/app/hook/useCurrentUser";
 import { useTagList } from "../_hook/useTagList";
+import { Spinner } from "@/components/ui/spinner";
 export type TagRow = { Tags: string[] | null };
 
 export default function Sidebar() {
@@ -28,7 +29,7 @@ export default function Sidebar() {
       tagList.set(tag, prev + 1);
     });
   });
-  if (isUserLoading || isTagsLoading) return "loading..";
+  if (isUserLoading || isTagsLoading) return <Spinner className="size-6 text-green-500" />;;
 
   return (
     <div className="hidden lg:flex flex-col  h-screen mt-96  ">

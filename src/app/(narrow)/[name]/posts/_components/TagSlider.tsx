@@ -9,6 +9,7 @@ import {
 import { usePathname, useRouter } from "next/navigation";
 import { useCurrentUser } from "@/src/app/hook/useCurrentUser";
 import { useTagList } from "../_hook/useTagList";
+import { Spinner } from "@/components/ui/spinner";
 
 export function TagSlider() {
   const id = usePathname().split("/")[1];
@@ -32,7 +33,7 @@ export function TagSlider() {
       tagList.set(tag, prev + 1);
     });
   });
-  if (isUserLoading || isTagsLoading) return "loading..";
+  if (isUserLoading || isTagsLoading) return <Spinner className="size-6 text-green-500" />;;
   return (
     <Carousel
       opts={{

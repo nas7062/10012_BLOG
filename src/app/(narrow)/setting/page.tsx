@@ -8,6 +8,7 @@ import { useCurrentUser } from "../../hook/useCurrentUser";
 import Image from "next/image";
 import { updateInfo } from "./_lib/updateInfo";
 import { AboutThumbnailPreview } from "../../type";
+import { Spinner } from "@/components/ui/spinner";
 
 
 export default function SettingPage() {
@@ -93,8 +94,8 @@ export default function SettingPage() {
     };
   }, [thumbnailPreview?.url]);
 
-  if (isUserLoading) return "loading...";
-  if (!userData) return;
+  if (isUserLoading) return <Spinner className="size-6 text-green-500" />;;
+  if (!userData) return "사용자 정보를 불러올 수 없습니다.";
   return (
     <div className="flex flex-col min-h-screen py-20 px-2 gap-10">
       <div className="flex gap-10">

@@ -12,7 +12,7 @@ export default function ReppleList({
   postId: string;
   onDelete: (comment: number) => void;
 }) {
-  if (!repples) return;
+  if (!repples) return "댓글이 없습니다.";
   return repples.map((repple) => (
     <Repple
       key={repple.id}
