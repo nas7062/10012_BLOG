@@ -1,16 +1,14 @@
-
 import { getUserById } from "@/src/app/_lib/getUserById";
 import { notFound } from "next/navigation";
 import { getTagList } from "../_lib/getTagList";
 import TagSidebarClient from "./_components/TagSidebarClient";
 
-
-type TagRow = { Tags: string[] | null };
+export type TagRow = { Tags: string[] | null };
 
 export default async function Sidebar({
   params,
 }: {
-  params: Promise<{ name: string; }>;
+  params: Promise<{ name: string }>;
 }) {
   const { name } = await params;
   const user = await getUserById(name);
@@ -21,7 +19,7 @@ export default async function Sidebar({
 
   const email = user.email;
 
-  const rows: TagRow[] = await getTagList(email ?? '');
+  const rows: TagRow[] = await getTagList(email ?? "");
 
   const tagCountMap = new Map<string, number>();
 
@@ -32,10 +30,10 @@ export default async function Sidebar({
     });
   });
 
-  const tags = Array.from(tagCountMap.entries()).map(
-    ([tag, count]) => ({ tag, count })
-  );
-
+  const tags = Array.from(tagCountMap.entries()).map(([tag, count]) => ({
+    tag,
+    count,
+  }));
 
   return (
     <div className="hidden lg:flex flex-col h-screen mt-96">

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { TagRow } from "../@sidebar/page";
 import { getTagList } from "../_lib/getTagList";
+import { TagRow } from "../@sidebar/page";
 
 type UseCurrentUserResult = {
   Tags: TagRow[] | null;
