@@ -1,5 +1,5 @@
 import { getSupabaseClient } from "../api/supabase";
-import { IUser } from "../type";
+import { IUser } from "../../types";
 
 export async function getFollowInfo(userId: string) {
   if (!userId) return null;

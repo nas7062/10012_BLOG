@@ -4,10 +4,10 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ko";
 import { useRef, useState } from "react";
-import { useCurrentUser } from "@/src/app/hook/useCurrentUser";
+import { useCurrentUser } from "@/src/hook/useCurrentUser";
 import Image from "next/image";
 import { useUpdateComment } from "../_hook/useUpdateComment";
-import { IRepple, IUser } from "@/src/app/type";
+import { IRepple, IUser } from "@/src/types";
 
 dayjs.extend(relativeTime);
 dayjs.locale("ko");

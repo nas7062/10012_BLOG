@@ -3,7 +3,7 @@
 import { Heart } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useModal } from "../../../provider/ModalProvider";
-import { usePostLike } from "../../hook/usePostLIke";
+import { usePostLike } from "../../../hook/usePostLIke";
 
 export default function PostActions({ postId }: { postId: number }) {
   const { data: user } = useSession();

@@ -5,8 +5,8 @@ import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
-import { usePostLike } from "@/src/app/hook/usePostLIke";
-import { usePostById } from "@/src/app/hook/usePostById";
+import { usePostLike } from "@/src/hook/usePostLIke";
+import { usePostById } from "@/src/hook/usePostById";
 import { useModal } from "@/src/provider/ModalProvider";
 
 export default function ActionButtons() {

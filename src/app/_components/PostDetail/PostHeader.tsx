@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 
 import { UpdateOrHeart } from "../UpdateOrHeart";
-import { IUser } from "../../type";
+import { IUser } from "../../../types";
 
 interface PostHeaderProps {
   title: string;

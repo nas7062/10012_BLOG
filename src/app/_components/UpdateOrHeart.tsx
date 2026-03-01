@@ -1,9 +1,9 @@
 import { useRouter } from "next/navigation";
-import { IUser } from "../type";
+import { IUser } from "../../types";
 import { Heart } from "lucide-react";
 import clsx from "clsx";
 import { FollowButton } from "./FollowButton";
-import { usePostLike } from "../hook/usePostLIke";
+import { usePostLike } from "../../hook/usePostLIke";
 import { useModal } from "../../provider/ModalProvider";
 
 type Props = {

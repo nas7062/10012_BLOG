@@ -3,9 +3,9 @@
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useCurrentUser } from "../../hook/useCurrentUser";
+import { useCurrentUser } from "../../../hook/useCurrentUser";
 import Post from "../../_components/Post/Post";
-import { useFollowPosts } from "../../hook/useFollowPosts";
+import { useFollowPosts } from "../../../hook/useFollowPosts";
 import { SkeletonPost } from "../../_components/Post/SkeletonPost";
 
 export default function FeedPage() {

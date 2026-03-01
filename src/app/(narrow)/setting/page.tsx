@@ -4,12 +4,11 @@ import { MouseEvent, useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useTheme } from "next-themes";
 import { userDelete } from "./_lib/userDelete";
-import { useCurrentUser } from "../../hook/useCurrentUser";
+import { useCurrentUser } from "../../../hook/useCurrentUser";
 import Image from "next/image";
 import { updateInfo } from "./_lib/updateInfo";
-import { AboutThumbnailPreview } from "../../type";
+import { AboutThumbnailPreview } from "../../../types";
 import { Spinner } from "@/components/ui/spinner";
-
 
 export default function SettingPage() {
   const { data: user } = useSession();
@@ -94,7 +93,7 @@ export default function SettingPage() {
     };
   }, [thumbnailPreview?.url]);
 
-  if (isUserLoading) return <Spinner className="size-6 text-green-500" />;;
+  if (isUserLoading) return <Spinner className="size-6 text-green-500" />;
   if (!userData) return "사용자 정보를 불러올 수 없습니다.";
   return (
     <div className="flex flex-col min-h-screen py-20 px-2 gap-10">

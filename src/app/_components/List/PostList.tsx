@@ -2,9 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import Post from "../Post/Post";
-import { usePostList } from "../../hook/usePostList";
+import { usePostList } from "../../../hook/usePostList";
 import { SkeletonPost } from "../Post/SkeletonPost";
-import { IPost } from "../../type";
+import { IPost } from "../../../types";
 
 type Props = {
   initialPosts: IPost[];

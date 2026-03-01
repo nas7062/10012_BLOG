@@ -1,8 +1,8 @@
 "use client";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { getSearchPost, SEARCH_PAGE_SIZE } from "../_lib/getSearchPost";
-import { IPost } from "../type";
+import { getSearchPost, SEARCH_PAGE_SIZE } from "../app/_lib/getSearchPost";
+import { IPost } from "../types";
 
 export function useSearchPost(q: string) {
   return useInfiniteQuery<IPost[], Error>({

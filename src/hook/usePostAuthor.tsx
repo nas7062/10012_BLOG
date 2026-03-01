@@ -1,6 +1,6 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { getPostUser } from "../_lib/getPostUser"; // 경로는 프로젝트에 맞게 조정
-import { IUser } from "../type";
+import { getPostUser } from "../app/_lib/getPostUser"; // 경로는 프로젝트에 맞게 조정
+import { IUser } from "../types";
 
 export function usePostAuthor(
   postId?: number

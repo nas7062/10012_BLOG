@@ -1,6 +1,6 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { getPostById } from "../(narrow)/[name]/[postId]/_lib/getPostById";
-import { IPost } from "../type";
+import { getPostById } from "../app/(narrow)/[name]/[postId]/_lib/getPostById";
+import { IPost } from "../types";
 
 export function usePostById(
   postId?: number

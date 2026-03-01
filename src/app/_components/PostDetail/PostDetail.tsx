@@ -8,7 +8,7 @@ import ReppleList from "../../(narrow)/[name]/[postId]/_components/ReppleList";
 import { useDeleteComment } from "../../(narrow)/[name]/[postId]/_hook/useDeleteComment";
 import { useDeletePost } from "../../(narrow)/[name]/posts/_hook/useDeletePost";
 import { useModal } from "../../../provider/ModalProvider";
-import { IRepple, IPost, IUser } from "../../type";
+import { IRepple, IPost, IUser } from "../../../types";
 import { PostHeader } from "./PostHeader";
 import { PostBody } from "./PostBody";
 import { PostDetailSkeleton } from "./PostDetailSkeleton";

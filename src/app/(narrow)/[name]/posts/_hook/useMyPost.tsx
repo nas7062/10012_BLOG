@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getMyPost } from "@/src/app/_lib/getMyPosts";
-import { IPost } from "@/src/app/type";
+import { IPost } from "@/src/types";
 
 type UseCurrentUserResult = {
   posts: IPost[] | null;

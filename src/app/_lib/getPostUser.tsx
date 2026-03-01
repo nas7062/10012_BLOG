@@ -1,5 +1,5 @@
 import { getSupabaseClient } from "../api/supabase";
-import { IUser } from "../type";
+import { IUser } from "../../types";
 type PostUserResult = { user: IUser };
 export async function getPostUser(
   postId: number

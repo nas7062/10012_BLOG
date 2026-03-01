@@ -19,8 +19,8 @@ import TagList from "@/src/app/_components/List/TagList";
 import Viewer from "./View";
 import { getSupabaseClient } from "@/src/app/api/supabase";
 import Image from "next/image";
-import { useCurrentUser } from "@/src/app/hook/useCurrentUser";
-import { AboutThumbnailPreview, IPost } from "@/src/app/type";
+import { useCurrentUser } from "@/src/hook/useCurrentUser";
+import { AboutThumbnailPreview, IPost } from "@/src/types";
 
 export default function WritePageClient() {
   const [tags, setTags] = useState<string[]>([]);

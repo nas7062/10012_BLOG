@@ -3,7 +3,7 @@
 import SinglePostList from "@/src/app/_components/List/SinglePostList";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { GithubIcon, MailIcon } from "lucide-react";
-import { useCurrentUser } from "@/src/app/hook/useCurrentUser";
+import { useCurrentUser } from "@/src/hook/useCurrentUser";
 import Image from "next/image";
 import { useMyPost } from "../_hook/useMyPost";
 import Tabs from "./Tabs";

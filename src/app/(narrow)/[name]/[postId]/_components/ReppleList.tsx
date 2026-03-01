@@ -1,4 +1,4 @@
-import { IRepple, IUser } from "@/src/app/type";
+import { IRepple, IUser } from "@/src/types";
 import Repple from "./Repple";
 
 export default function ReppleList({

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { getUserInfo } from "../_lib/getUser";
-import { getUserById } from "../_lib/getUserById";
-import { IUser } from "../type";
+import { getUserInfo } from "../app/_lib/getUser";
+import { getUserById } from "../app/_lib/getUserById";
+import { IUser } from "../types";
 type UseCurrentUserResult = {
   user: IUser | null;
   isLoading: boolean;

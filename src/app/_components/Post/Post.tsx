@@ -1,11 +1,11 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { memo, useCallback } from "react";
-import { usePostAuthor } from "../../hook/usePostAuthor";
+import { usePostAuthor } from "../../../hook/usePostAuthor";
 import { SkeletonPost } from "./SkeletonPost";
 import PostImage from "./PostImage";
 import { PostContent } from "./PostContent";
-import { IPost } from "../../type";
+import { IPost } from "../../../types";
 import PostClone from "./PostClone";
 
 function Post({ post, priority }: { post: IPost; priority?: boolean }) {

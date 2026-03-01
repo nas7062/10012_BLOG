@@ -2,7 +2,7 @@
 import { useRef } from "react";
 
 import { useCreateComment } from "../_hook/useCreateComment";
-import { IRepple, IUser } from "@/src/app/type";
+import { IRepple, IUser } from "@/src/types";
 
 export default function ReppleForm({
   user,

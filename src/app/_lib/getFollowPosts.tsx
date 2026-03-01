@@ -1,5 +1,5 @@
 import { getSupabaseClient } from "../api/supabase";
-import { IPost } from "../type";
+import { IPost } from "../../types";
 
 export async function getFollowPosts(userId: string) {
   const supabase = getSupabaseClient();

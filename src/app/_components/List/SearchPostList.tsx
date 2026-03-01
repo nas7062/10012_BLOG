@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useSearchPost } from "../../hook/useSearchPost";
+import { useSearchPost } from "../../../hook/useSearchPost";
 import SinglePostList from "./SinglePostList";
-import { IPost } from "../../type";
+import { IPost } from "../../../types";
 
 type SortType = "relevance" | "latest";
 

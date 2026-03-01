@@ -7,7 +7,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { usePathname, useRouter } from "next/navigation";
-import { useCurrentUser } from "@/src/app/hook/useCurrentUser";
+import { useCurrentUser } from "@/src/hook/useCurrentUser";
 import { useTagList } from "../_hook/useTagList";
 import { Spinner } from "@/components/ui/spinner";
 
@@ -33,7 +33,8 @@ export function TagSlider() {
       tagList.set(tag, prev + 1);
     });
   });
-  if (isUserLoading || isTagsLoading) return <Spinner className="size-6 text-green-500" />;;
+  if (isUserLoading || isTagsLoading)
+    return <Spinner className="size-6 text-green-500" />;
   return (
     <Carousel
       opts={{

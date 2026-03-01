@@ -1,24 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
-import { getFollowPosts } from "../_lib/getFollowPosts";
-import { IPost } from "../type";
+import { getLikePosts } from "../app/_lib/getLikePosts";
+import { IPost } from "../types";
 
-type UseFollowPostsResult = {
+type UseLikePostsResult = {
   posts: IPost[] | null;
   isLoading: boolean;
   isError: boolean;
   error: Error | null;
 };
 
-export function useFollowPosts(id?: string): UseFollowPostsResult {
+export function useLikePosts(email?: string): UseLikePostsResult {
   const query = useQuery<IPost[] | null, Error>({
-    queryKey: ["posts", id],
-    enabled: !!id,
+    queryKey: ["posts", email],
+    enabled: !!email,
     queryFn: async () => {
-      if (!id) return [];
-      const result = await getFollowPosts(id);
+      if (!email) return [];
+      const result = await getLikePosts(email);
       return result ?? [];
     },
-    staleTime: 1000 * 60,
+    staleTime: 1000 * 60, // 1분 동안 fresh
   });
   return {
     posts: query.data ?? null,

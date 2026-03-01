@@ -1,5 +1,5 @@
 import { FollowButton } from "@/src/app/_components/FollowButton";
-import { IUser } from "@/src/app/type";
+import { IUser } from "@/src/types";
 
 import Image from "next/image";
 import Link from "next/link";

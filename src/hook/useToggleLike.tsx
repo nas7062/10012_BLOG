@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { postToggleLike } from "../_lib/postToggleLike";
+import { postToggleLike } from "../app/_lib/postToggleLike";
 
 export function useToggleLike(userEmail: string, postId: number) {
   const queryClient = useQueryClient();

@@ -1,8 +1,8 @@
 "use client";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { getPostList, PAGE_SIZE } from "../_lib/getPostList";
-import { IPost } from "../type";
+import { getPostList, PAGE_SIZE } from "../app/_lib/getPostList";
+import { IPost } from "../types";
 
 export function usePostList(initialPosts: IPost[]) {
   return useInfiniteQuery<IPost[], Error>({

@@ -1,4 +1,4 @@
-import { IPost } from "../../type";
+import { IPost } from "../../../types";
 import SinglePost from "../Post/SinglePost";
 
 export default function SinglePostList({ posts }: { posts: IPost[] }) {

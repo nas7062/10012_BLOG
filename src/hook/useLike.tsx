@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getToggleLike } from "../_lib/getToggleLike";
+import { getToggleLike } from "../app/_lib/getToggleLike";
 
 export const useLike = (postId: number, email?: string) => {
   return useQuery({

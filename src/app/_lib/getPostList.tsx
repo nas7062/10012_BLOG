@@ -1,5 +1,5 @@
 import { getSupabaseClient } from "../api/supabase";
-import { IPost } from "../type";
+import { IPost } from "../../types";
 
 const PAGE_SIZE = 5;
 
