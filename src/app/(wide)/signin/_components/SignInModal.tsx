@@ -8,7 +8,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import { useModal } from "@/src/app/provider/ModalProvider";
+import { useModal } from "@/src/provider/ModalProvider";
 
 const loginSchema = z.object({
   email: z

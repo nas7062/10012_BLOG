@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans_KR } from "next/font/google";
 import "./globals.css";
-import Header from "./_components/Header";
+import Header from "./_components/Header/Header";
 import { Toaster } from "sonner";
-import { Providers } from "./provider/RootProvider";
-import ModalDynamic from "./_components/ModalDynamic";
+import { Providers } from "../provider/RootProvider";
+import ModalDynamic from "./_components/Modal/ModalDynamic";
 
 const font = IBM_Plex_Sans_KR({
   subsets: ["latin"],
@@ -22,8 +22,7 @@ export const viewport = {
     initialScale: 1,
     maximumScale: 5,
   },
-}
-
+};
 
 export const metadata: Metadata = {
   title: "10012 ",
@@ -61,14 +60,14 @@ export default function RootLayout({
       className={`${font.className} antialiased`}
     >
       <body>
-        <Providers>  
-        <Header /> 
-                <div className="flex min-h-screen items-center justify-center font-sans ">
-                  {children}
-                </div>
-                <div id="modal-root"></div>
-                <Toaster />
-                <ModalDynamic />
+        <Providers>
+          <Header />
+          <div className="flex min-h-screen items-center justify-center font-sans ">
+            {children}
+          </div>
+          <div id="modal-root"></div>
+          <Toaster />
+          <ModalDynamic />
         </Providers>
       </body>
     </html>

@@ -1,6 +1,6 @@
 "use client";
 
-import SinglePostList from "@/src/app/_components/SinglePostList";
+import SinglePostList from "@/src/app/_components/List/SinglePostList";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { GithubIcon, MailIcon } from "lucide-react";
 import { useCurrentUser } from "@/src/app/hook/useCurrentUser";

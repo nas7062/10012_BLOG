@@ -2,7 +2,7 @@
 
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import LogoutButton from "./LogoutButton";
+import LogoutButton from "../LogoutButton";
 import { MyCombo } from "./MyCombo";
 
 export function HeaderClient() {

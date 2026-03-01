@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Post from "./Post";
-import { usePostList } from "../hook/usePostList";
-import { SkeletonPost } from "./SkeletonPost";
-import { IPost } from "../type";
+import Post from "../Post/Post";
+import { usePostList } from "../../hook/usePostList";
+import { SkeletonPost } from "../Post/SkeletonPost";
+import { IPost } from "../../type";
 
 type Props = {
   initialPosts: IPost[];

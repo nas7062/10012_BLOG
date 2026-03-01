@@ -3,9 +3,9 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import Post from "../../_components/Post";
+import Post from "../../_components/Post/Post";
 import { useLikePosts } from "../../hook/useLikePosts";
-import { SkeletonPost } from "../../_components/SkeletonPost";
+import { SkeletonPost } from "../../_components/Post/SkeletonPost";
 
 export default function LikePage() {
   const router = useRouter();

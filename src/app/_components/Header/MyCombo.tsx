@@ -11,9 +11,9 @@ import {
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { User } from "next-auth";
-import { useCurrentUser } from "../hook/useCurrentUser";
 import { useState } from "react";
-import UserImage from "./UserImage";
+import UserImage from "../UserImage";
+import { useCurrentUser } from "../../hook/useCurrentUser";
 
 export function MyCombo({ user }: { user: User }) {
   const [open, setOpen] = useState(false);

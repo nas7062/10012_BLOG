@@ -1,8 +1,8 @@
 import dayjs from "dayjs";
 import React from "react";
 import PostActions from "./PostActions";
-import UserImage from "./UserImage";
-import { IPost, IUser } from "../type";
+import UserImage from "../UserImage";
+import { IPost, IUser } from "../../type";
 
 interface PostContentProps {
   post: IPost;

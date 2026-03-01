@@ -1,5 +1,5 @@
-import { IPost } from "../type";
-import SinglePost from "./SinglePost";
+import { IPost } from "../../type";
+import SinglePost from "../Post/SinglePost";
 
 export default function SinglePostList({ posts }: { posts: IPost[] }) {
   if (!posts || posts.length === 0) {

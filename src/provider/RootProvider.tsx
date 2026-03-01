@@ -1,6 +1,6 @@
 "use client";
 
-import AuthSession from "../_components/AuthSession";
+import AuthSession from "@/src/provider/AuthSession";
 import { ModalProvider } from "./ModalProvider";
 import ReactQueryProvider from "./reactqueryProvider";
 import { ThemeProvider } from "./themeProvider";

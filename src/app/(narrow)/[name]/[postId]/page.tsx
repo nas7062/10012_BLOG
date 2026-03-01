@@ -1,4 +1,4 @@
-import PostDetail from "@/src/app/_components/PostDetail";
+import PostDetail from "@/src/app/_components/PostDetail/PostDetail";
 import { Metadata } from "next";
 import { getPostById } from "./_lib/getPostById";
 import { getPostDetailData } from "./_lib/getPostDetailData";
@@ -48,18 +48,13 @@ export default async function Page({
   const numericPostId = Number(postId);
   const decodedName = decodeURIComponent(name);
 
-  
   const session = await auth();
   const userEmail = session?.user?.email;
 
   // 서버에서 병렬로 모든 데이터 가져오기
-  const initialData = await getPostDetailData(numericPostId, userEmail ?? '');
+  const initialData = await getPostDetailData(numericPostId, userEmail ?? "");
 
   return (
-    <PostDetail
-      name={decodedName}
-      postId={postId}
-      initialData={initialData}
-    />
+    <PostDetail name={decodedName} postId={postId} initialData={initialData} />
   );
 }

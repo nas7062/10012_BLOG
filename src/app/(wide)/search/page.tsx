@@ -1,5 +1,5 @@
 import SearchInput from "./_components/SearchInput";
-import SearchResultList from "../../_components/SearchPostList";
+import SearchResultList from "../../_components/List/SearchPostList";
 
 export async function generateMetadata({
   searchParams,

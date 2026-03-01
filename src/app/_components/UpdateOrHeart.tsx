@@ -4,7 +4,7 @@ import { Heart } from "lucide-react";
 import clsx from "clsx";
 import { FollowButton } from "./FollowButton";
 import { usePostLike } from "../hook/usePostLIke";
-import { useModal } from "../provider/ModalProvider";
+import { useModal } from "../../provider/ModalProvider";
 
 type Props = {
   isUpdate: boolean;

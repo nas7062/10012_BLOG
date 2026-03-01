@@ -6,7 +6,7 @@ import z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useModal } from "@/src/app/provider/ModalProvider";
+import { useModal } from "@/src/provider/ModalProvider";
 
 const SignUpSchema = z
   .object({

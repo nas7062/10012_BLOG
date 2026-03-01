@@ -7,7 +7,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { usePostLike } from "@/src/app/hook/usePostLIke";
 import { usePostById } from "@/src/app/hook/usePostById";
-import { useModal } from "@/src/app/provider/ModalProvider";
+import { useModal } from "@/src/provider/ModalProvider";
 
 export default function ActionButtons() {
   const pathname = usePathname();

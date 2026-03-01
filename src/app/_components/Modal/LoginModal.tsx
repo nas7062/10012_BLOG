@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import { useModal } from "../provider/ModalProvider";
+import { useModal } from "../../../provider/ModalProvider";
 
 export default function LoginModal() {
   const router = useRouter();

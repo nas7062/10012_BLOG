@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { getPostListServer } from "../_lib/getPostList.server";
-import PostListClient from "../_components/PostList";
+import PostListClient from "../_components/List/PostList";
 
 export const metadata: Metadata = {
   title: "10012 | 정보 공유 플랫폼",

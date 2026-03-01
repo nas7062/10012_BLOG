@@ -3,16 +3,16 @@
 import { useRouter } from "next/navigation";
 import { useMemo, useCallback } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import ReppleForm from "../(narrow)/[name]/[postId]/_components/ReppleForm";
-import ReppleList from "../(narrow)/[name]/[postId]/_components/ReppleList";
-import { useDeleteComment } from "../(narrow)/[name]/[postId]/_hook/useDeleteComment";
-import { useDeletePost } from "../(narrow)/[name]/posts/_hook/useDeletePost";
-import { useModal } from "../provider/ModalProvider";
-import { IRepple, IPost, IUser } from "../type";
-import { PostHeader } from "./PostDetail/PostHeader";
-import { PostBody } from "./PostDetail/PostBody";
-import { PostDetailSkeleton } from "./PostDetail/PostDetailSkeleton";
-import { usePostDetailData } from "./PostDetail/usePostDetailData";
+import ReppleForm from "../../(narrow)/[name]/[postId]/_components/ReppleForm";
+import ReppleList from "../../(narrow)/[name]/[postId]/_components/ReppleList";
+import { useDeleteComment } from "../../(narrow)/[name]/[postId]/_hook/useDeleteComment";
+import { useDeletePost } from "../../(narrow)/[name]/posts/_hook/useDeletePost";
+import { useModal } from "../../../provider/ModalProvider";
+import { IRepple, IPost, IUser } from "../../type";
+import { PostHeader } from "./PostHeader";
+import { PostBody } from "./PostBody";
+import { PostDetailSkeleton } from "./PostDetailSkeleton";
+import { usePostDetailData } from "./usePostDetailData";
 
 interface PostDetailProps {
   name: string;
@@ -32,7 +32,7 @@ export default function PostDetail({ postId, initialData }: PostDetailProps) {
   const queryClient = useQueryClient();
 
   const numericPostId = Number(postId);
-  
+
   // initialData가 있으면 서버 데이터 사용, 없으면 클라이언트에서 가져오기
   const { writeUser, post, user, comments, isLoading, isError, isUpdate } =
     usePostDetailData(numericPostId, initialData);

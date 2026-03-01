@@ -1,4 +1,4 @@
-import Modal from "@/src/app/_components/Modal";
+import Modal from "@/src/app/_components/Modal/Modal";
 
 export default function SinglePostLayout({
   children,

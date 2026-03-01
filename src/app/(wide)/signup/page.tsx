@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { useModal } from "../../provider/ModalProvider";
+import { useModal } from "../../../provider/ModalProvider";
 
 export default function SignupPage() {
   const { openModal, isOpen } = useModal();

@@ -15,7 +15,7 @@ import { useSession } from "next-auth/react";
 
 import { useDropzone } from "react-dropzone";
 import TuiEditor from "./TuiEditor";
-import TagList from "@/src/app/_components/TagList";
+import TagList from "@/src/app/_components/List/TagList";
 import Viewer from "./View";
 import { getSupabaseClient } from "@/src/app/api/supabase";
 import Image from "next/image";
@@ -80,7 +80,7 @@ export default function WritePageClient() {
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: onDropThumbnail,
     accept: {
-      "image/*": [".jpeg", ".jpg", ".png",".avif",".webp"],
+      "image/*": [".jpeg", ".jpg", ".png", ".avif", ".webp"],
     },
   });
 

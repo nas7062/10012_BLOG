@@ -4,28 +4,25 @@ import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { useRouter, usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
-import { useModal } from "../provider/ModalProvider";
-
+import { useModal } from "../../../provider/ModalProvider";
 
 export const MODAL_REGISTRY = {
-  SignInModal: dynamic(() =>
-    import("../(wide)/signin/_components/SignInModal")
+  SignInModal: dynamic(
+    () => import("../../(wide)/signin/_components/SignInModal")
   ),
-  SignUpModal: dynamic(() =>
-    import("../(wide)/signup/_components/SignUpModal")
+  SignUpModal: dynamic(
+    () => import("../../(wide)/signup/_components/SignUpModal")
   ),
   LoginModal: dynamic(() => import("./LoginModal")),
-  DeletePost: dynamic(() =>
-    import("../(narrow)/[name]/posts/_components/DeletePostModal")
+  DeletePost: dynamic(
+    () => import("../../(narrow)/[name]/posts/_components/DeletePostModal")
   ),
-  DeleteComment: dynamic(() =>
-    import("../(narrow)/[name]/posts/_components/DeleteCommentModal")
+  DeleteComment: dynamic(
+    () => import("../../(narrow)/[name]/posts/_components/DeleteCommentModal")
   ),
 } as const;
 
 export type ModalType = keyof typeof MODAL_REGISTRY;
-
-
 
 type ModalProps = {
   children?: React.ReactNode;
@@ -37,8 +34,6 @@ export default function Modal({ children }: ModalProps) {
   const router = useRouter();
   const pathname = usePathname();
   const isAutoOpeningRef = useRef(false);
-
-
 
   useEffect(() => {
     if (!isOpen || !dialogRef.current) return;
@@ -59,7 +54,6 @@ export default function Modal({ children }: ModalProps) {
       document.body.style.overflow = prevOverflow;
     };
   }, [isOpen]);
-
 
   useEffect(() => {
     if ((pathname === "/signin" || pathname === "/signup") && !isOpen) {
@@ -88,10 +82,7 @@ export default function Modal({ children }: ModalProps) {
   const modalRoot = document.getElementById("modal-root");
   if (!modalRoot) return null;
 
-  
-
-  const ModalComponent =
-    modalType ? MODAL_REGISTRY[modalType] : null;
+  const ModalComponent = modalType ? MODAL_REGISTRY[modalType] : null;
 
   return createPortal(
     <dialog
@@ -104,9 +95,7 @@ export default function Modal({ children }: ModalProps) {
       }}
       onClose={safeClose}
     >
-      {ModalComponent && (
-        <ModalComponent {...modalData} onClose={safeClose} />
-      )}
+      {ModalComponent && <ModalComponent {...modalData} onClose={safeClose} />}
       {children}
     </dialog>,
     modalRoot

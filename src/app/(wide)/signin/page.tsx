@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { useModal } from "../../provider/ModalProvider";
+import { useModal } from "../../../provider/ModalProvider";
 import { usePathname } from "next/navigation";
 
 export default function LoginPage() {

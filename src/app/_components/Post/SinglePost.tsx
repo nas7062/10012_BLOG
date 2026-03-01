@@ -2,13 +2,13 @@
 
 import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
-import TagList from "./TagList";
+import TagList from "../List/TagList";
 import { useSession } from "next-auth/react";
 import { Heart } from "lucide-react";
-import { usePostLike } from "../hook/usePostLIke";
+import { usePostLike } from "../../hook/usePostLIke";
 import Image from "next/image";
-import { useModal } from "../provider/ModalProvider";
-import { IPost } from "../type";
+import { useModal } from "../../../provider/ModalProvider";
+import { IPost } from "../../type";
 
 export default function SinglePost({ post }: { post: IPost }) {
   const router = useRouter();
