@@ -14,9 +14,10 @@ jobs:
   e2e:
     name: E2E (Playwright)
     runs-on: ubuntu-latest
-
     env:
       CI: true
+      AUTH_TRUST_HOST: "true"
+      AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
       NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
       NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
@@ -38,8 +39,3 @@ jobs:
 
       - name: Run E2E tests
         run: npm run test:e2e
-        env:
-          CI: true
-          AUTH_TRUST_HOST: "true"
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
