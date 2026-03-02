@@ -116,7 +116,7 @@ export default function SignInModal() {
             <input
               type="password"
               id="password"
-               data-testid="password"
+              data-testid="password"
               disabled={loading}
               {...register("password")}
               placeholder="비밀번호를 입력하세요"
@@ -151,7 +151,7 @@ export default function SignInModal() {
               alt="카카오 로그인 버튼"
               width={300}
               height={25}
-              className="w-full h-12 cursor-pointer rounded-lg overflow-hidden"
+              className="w-full h-12 cursor-pointer rounded-lg overflow-hidden z-10"
             />
           </button>
         </form>

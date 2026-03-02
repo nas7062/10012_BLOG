@@ -2,7 +2,6 @@
 import { useEffect, useRef } from "react";
 import { useModal } from "../../../provider/ModalProvider";
 import { usePathname } from "next/navigation";
-import SignInModal from "./_components/SignInModal";
 
 export default function LoginPage() {
   const { openModal } = useModal();
@@ -18,9 +17,5 @@ export default function LoginPage() {
     openModal("SignInModal", { autoBack: true });
   }, [pathname, openModal]);
 
-  return (
-    
-        <SignInModal />
-      
-  );
+  return null;
 }

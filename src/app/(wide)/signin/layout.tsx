@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "로그인 페이지 | 10012",
@@ -14,5 +15,5 @@ export default function SigninLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <main data-testid="signin-page">{children}</main>;
+  return <main data-testid="signin-page"><Suspense fallback={<div>loading...</div>}> {children}</Suspense></main>;
 }
