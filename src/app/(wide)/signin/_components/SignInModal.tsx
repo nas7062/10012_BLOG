@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { z } from "zod";
@@ -37,6 +37,8 @@ export default function SignInModal() {
   const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
   const { closeModal } = useModal();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") ?? "/";
 
   const goSignupPage = () => {
     closeModal();
@@ -69,7 +71,8 @@ export default function SignInModal() {
       if (res?.status !== 200) {
         toast.error("로그인을 다시 시도해주세요");
         return;
-      } else router.replace("/");
+      }
+      router.replace(callbackUrl);
       reset();
     } catch (error) {
       console.log(error);
@@ -78,7 +81,7 @@ export default function SignInModal() {
     }
   };
   return (
-    <div>
+    <div data-testid="app-modal">
       <div className="flex flex-col justify-center py-2  gap-4">
         <h2 className="text-2xl! text-center text-white">로그인</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
@@ -91,6 +94,7 @@ export default function SignInModal() {
             </label>
             <input
               type="text"
+              data-testid="email"
               id="email"
               autoFocus
               disabled={loading}
@@ -112,6 +116,7 @@ export default function SignInModal() {
             <input
               type="password"
               id="password"
+               data-testid="password"
               disabled={loading}
               {...register("password")}
               placeholder="비밀번호를 입력하세요"
@@ -123,6 +128,7 @@ export default function SignInModal() {
           )}
           <button
             type="submit"
+            data-testid="signin-submit"
             className=" bg-green-400 py-2 text-lg border border-green-500 hover:bg-emerald-400 rounded-lg text-white cursor-pointer transition-colors duration-300"
           >
             로그인

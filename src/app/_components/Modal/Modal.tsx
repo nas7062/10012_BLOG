@@ -87,6 +87,7 @@ export default function Modal({ children }: ModalProps) {
   return createPortal(
     <dialog
       ref={dialogRef}
+      data-testid="app-modal"
       className="max-w-[450px] w-[92vw] max-h-[60vh] shadow-xl border border-gray-100 bg-linear-to-br rounded-2xl from-emerald-500 via-green-300 to-teal-400 backdrop-blur-sm p-4 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
       onClick={(e) => e.target === e.currentTarget && safeClose()}
       onCancel={(e) => {

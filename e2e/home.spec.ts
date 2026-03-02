@@ -13,8 +13,9 @@ test.describe("홈 페이지", () => {
   });
 
   test("로고 클릭 시 홈(/)으로 이동한다", async ({ page }) => {
-    await page.goto("/feed");
+    await page.goto("/news");
     await page.getByRole("img", { name: "로고" }).click();
+    await page.waitForURL("/", { timeout: 5000 });
     await expect(page).toHaveURL("/");
   });
 });

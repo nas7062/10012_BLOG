@@ -14,5 +14,5 @@ export default function SigninLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <main>{children}</main>;
+  return <main data-testid="signin-page">{children}</main>;
 }
