@@ -40,7 +40,6 @@ export default defineConfig({
     },
   ],
 
-  /* CI에서 Next 서버 자동 기동 (선택) */
   webServer: process.env.CI
     ? {
       command: "npm run build && npm run start",

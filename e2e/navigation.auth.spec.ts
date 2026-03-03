@@ -5,12 +5,9 @@ test.describe("헤더 네비게이션 - 로그인 상태", () => {
   // 디버그용 - 세션 확인
   test("세션 쿠키 확인", async ({ page, context }) => {
     const cookies = await context.cookies();
-    console.log("현재 쿠키:", cookies.map(c => `${c.name}=${c.value.slice(0, 20)}...`));
 
     await page.goto("/feed");
-    console.log("현재 URL:", page.url());
 
-    // /feed에 접근됐는지 확인
     await expect(page).toHaveURL(/\/feed/);
   });
 

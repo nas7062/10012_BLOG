@@ -205,6 +205,7 @@ export default function WritePageClient() {
           className="h-20 text-4xl outline-none font-semibold"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          data-testid="write-title"
         />
         <input
           type="text"
@@ -213,10 +214,13 @@ export default function WritePageClient() {
           value={tag}
           onChange={(e) => setTag(e.target.value)}
           onKeyDown={handleKeyPress}
+          data-testid="write-tag"
         />
-        <TagList tags={tags} onDelete={onDeleteTag} />
+        <div data-testid="write-tags">
+          <TagList tags={tags} onDelete={onDeleteTag} />
+        </div>
         <div className="bg-white h-[500px]  text-left ">
-          <TuiEditor content={getContent} contentChange={changeContent} />
+          <TuiEditor content={getContent} contentChange={changeContent} data-testid="write-editor" />
         </div>
         <div className="flex items-center lg:hidden  ">
           <Image
@@ -235,6 +239,7 @@ export default function WritePageClient() {
         </div>
         <button
           type="submit"
+          data-testid="write-submit"
           className="text-base py-2 px-5 bg-green-500 text-white hover:bg-green-400 cursor-pointer transition-colors duration-300 rounded-full mt-9"
         >
           {postId ? "글 수정하기" : "글 작성하기"}

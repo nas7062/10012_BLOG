@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { useModal } from "@/src/provider/ModalProvider";
+import clsx from "clsx";
 
 const loginSchema = z.object({
   email: z
@@ -81,14 +82,14 @@ export default function SignInModal() {
     }
   };
   return (
-    <div data-testid="signin-modal">
-      <div className="flex flex-col justify-center py-2  gap-4">
-        <h2 className="text-2xl! text-center text-white">로그인</h2>
+    <div data-testid="signin-modal" >
+      <div className="flex flex-col justify-center py-2  gap-4" >
+        <h2 className="text-2xl! text-center text-gray-700">로그인</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <div className="flex gap-1 ">
             <label
               htmlFor="email"
-              className=" text-xs  sm:text-sm bg-green-700 border border-green-500 text-white px-2 py-2 rounded-md w-28 flex justify-center items-center"
+              className=" text-xs  sm:text-sm bg-green-600 border border-green-500 text-white px-2 py-2 rounded-md w-28 flex justify-center items-center"
             >
               이메일
             </label>
@@ -109,7 +110,7 @@ export default function SignInModal() {
           <div className="flex gap-1 ">
             <label
               htmlFor="password"
-              className="text-xs  sm:text-sm bg-green-700 border border-green-500 text-white px-2 py-2 rounded-md  w-28 flex justify-center items-center "
+              className="text-xs  sm:text-sm bg-green-600 border border-green-500 text-white px-2 py-2 rounded-md  w-28 flex justify-center items-center "
             >
               비밀번호
             </label>
@@ -135,10 +136,10 @@ export default function SignInModal() {
           </button>
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-white/20"></div>
+              <div className="w-full border-t border-gray-700/20"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-transparent text-white/60">또는</span>
+              <span className="px-4 bg-transparent text-gray-700/60">또는</span>
             </div>
           </div>
           <button
@@ -151,12 +152,12 @@ export default function SignInModal() {
               alt="카카오 로그인 버튼"
               width={300}
               height={25}
-              className="w-full h-12 cursor-pointer rounded-lg overflow-hidden z-10"
+              className="w-full h-12 cursor-pointer rounded-lg overflow-hidden z-10 "
             />
           </button>
         </form>
-        <div className="flex justify-end gap-2 text-white text-sm">
-          <p>회원가입을 안했다면?</p>
+        <div className="flex justify-end gap-2  text-sm">
+          <p className="text-gray-500">회원가입을 안했다면?</p>
           <button
             type="button"
             onClick={(e) => {
@@ -164,7 +165,7 @@ export default function SignInModal() {
               goSignupPage();
             }}
           >
-            <strong className="cursor-pointer hover:text-green-700">
+            <strong className="cursor-pointer text-gray-600 hover:text-green-700">
               회원가입
             </strong>
           </button>
@@ -179,6 +180,6 @@ export default function SignInModal() {
           />
         </div>
       </div>
-    </div>
+    </div >
   );
 }

@@ -79,8 +79,12 @@ export default function Modal({ children }: ModalProps) {
 
   if (!isOpen || typeof window === "undefined") return null;
 
-  const modalRoot = document.getElementById("modal-root");
-  if (!modalRoot) return null;
+  let modalRoot = document.getElementById("modal-root");
+  if (!modalRoot) {
+    modalRoot = document.createElement("div");
+    modalRoot.id = "modal-root";
+    document.body.appendChild(modalRoot);
+  }
 
   const ModalComponent = modalType ? MODAL_REGISTRY[modalType] : null;
 
@@ -88,7 +92,7 @@ export default function Modal({ children }: ModalProps) {
     <dialog
       ref={dialogRef}
       data-testid="app-modal"
-      className="max-w-[450px] w-[92vw] max-h-[60vh] shadow-xl border border-gray-100 bg-linear-to-br rounded-2xl from-emerald-500 via-green-300 to-teal-400 backdrop-blur-sm p-4 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+      className="max-w-[450px] w-[92vw] max-h-[60vh] shadow-xl border border-gray-100 bg-linear-to-br rounded-2xl  backdrop-blur-sm p-4 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
       onClick={(e) => e.target === e.currentTarget && safeClose()}
       onCancel={(e) => {
         e.preventDefault();
