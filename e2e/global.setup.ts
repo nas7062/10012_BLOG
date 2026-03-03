@@ -16,14 +16,14 @@ setup("로그인 세션 저장", async ({ page }) => {
   await modal.getByTestId("email").fill(email);
   await modal.getByTestId("password").fill(password);
 
-  // ✅ 기본 submit 네비게이션 방지 + click 안정화
+  // 기본 submit 네비게이션 방지 + click 안정화
   await Promise.all([
-    // 네비게이션이 발생할 수도 있으니 wait를 같이 건다(필수는 아님)
+    // 네비게이션이 발생할 수도 있으니 wait를 같이 건다
     page.waitForLoadState("networkidle").catch(() => { }),
     modal.getByTestId("signin-submit").click({ timeout: 15000 }),
   ]);
 
-  // ✅ URL 이동을 기다리지 말고, 세션 쿠키가 생길 때까지 기다린다
+  //  URL 이동을 기다리지 말고, 세션 쿠키가 생길 때까지 기다린다
   await expect
     .poll(
       async () => {

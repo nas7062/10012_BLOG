@@ -16,7 +16,7 @@ interface TuiEditorProps {
 
 const TuiEditor: React.FC<TuiEditorProps> = ({ content, contentChange }) => {
   return (
-    <div className="w-full" data-color-mode="light">
+    <div className="w-full" data-color-mode="light" data-testid="write-editor">
       <MDEditor
         height={500}
         value={content}

@@ -65,7 +65,7 @@ export default function WritePageClient() {
     };
 
     fetchPost();
-  }, [postId, supabase, post]);
+  }, [postId, supabase]);
 
   const [thumbnailPreview, setThumbnailPreview] =
     useState<AboutThumbnailPreview>();
@@ -160,14 +160,16 @@ export default function WritePageClient() {
           Tags: tags,
         },
       ])
-      .select();
+      .select().single();
 
     if (error) {
       toast.error("글 작성에 실패했습니다.");
       console.error("Supabase insert error:", error);
-    } else if (data && data[0]) {
-      router.push(`/${user?.user?.name}/${data[0].id}`);
+      return;
     }
+    toast.success("글이 작성되었습니다.");
+    router.replace(`/${encodeURIComponent(user?.user?.name ?? "")}/${data.id}`);
+    return;
   };
 
   const handleTagsPlus = () => {
@@ -220,7 +222,7 @@ export default function WritePageClient() {
           <TagList tags={tags} onDelete={onDeleteTag} />
         </div>
         <div className="bg-white h-[500px]  text-left ">
-          <TuiEditor content={getContent} contentChange={changeContent} data-testid="write-editor" />
+          <TuiEditor content={getContent} contentChange={changeContent} />
         </div>
         <div className="flex items-center lg:hidden  ">
           <Image
@@ -234,7 +236,7 @@ export default function WritePageClient() {
             {...getRootProps()}
             className="ml-auto w-32 h-10 px-4 py-2 text-sm bg-green-400 text-white hover:bg-green-500 rounded-lg cursor-pointer"
           >
-            썸네일 업로드 <input {...getInputProps()} />
+            썸네일 업로드 <input {...getInputProps()} data-testid="write-thumbnail-input" />
           </div>
         </div>
         <button

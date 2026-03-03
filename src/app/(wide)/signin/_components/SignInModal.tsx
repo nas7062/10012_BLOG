@@ -84,7 +84,7 @@ export default function SignInModal() {
   return (
     <div data-testid="signin-modal" >
       <div className="flex flex-col justify-center py-2  gap-4" >
-        <h2 className="text-2xl! text-center text-gray-700">로그인</h2>
+        <h2 className="text-2xl! text-center text-primary">로그인</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <div className="flex gap-1 ">
             <label
@@ -136,10 +136,10 @@ export default function SignInModal() {
           </button>
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-700/20"></div>
+              <div className="w-full border-t border-gray-200"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-transparent text-gray-700/60">또는</span>
+              <span className="px-4 bg-transparent text-primary">또는</span>
             </div>
           </div>
           <button

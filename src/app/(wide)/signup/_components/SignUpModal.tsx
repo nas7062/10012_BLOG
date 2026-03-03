@@ -83,7 +83,7 @@ export default function SignUpModal() {
   return (
     <div>
       <div className="flex flex-col justify-center py-2 gap-4 overflow-y-hidden">
-        <h2 className="text-2xl! text-center text-gray-700">회원가입</h2>
+        <h2 className="text-2xl! text-center text-primary">회원가입</h2>
 
         <form
           onSubmit={handleSubmit(onSubmit)}
