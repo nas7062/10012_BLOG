@@ -26,13 +26,16 @@ export default function ReppleForm({
   const { mutate, isPending } = useCreateComment();
 
   const handleSubmit = () => {
-    if (textareaRef.current?.value && user?.id && user.name)
-      mutate({
-        postId: Number(postId),
-        content: textareaRef.current?.value,
-        userid: user?.id,
-        name: user?.name,
-      });
+    const v = textareaRef.current?.value?.trim();
+    if (!v || !user?.id || !user?.name) return;
+    mutate({
+      postId: Number(postId),
+      content: v,
+      userid: user?.id,
+      name: user?.name,
+    });
+    if (textareaRef.current)
+      textareaRef.current.value = "";
   };
 
   return (
@@ -44,19 +47,21 @@ export default function ReppleForm({
             ref={textareaRef}
             onInput={handleResizeHeight}
             rows={1}
+            data-testid="comment-input"
             className="resize-none w-full min-h-16 h-auto bg-slate-200 rounded-lg text-black p-2"
           />
 
           <button
             onClick={handleSubmit}
             disabled={isPending}
+            data-testid="comment-submit"
             className="ml-auto  border border-green-400  rounded-xl px-4 py-1 cursor-pointer bg-green-500 text-white hover:bg-green-600 transition-colors duration-300"
           >
             댓글 작성
           </button>
         </>
       ) : (
-        <div className="w-full bg-gray-200 h-20">
+        <div data-testid="comment-need-login" className="w-full bg-gray-200 h-20">
           <div className="flex justify-center items-center h-full">
             <p className="text-sm text-center">
               로그인 시 댓글 작성 가능합니다.

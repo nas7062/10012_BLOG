@@ -91,6 +91,7 @@ export default function Repple({
               )}
 
               <button
+                data-testid="comment-delete"
                 className="hover:text-red-400 cursor-pointer"
                 onClick={() => onDelete(repple.id)}
               >
@@ -104,12 +105,13 @@ export default function Repple({
         <textarea
           ref={textareaRef}
           onInput={handleResizeHeight}
+          data-testid="comment-edit-input"
           rows={1}
           defaultValue={repple.content ? repple.content : ""}
           className="resize-none w-full min-h-16 h-auto bg-slate-200 rounded-lg text-black p-2"
         />
       ) : (
-        <div>{repple?.content}</div>
+        <div data-testid="comment-content">{repple?.content}</div>
       )}
     </div>
   );

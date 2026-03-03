@@ -1,5 +1,7 @@
 import { test, expect } from "@playwright/test";
 import path from "path";
+
+
 test("글 작성 후 상세 페이지로 이동한다", async ({ page }) => {
   await page.goto("/write", { waitUntil: "domcontentloaded" });
 
@@ -23,4 +25,15 @@ test("글 작성 후 상세 페이지로 이동한다", async ({ page }) => {
 
   await expect(page).toHaveURL(/\/[^/]+\/\d+$/, { timeout: 20000 });
   await expect(page.getByRole("heading", { name: title })).toBeVisible({ timeout: 20000 });
+
+  const comment = `e2e-댓글 테스트-${Date.now()}`;
+
+  await expect(page.getByTestId("comment-input")).toBeVisible({ timeout: 15000 });
+  await page.getByTestId("comment-input").fill(comment);
+  await page.getByTestId("comment-submit").click();
+
+
+  await expect(
+    page.getByTestId("comment-content").filter({ hasText: comment })
+  ).toBeVisible({ timeout: 20000 });
 });
