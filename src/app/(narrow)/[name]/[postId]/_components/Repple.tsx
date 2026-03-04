@@ -55,9 +55,15 @@ export default function Repple({
     }
   };
   const isMyRepple = repple.userid === user?.id;
-  if (isUserLoading) return "loading...";
+  if (isUserLoading) {
+    return (
+      <div className="flex flex-col gap-4" data-testid="comment-item">
+        loading...
+      </div>
+    );
+  }
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4" data-testid="comment-item">
       <div className="flex gap-2">
         <Image
           src={reppleUser?.image ? reppleUser?.image : "/noImage.jpg"}
@@ -75,6 +81,7 @@ export default function Repple({
             <>
               {!isUpdate ? (
                 <button
+                  data-testid="comment-edit"
                   className="hover:text-gray-400 cursor-pointer"
                   onClick={changeUpdate}
                 >
@@ -83,6 +90,7 @@ export default function Repple({
               ) : (
                 <button
                   className="hover:text-gray-400 cursor-pointer"
+                  data-testid="comment-edit-submit"
                   onClick={handleUpdate}
                   disabled={isPending}
                 >
