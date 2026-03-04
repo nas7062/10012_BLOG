@@ -27,15 +27,23 @@ export default function ReppleForm({
 
   const handleSubmit = () => {
     const v = textareaRef.current?.value?.trim();
-    if (!v || !user?.id || !user?.name) return;
+    if (!v || !user?.id) return;
+
+    const name =
+      user.name && user.name.trim().length > 0
+        ? user.name
+        : user.email || "익명";
+
     mutate({
       postId: Number(postId),
       content: v,
-      userid: user?.id,
-      name: user?.name,
+      userid: user.id,
+      name,
     });
-    if (textareaRef.current)
+
+    if (textareaRef.current) {
       textareaRef.current.value = "";
+    }
   };
 
   return (
