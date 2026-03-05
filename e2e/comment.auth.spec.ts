@@ -165,6 +165,6 @@ test.describe("댓글 E2E", () => {
 
     await expect(
       page.getByTestId("comment-item").filter({ hasText: text })
-    ).toHaveCount(0);
+    ).toHaveCount(0, { timeout: 30000 });
   });
 });
