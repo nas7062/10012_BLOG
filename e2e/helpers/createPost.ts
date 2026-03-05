@@ -2,14 +2,14 @@ import { expect, Page } from "@playwright/test";
 import path from "path";
 
 export async function createPost(page: Page) {
+  // write 페이지로 이동
   await page.goto("/write", { waitUntil: "domcontentloaded" });
 
-  // userData 로딩 대기 - 더 안정적인 방법
-  // 방법 1: write-title 입력 필드가 나타날 때까지 대기
+  // write-title 입력 필드가 나타날 때까지 대기
   try {
     await page.waitForSelector('[data-testid="write-title"]', { timeout: 20000 });
   } catch {
-    // 방법 2: loading... 텍스트가 사라질 때까지 대기
+    // 로딩 끝날떄까지 대기 
     try {
       await page.waitForFunction(
         () => {
@@ -19,17 +19,20 @@ export async function createPost(page: Page) {
         { timeout: 15000 }
       );
     } catch {
-      // 방법 3: 페이지가 완전히 로드될 때까지 대기
-      await page.waitForLoadState("networkidle", { timeout: 10000 }).catch(() => {});
+      //페이지가 완전히 로드될 때까지 대기
+      await page.waitForLoadState("networkidle", { timeout: 10000 }).catch(() => { });
     }
   }
 
+
+  //  1초 대기
   await page.waitForTimeout(1000);
 
+  // 임의로 title 설정
   const title = `e2e-post-${Date.now()}`;
   await page.getByTestId("write-title").fill(title);
 
-  await page.getByTestId("write-tag").fill("playwright");
+  await page.getByTestId("write-tag").fill("playwright-tag");
   await page.getByTestId("write-tag").press("Enter");
 
   // 에디터 로드 대기
@@ -85,7 +88,7 @@ export async function createPost(page: Page) {
   }
 
   // 성공 toast 확인
-  await page.waitForSelector('text=글이 작성되었습니다', { timeout: 10000 }).catch(() => {});
+  await page.waitForSelector('text=글이 작성되었습니다', { timeout: 10000 }).catch(() => { });
 
   // Supabase 응답에서 id 추출
   let postId: number | undefined;

@@ -1,10 +1,11 @@
 import { test, expect } from "@playwright/test";
 import { createPost } from "./helpers/createPost";
 
-test.describe("댓글 E2E", () => {
-  // 내부에서 네트워크 대기를 많이 하기 때문에 테스트 타임아웃을 늘린다.
+test.describe("댓글 E2E 테스트", () => {
+
   test.describe.configure({ timeout: 90_000 });
 
+  // 글 작성 후 댓글 테스트
   test.beforeEach(async ({ page }) => {
     const { url } = await createPost(page);
     await page.goto(url, { waitUntil: "domcontentloaded" });
@@ -20,12 +21,12 @@ test.describe("댓글 E2E", () => {
 
     await page.getByTestId("comment-input").fill(text);
 
-    // 댓글 작성 요청과 제출을 동시에 실행
+    // 댓글 작성 요청과 제출을 동시에 
     await Promise.all([
       page
         .waitForResponse((response) => {
           const url = response.url();
-          // Supabase POST 요청 (Repple 테이블 insert)
+          // Supabase POST 요청 
           return (
             url.includes("supabase.co") &&
             response.request().method() === "POST" &&
@@ -36,12 +37,12 @@ test.describe("댓글 E2E", () => {
       page.getByTestId("comment-submit").click(),
     ]);
 
-    // 성공 toast 확인 (있으면 확인하고, 없어도 테스트는 계속 진행)
+    // 댓글 작성 완료 toast 확인
     await page
       .waitForSelector("text=댓글 작성 완료", { timeout: 10000 })
       .catch(() => { });
 
-    // 댓글 리스트가 업데이트될 때까지 대기 (Supabase GET 요청)
+    // 댓글 리스트가 업데이트될 때까지 대기
     await page
       .waitForResponse((response) => {
         const url = response.url();
@@ -63,9 +64,10 @@ test.describe("댓글 E2E", () => {
     const original = `e2e-comment-${Date.now()}`;
     const updated = `e2e-comment-updated-${Date.now()}`;
 
-    // 작성
+    // 댓글 작성
     await page.getByTestId("comment-input").fill(original);
 
+    // 댓글 작성 요청과 제출
     await Promise.all([
       page
         .waitForResponse((response) => {
@@ -92,6 +94,7 @@ test.describe("댓글 E2E", () => {
       }, { timeout: 30000 })
       .catch(() => { });
 
+    // 댓글 나올때까지 대기 
     const item = page.getByTestId("comment-item").filter({ hasText: original });
     await expect(item).toBeVisible({ timeout: 30000 });
 
@@ -137,28 +140,28 @@ test.describe("댓글 E2E", () => {
   test("댓글 삭제", async ({ page }) => {
     const text = `e2e-comment-${Date.now()}`;
 
-    // 1. 댓글 작성
+    // 댓글 작성
     await page.getByTestId("comment-input").fill(text);
     await page.getByTestId("comment-submit").click();
 
-    // 작성 완료 토스트 (있으면 확인, 없어도 계속 진행)
+    // 작성 완료 토스트 확인
     await page
       .waitForSelector("text=댓글 작성 완료", { timeout: 10000 })
       .catch(() => { });
 
-    // 방금 쓴 댓글이 화면에 뜰 때까지 대기
+    // 댓글 반영된 것 확인
     const content = page
       .getByTestId("comment-content")
       .filter({ hasText: text });
     await expect(content).toBeVisible({ timeout: 30000 });
 
-    // 2. 삭제용 locator (댓글 카드)
+    // 댓글 
     const item = page.getByTestId("comment-item").filter({ hasText: text });
 
     // 삭제 버튼 클릭
     await item.getByTestId("comment-delete").click();
 
-    // 삭제 완료 토스트 & DOM 삭제만 확인
+    // 삭제 완료 토스트 확인
     await page
       .waitForSelector("text=댓글 삭제 완료", { timeout: 30000 })
       .catch(() => { });

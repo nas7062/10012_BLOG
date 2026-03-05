@@ -12,52 +12,48 @@ setup("로그인 세션 저장", async ({ page, context }) => {
     throw new Error("TEST_USER_EMAIL 또는 TEST_USER_PASSWORD가 설정되지 않았습니다.");
   }
 
-  console.log("로그인 시작...");
-
+  //signin 페이지 이동 (e2e 환경에서만 )
   await page.goto("/signin?e2e=1", { waitUntil: "domcontentloaded" });
 
-  console.log("모달 대기 중...");
+  // SignInmodal 대기 
   const modal = page.getByTestId("signin-modal");
   await expect(modal).toBeVisible({ timeout: 30000 });
 
-  console.log("로그인 정보 입력 중...");
+  // email,password 입력
   await modal.getByTestId("email").fill(email, { timeout: 10000 });
   await modal.getByTestId("password").fill(password, { timeout: 10000 });
 
-  console.log("로그인 제출 중...");
 
-  // 제출 버튼 클릭
+  // 로그인 버튼 클릭
   await modal.getByTestId("signin-submit").click();
 
-  // 로그인 완료 대기 - 세션 쿠키가 설정될 때까지
-  console.log("세션 쿠키 확인 중...");
-
+  // 세션 쿠키 확인
   let hasSessionCookie = false;
-  const maxAttempts = 50; // 최대 50번 시도 (약 10초)
+  const maxAttempts = 50; // 최대 50번 시도
 
   for (let i = 0; i < maxAttempts; i++) {
     try {
-      // context.cookies()로 확인 (더 확실함)
+      // context.cookies()로 확인 
       const cookies = await context.cookies();
       hasSessionCookie = cookies.some(cookie => {
         const name = cookie.name.toLowerCase();
         return (
-          name.includes('session-token') ||           // session-token 이 들어가면 다 인정
+          name.includes('session-token') ||
           name === 'authjs.session-token' ||
           name === '__secure-authjs.session-token' ||
           name === 'next-auth.session-token'
         );
       });
 
+      // 세션 쿠기 있으면 종료
       if (hasSessionCookie) {
         const sessionCookie = cookies.find(c =>
           c.name.toLowerCase().includes('authjs.session-token')
         );
-        console.log(`✅ 세션 쿠키 확인됨 (${i + 1}번째 시도): ${sessionCookie?.name}`);
         break;
       }
 
-      // 쿠키가 없으면 200ms 대기 후 재시도
+      // 쿠키가 없으면 재시도
       if (i < maxAttempts - 1) {
         await new Promise(resolve => setTimeout(resolve, 200));
       }
@@ -74,10 +70,6 @@ setup("로그인 세션 저장", async ({ page, context }) => {
   if (!hasSessionCookie) {
     // 최종 쿠키 확인 및 로그
     const finalCookies = await context.cookies();
-    console.log("최종 쿠키 상태:");
-    finalCookies.forEach(cookie => {
-      console.log(`  - ${cookie.name}`);
-    });
 
     // 에러 메시지 확인
     const errorMessage = await page.locator('text=로그인을 다시 시도해주세요').isVisible({ timeout: 2000 }).catch(() => false);
@@ -95,7 +87,6 @@ setup("로그인 세션 저장", async ({ page, context }) => {
   }
 
   // 세션 상태 저장
-  console.log("세션 상태 저장 중...");
   fs.mkdirSync("playwright/.auth", { recursive: true });
 
   try {
@@ -113,14 +104,12 @@ setup("로그인 세션 저장", async ({ page, context }) => {
     });
 
     if (!hasSavedCookie) {
-      console.log("저장된 쿠키들:");
       savedState.cookies?.forEach((cookie: any) => {
-        console.log(`  - ${cookie.name}`);
+        console.log(`쿠키 저장- ${cookie.name}`);
       });
       throw new Error("세션 저장 실패: 세션 쿠키가 저장되지 않았습니다.");
     }
 
-    console.log("✅ 로그인 세션 저장 완료:", authFile);
   } catch (error) {
     console.error("세션 상태 저장 실패:", error);
     throw error;
