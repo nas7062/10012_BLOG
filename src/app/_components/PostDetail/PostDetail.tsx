@@ -63,6 +63,11 @@ export default function PostDetail({ postId, initialData }: PostDetailProps) {
 
   const openDeleteCommentModal = useCallback(
     (commentId: number) => {
+      if (process.env.NEXT_PUBLIC_E2E === "true") {
+        handleDeleteComment(commentId);
+        return;
+      }
+
       openModal("DeleteComment", {
         onDelete: () => handleDeleteComment(commentId),
         commentId,

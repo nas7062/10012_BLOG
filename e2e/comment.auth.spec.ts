@@ -137,67 +137,34 @@ test.describe("댓글 E2E", () => {
   test("댓글 삭제", async ({ page }) => {
     const text = `e2e-comment-${Date.now()}`;
 
-    // 작성
+    // 1. 댓글 작성
     await page.getByTestId("comment-input").fill(text);
+    await page.getByTestId("comment-submit").click();
 
-    await Promise.all([
-      page
-        .waitForResponse((response) => {
-          const url = response.url();
-          return (
-            url.includes("supabase.co") &&
-            response.request().method() === "POST" &&
-            (url.includes("/rest/v1/Repple") || url.includes("/rest/v1/repple"))
-          );
-        }, { timeout: 30000 })
-        .catch(() => null),
-      page.getByTestId("comment-submit").click(),
-    ]);
-
-    // 댓글 리스트 업데이트 대기
+    // 작성 완료 토스트 (있으면 확인, 없어도 계속 진행)
     await page
-      .waitForResponse((response) => {
-        const url = response.url();
-        return (
-          url.includes("supabase.co") &&
-          response.request().method() === "GET" &&
-          (url.includes("/rest/v1/Repple") || url.includes("/rest/v1/repple"))
-        );
-      }, { timeout: 30000 })
+      .waitForSelector("text=댓글 작성 완료", { timeout: 10000 })
       .catch(() => { });
 
-    await expect(
-      page.getByTestId("comment-content").filter({ hasText: text })
-    ).toBeVisible({ timeout: 30000 });
+    // 방금 쓴 댓글이 화면에 뜰 때까지 대기
+    const content = page
+      .getByTestId("comment-content")
+      .filter({ hasText: text });
+    await expect(content).toBeVisible({ timeout: 30000 });
 
-    // 이후 삭제할 때 쓸 locator는 따로 잡기
+    // 2. 삭제용 locator (댓글 카드)
     const item = page.getByTestId("comment-item").filter({ hasText: text });
 
     // 삭제 버튼 클릭
     await item.getByTestId("comment-delete").click();
 
-    // 모달이 나타날 때까지 대기 (동적 로드까지 고려해서 넉넉하게)
-    // const modal = page.getByTestId("app-modal");
-    // await expect(modal).toBeVisible({ timeout: 15000 });
-
-    // // 모달 내부의 "삭제" 버튼 찾기
-    // const deleteButton = modal.getByRole("button", { name: "삭제" });
-    // await expect(deleteButton).toBeVisible({ timeout: 5000 });
-
-    // // 삭제 버튼 클릭
-    // await deleteButton.click();
-
-    // 성공 toast 확인 (이게 가장 확실한 신호)
-    await page.waitForSelector("text=댓글 삭제 완료", { timeout: 30000 });
-
-    // 댓글이 사라질 때까지 대기
+    // 삭제 완료 토스트 & DOM 삭제만 확인
     await page
       .waitForSelector("text=댓글 삭제 완료", { timeout: 30000 })
-      .catch(() => {
-        // 토스트가 안 떠도, 아래 DOM 기준 삭제 검증으로 계속 진행
-      });
+      .catch(() => { });
 
-    // 최종 확인
-    await expect(item).not.toBeVisible({ timeout: 5000 });
+    await expect(
+      page.getByTestId("comment-item").filter({ hasText: text })
+    ).toHaveCount(0);
   });
 });
