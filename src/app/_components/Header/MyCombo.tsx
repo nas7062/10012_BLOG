@@ -37,22 +37,20 @@ export function MyCombo({ user }: { user: User }) {
     },
   ];
 
-// Popover가 열릴 때 첫 번째 링크에 포커스
-useEffect(() => {
-  if (open && firstLinkRef.current) {
-    setTimeout(() => {
-      firstLinkRef.current?.focus();
-    }, 100);
-  }
-}, [open]);
+  // Popover가 열릴 때 첫 번째 링크에 포커스
+  useEffect(() => {
+    if (open && firstLinkRef.current) {
+      setTimeout(() => {
+        firstLinkRef.current?.focus();
+      }, 100);
+    }
+  }, [open]);
 
-
-const handleKeyDown = (e: React.KeyboardEvent) => {
-  if (e.key === "Escape") {
-    setOpen(false);
-  }
-};
-
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Escape") {
+      setOpen(false);
+    }
+  };
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -61,7 +59,7 @@ const handleKeyDown = (e: React.KeyboardEvent) => {
           variant="ghost"
           role="combobox"
           aria-expanded={open}
-            aria-label={`${userData?.name || "사용자"} 메뉴 열기`}
+          aria-label={`${userData?.name || "사용자"} 메뉴 열기`}
           aria-haspopup="menu"
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") {
@@ -76,15 +74,17 @@ const handleKeyDown = (e: React.KeyboardEvent) => {
           />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-20 p-0"  
-      onKeyDown={handleKeyDown}
+      <PopoverContent
+        className="w-20 p-0"
+        onKeyDown={handleKeyDown}
         role="menu"
-        aria-label="사용자 메뉴">
+        aria-label="사용자 메뉴"
+      >
         <Command>
           <CommandList>
             <CommandGroup className="p-0!">
               <div className="flex flex-col text-center ">
-                {frameworks.map((framework,index) => {
+                {frameworks.map((framework, index) => {
                   if (framework.label === "새 글 작성") {
                     return (
                       <Link
@@ -118,7 +118,7 @@ const handleKeyDown = (e: React.KeyboardEvent) => {
                   className="block md:hidden py-2 bg-gray-300 text-sm hover:bg-gray-400 cursor-pointer transition-all duration-200"
                   aria-label="로그아웃"
                   tabIndex={0}
-               >
+                >
                   로그아웃
                 </button>
               </div>

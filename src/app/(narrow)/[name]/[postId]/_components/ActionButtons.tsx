@@ -46,13 +46,16 @@ export default function ActionButtons() {
   // 공유 패널 외부 클릭 감지
   useEffect(() => {
     if (!isShare) return;
-    
+
     const handleClickOutside = (e: MouseEvent) => {
-      if (sharePanelRef.current && !sharePanelRef.current.contains(e.target as Node)) {
+      if (
+        sharePanelRef.current &&
+        !sharePanelRef.current.contains(e.target as Node)
+      ) {
         setIsShare(false);
       }
     };
-    
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isShare]);
@@ -76,10 +79,15 @@ export default function ActionButtons() {
     }
   };
 
-  if (isPostLoading) return <div aria-live="polite" aria-busy="true">loading...</div>;
-  
+  if (isPostLoading)
+    return (
+      <div aria-live="polite" aria-busy="true">
+        loading...
+      </div>
+    );
+
   return (
-    <div 
+    <div
       className="flex flex-col h-44 w-20 rounded-4xl justify-between items-center py-2 text-primary bg-green-300 border border-green-300 overflow-x-hidden"
       role="toolbar"
       aria-label="게시글 액션"
@@ -93,9 +101,15 @@ export default function ActionButtons() {
         aria-pressed={liked}
       >
         {liked ? (
-          <Heart className="w-8 h-8 group-hover:fill-gray-500 fill-red-500" aria-hidden="true" />
+          <Heart
+            className="w-8 h-8 group-hover:fill-gray-500 fill-red-500"
+            aria-hidden="true"
+          />
         ) : (
-          <Heart className="w-8 h-8 group-hover:fill-red-500" aria-hidden="true" />
+          <Heart
+            className="w-8 h-8 group-hover:fill-red-500"
+            aria-hidden="true"
+          />
         )}
       </button>
 
