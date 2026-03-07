@@ -4,7 +4,7 @@ test.describe("헤더 네비게이션", () => {
   test("홈 링크로 이동한다", async ({ page }) => {
     await page.goto("/");
     await page.waitForSelector('nav a[href="/"]', { timeout: 5000 });
-    await page.getByRole("link", { name: /홈/ }).click();
+    await page.getByRole("navigation").getByRole("link", { name: "홈" }).click();
     await expect(page).toHaveURL("/");
   });
 
