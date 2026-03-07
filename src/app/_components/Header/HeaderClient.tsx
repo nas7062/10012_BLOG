@@ -13,6 +13,7 @@ export function HeaderClient() {
       {!session?.user ? (
         <Link
           href={"/signin"}
+          aria-label="로그인 페이지로 이동"
           className="px-3  text-xs sm:text-base sm:px-4 py-2  rounded-2xl bg-gray-700 hover:bg-gray-900 text-white  cursor-pointer transition-all duration-200"
         >
           로그인
@@ -21,6 +22,7 @@ export function HeaderClient() {
         <>
           <Link
             href={"/write"}
+             aria-label="새 글 작성 페이지로 이동"
             className="md:block hidden px-3 py-1.5 text-sm rounded-2xl bg-green-400 border border-green-400 text-white cursor-pointer hover:bg-green-500 transition-all duration-200"
           >
             글 작성

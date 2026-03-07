@@ -32,7 +32,9 @@ export default function HeaderNav() {
                 isActive && "font-bold after:w-full"
               )}
             >
-              <Link href={href} className="flex items-center gap-2">
+              <Link href={href} className="flex items-center gap-2"
+               aria-current={isActive ? "page" : undefined}
+                aria-label={v.label}>
                 <Icon className=" w-3 h-3 sm:w-5 sm:h-5" />
                 <span className="text-xs sm:text-base">{v.label}</span>
               </Link>

@@ -9,6 +9,7 @@ export default async function Header() {
       <Link
         className="text-2xl md:text-4xl font-semibold cursor-pointer"
         href="/"
+        aria-label="10012 홈으로 이동"
       >
         <Image
           src="/logo10.png"
