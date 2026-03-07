@@ -1,4 +1,3 @@
-// eslint.config.cjs
 const eslintPluginNext = require("@next/eslint-plugin-next");
 
 /** @type {import("eslint").Linter.Config[]} */
@@ -15,8 +14,8 @@ module.exports = [
       "@next/next": eslintPluginNext,
     },
     rules: {
-      // 필요하면 규칙 추가
-      // 예: "no-console": "warn",
+      // Prettier와 충돌 방지
+      "prettier/prettier": "error",
     },
   },
 ];

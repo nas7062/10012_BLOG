@@ -69,7 +69,10 @@ export default function ReppleForm({
           </button>
         </>
       ) : (
-        <div data-testid="comment-need-login" className="w-full bg-gray-200 h-20">
+        <div
+          data-testid="comment-need-login"
+          className="w-full bg-gray-200 h-20"
+        >
           <div className="flex justify-center items-center h-full">
             <p className="text-sm text-center">
               로그인 시 댓글 작성 가능합니다.

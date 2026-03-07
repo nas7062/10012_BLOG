@@ -14,12 +14,12 @@ const MDEditorMarkdown = dynamic(
 export default function Viewer({ content }: { content: string }) {
   return (
     <div className={styles.markdown}>
-    <div
-      className="wmde-markdown wmde-markdown-color
+      <div
+        className="wmde-markdown wmde-markdown-color
                  bg-background text-foreground "
-    >
-      <MDEditorMarkdown source={content} />
-    </div>
+      >
+        <MDEditorMarkdown source={content} />
+      </div>
     </div>
   );
 }

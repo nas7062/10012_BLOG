@@ -1,7 +1,7 @@
-
-##  적용된 최적화 사항
+## 적용된 최적화 사항
 
 ### 1. 이미지 최적화
+
 - `sizes` 속성 최적화로 적절한 이미지 크기 로드
 - `quality={85}` 설정으로 이미지 품질과 파일 크기 균형
 - `placeholder="blur"` 및 `blurDataURL` 추가로 레이아웃 시프트 감소
@@ -10,7 +10,7 @@
 
 ### 2. Next.js 설정 최적화
 
-####  `next.config.ts` 개선
+#### `next.config.ts` 개선
 
 - **deprecated `domains` 제거**: `remotePatterns`로 통합
 - **이미지 최적화 옵션**:
@@ -26,7 +26,7 @@
 
 ### 3. 폰트 최적화
 
-####  Font Loading 전략
+#### Font Loading 전략
 
 - `display: "swap"`: 폰트 로딩 중 텍스트 표시 (FOUT)
 - `adjustFontFallback: true`: 폰트 로딩 실패 시 폴백 최적화
@@ -35,7 +35,7 @@
 
 ### 4. 메타데이터 및 SEO 최적화
 
-####  Layout 메타데이터
+#### Layout 메타데이터
 
 - `viewport` 설정 최적화
 - `metadataBase` 추가로 절대 URL 설정
@@ -43,12 +43,14 @@
 
 ### 5. 컴포넌트 최적화
 
-####  Post 컴포넌트
+#### Post 컴포넌트
+
 - `React.memo` 적용으로 불필요한 리렌더링 방지
 - `useCallback`으로 함수 메모이제이션
 - 이벤트 핸들러 최적화
 
-####  동적 임포트 (Code Splitting)
+#### 동적 임포트 (Code Splitting)
+
 - **View 컴포넌트**: MDEditor를 동적 임포트로 지연 로딩
 - `ssr: false`로 클라이언트 사이드만 로드
 - 로딩 스켈레톤 추가

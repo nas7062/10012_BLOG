@@ -82,8 +82,8 @@ export default function SignInModal() {
     }
   };
   return (
-    <div data-testid="signin-modal" >
-      <div className="flex flex-col justify-center py-2  gap-4" >
+    <div data-testid="signin-modal">
+      <div className="flex flex-col justify-center py-2  gap-4">
         <h2 className="text-2xl! text-center text-primary">로그인</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <div className="flex gap-1 ">
@@ -180,6 +180,6 @@ export default function SignInModal() {
           />
         </div>
       </div>
-    </div >
+    </div>
   );
 }

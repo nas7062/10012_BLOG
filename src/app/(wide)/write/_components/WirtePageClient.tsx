@@ -160,7 +160,8 @@ export default function WritePageClient() {
           Tags: tags,
         },
       ])
-      .select().single();
+      .select()
+      .single();
 
     if (error) {
       toast.error("글 작성에 실패했습니다.");
@@ -236,7 +237,8 @@ export default function WritePageClient() {
             {...getRootProps()}
             className="ml-auto w-32 h-10 px-4 py-2 text-sm bg-green-400 text-white hover:bg-green-500 rounded-lg cursor-pointer"
           >
-            썸네일 업로드 <input {...getInputProps()} data-testid="write-thumbnail-input" />
+            썸네일 업로드{" "}
+            <input {...getInputProps()} data-testid="write-thumbnail-input" />
           </div>
         </div>
         <button

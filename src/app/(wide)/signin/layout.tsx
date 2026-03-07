@@ -15,5 +15,9 @@ export default function SigninLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <main data-testid="signin-page"><Suspense fallback={<div>loading...</div>}> {children}</Suspense></main>;
+  return (
+    <main data-testid="signin-page">
+      <Suspense fallback={<div>loading...</div>}> {children}</Suspense>
+    </main>
+  );
 }
