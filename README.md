@@ -451,39 +451,46 @@ export const metadata: Metadata = {
 - 초기 화면에 필요한 게시글을 서버에서 미리 렌더링해 전달함으로써,
   클라이언트 측 추가 요청 없이 즉시 콘텐츠가 표시되도록 하여 LCP를 개선했습니다.
 
-
 ## E2E 테스트
+
 이 프로젝트는 **Playwright** 를 사용해 핵심 플로우를 E2E로 검증합니다.
+
 ### 구성
-- `e2e/global.setup.ts`  
+
+- `e2e/global.setup.ts`
   - 테스트용 계정으로 로그인하여 세션 쿠키를 저장합니다.
   - `playwright/.auth/user.json` 에 세션 상태를 저장해 이후 테스트에서 재사용합니다.
-- `e2e/write.auth.spec.ts`  
+- `e2e/write.auth.spec.ts`
   - 글 작성 페이지에서 글을 작성하고,
   - 작성 완료 후 상세 페이지로 정상 이동하는지 검증합니다.
-- `e2e/comment.auth.spec.ts`  
+- `e2e/comment.auth.spec.ts`
   - 게시글 상세 페이지에서 댓글 작성 / 수정 / 삭제가 정상 동작하는지 검증합니다.
   - Supabase API 응답과 실제 화면(DOM)까지 함께 확인합니다.
-- `e2e/navigation*.spec.ts`, `e2e/home.spec.ts`  
+- `e2e/navigation*.spec.ts`, `e2e/home.spec.ts`
   - 주요 네비게이션 및 홈 화면이 의도한 대로 동작하는지 확인합니다.
-  
+
 ### 실행 방법
+
 1. `.env.local` 에 테스트 계정 정보 설정
+
 ```env
 TEST_USER_EMAIL=your-test-email@example.com
 TEST_USER_PASSWORD=your-test-password
 ```
+
 2. 의존성 설치 및 Playwright 브라우저 설치
+
 ```
 npm install
 npx playwright install
 ```
 
 3.E2E 테스트 실행
+
 ```
 # 전체 E2E 테스트 실행
 npx playwright test
-# 특정 시나리오만 실행 
+# 특정 시나리오만 실행
 npx playwright test e2e/comment.auth.spec.ts
 ```
 

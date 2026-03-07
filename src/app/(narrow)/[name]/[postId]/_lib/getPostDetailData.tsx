@@ -17,7 +17,7 @@ export async function getPostDetailData(postId: number, userEmail?: string) {
       try {
         const supabase = await createSupabaseServerClient();
         const { data } = await supabase
-          .from("users")  
+          .from("users")
           .select("*")
           .eq("email", userEmail)
           .single();

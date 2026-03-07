@@ -7,11 +7,7 @@ type TagItem = {
   count: number;
 };
 
-export default function TagSidebarClient({
-  tags,
-}: {
-  tags: TagItem[];
-}) {
+export default function TagSidebarClient({ tags }: { tags: TagItem[] }) {
   const router = useRouter();
   const pathname = usePathname();
 

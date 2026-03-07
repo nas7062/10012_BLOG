@@ -2,7 +2,6 @@ import { test, expect } from "@playwright/test";
 import { createPost } from "./helpers/createPost";
 
 test.describe("댓글 E2E 테스트", () => {
-
   test.describe.configure({ timeout: 90_000 });
 
   // 글 작성 후 댓글 테스트
@@ -21,18 +20,22 @@ test.describe("댓글 E2E 테스트", () => {
 
     await page.getByTestId("comment-input").fill(text);
 
-    // 댓글 작성 요청과 제출을 동시에 
+    // 댓글 작성 요청과 제출을 동시에
     await Promise.all([
       page
-        .waitForResponse((response) => {
-          const url = response.url();
-          // Supabase POST 요청 
-          return (
-            url.includes("supabase.co") &&
-            response.request().method() === "POST" &&
-            (url.includes("/rest/v1/Repple") || url.includes("/rest/v1/repple"))
-          );
-        }, { timeout: 30000 })
+        .waitForResponse(
+          (response) => {
+            const url = response.url();
+            // Supabase POST 요청
+            return (
+              url.includes("supabase.co") &&
+              response.request().method() === "POST" &&
+              (url.includes("/rest/v1/Repple") ||
+                url.includes("/rest/v1/repple"))
+            );
+          },
+          { timeout: 30000 }
+        )
         .catch(() => null),
       page.getByTestId("comment-submit").click(),
     ]);
@@ -40,19 +43,22 @@ test.describe("댓글 E2E 테스트", () => {
     // 댓글 작성 완료 toast 확인
     await page
       .waitForSelector("text=댓글 작성 완료", { timeout: 10000 })
-      .catch(() => { });
+      .catch(() => {});
 
     // 댓글 리스트가 업데이트될 때까지 대기
     await page
-      .waitForResponse((response) => {
-        const url = response.url();
-        return (
-          url.includes("supabase.co") &&
-          response.request().method() === "GET" &&
-          (url.includes("/rest/v1/Repple") || url.includes("/rest/v1/repple"))
-        );
-      }, { timeout: 30000 })
-      .catch(() => { });
+      .waitForResponse(
+        (response) => {
+          const url = response.url();
+          return (
+            url.includes("supabase.co") &&
+            response.request().method() === "GET" &&
+            (url.includes("/rest/v1/Repple") || url.includes("/rest/v1/repple"))
+          );
+        },
+        { timeout: 30000 }
+      )
+      .catch(() => {});
 
     // 댓글 아이템이 나타날 때까지 대기
     await expect(
@@ -70,31 +76,38 @@ test.describe("댓글 E2E 테스트", () => {
     // 댓글 작성 요청과 제출
     await Promise.all([
       page
-        .waitForResponse((response) => {
-          const url = response.url();
-          return (
-            url.includes("supabase.co") &&
-            response.request().method() === "POST" &&
-            (url.includes("/rest/v1/Repple") || url.includes("/rest/v1/repple"))
-          );
-        }, { timeout: 30000 })
+        .waitForResponse(
+          (response) => {
+            const url = response.url();
+            return (
+              url.includes("supabase.co") &&
+              response.request().method() === "POST" &&
+              (url.includes("/rest/v1/Repple") ||
+                url.includes("/rest/v1/repple"))
+            );
+          },
+          { timeout: 30000 }
+        )
         .catch(() => null),
       page.getByTestId("comment-submit").click(),
     ]);
 
     // 댓글 리스트 업데이트 대기
     await page
-      .waitForResponse((response) => {
-        const url = response.url();
-        return (
-          url.includes("supabase.co") &&
-          response.request().method() === "GET" &&
-          (url.includes("/rest/v1/Repple") || url.includes("/rest/v1/repple"))
-        );
-      }, { timeout: 30000 })
-      .catch(() => { });
+      .waitForResponse(
+        (response) => {
+          const url = response.url();
+          return (
+            url.includes("supabase.co") &&
+            response.request().method() === "GET" &&
+            (url.includes("/rest/v1/Repple") || url.includes("/rest/v1/repple"))
+          );
+        },
+        { timeout: 30000 }
+      )
+      .catch(() => {});
 
-    // 댓글 나올때까지 대기 
+    // 댓글 나올때까지 대기
     const item = page.getByTestId("comment-item").filter({ hasText: original });
     await expect(item).toBeVisible({ timeout: 30000 });
 
@@ -107,29 +120,36 @@ test.describe("댓글 E2E 테스트", () => {
     // 수정 완료
     await Promise.all([
       page
-        .waitForResponse((response) => {
-          const url = response.url();
-          return (
-            url.includes("supabase.co") &&
-            response.request().method() === "PATCH" &&
-            (url.includes("/rest/v1/Repple") || url.includes("/rest/v1/repple"))
-          );
-        }, { timeout: 30000 })
+        .waitForResponse(
+          (response) => {
+            const url = response.url();
+            return (
+              url.includes("supabase.co") &&
+              response.request().method() === "PATCH" &&
+              (url.includes("/rest/v1/Repple") ||
+                url.includes("/rest/v1/repple"))
+            );
+          },
+          { timeout: 30000 }
+        )
         .catch(() => null),
       item.getByTestId("comment-edit-submit").click(),
     ]);
 
     // 댓글 리스트 업데이트 대기
     await page
-      .waitForResponse((response) => {
-        const url = response.url();
-        return (
-          url.includes("supabase.co") &&
-          response.request().method() === "GET" &&
-          (url.includes("/rest/v1/Repple") || url.includes("/rest/v1/repple"))
-        );
-      }, { timeout: 30000 })
-      .catch(() => { });
+      .waitForResponse(
+        (response) => {
+          const url = response.url();
+          return (
+            url.includes("supabase.co") &&
+            response.request().method() === "GET" &&
+            (url.includes("/rest/v1/Repple") || url.includes("/rest/v1/repple"))
+          );
+        },
+        { timeout: 30000 }
+      )
+      .catch(() => {});
 
     // 반영 확인
     await expect(
@@ -147,7 +167,7 @@ test.describe("댓글 E2E 테스트", () => {
     // 작성 완료 토스트 확인
     await page
       .waitForSelector("text=댓글 작성 완료", { timeout: 10000 })
-      .catch(() => { });
+      .catch(() => {});
 
     // 댓글 반영된 것 확인
     const content = page
@@ -155,7 +175,7 @@ test.describe("댓글 E2E 테스트", () => {
       .filter({ hasText: text });
     await expect(content).toBeVisible({ timeout: 30000 });
 
-    // 댓글 
+    // 댓글
     const item = page.getByTestId("comment-item").filter({ hasText: text });
 
     // 삭제 버튼 클릭
@@ -164,7 +184,6 @@ test.describe("댓글 E2E 테스트", () => {
     // 삭제 완료 토스트 확인
     await page
       .waitForSelector("text=댓글 삭제 완료", { timeout: 30000 })
-      .catch(() => { });
-
+      .catch(() => {});
   });
 });

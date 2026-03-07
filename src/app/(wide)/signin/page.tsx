@@ -19,7 +19,6 @@ export default function LoginPage() {
     openModal("SignInModal", { autoBack: true });
   }, [openModal, e2e]);
 
-
   if (e2e) return <SignInModal />;
 
   return null;

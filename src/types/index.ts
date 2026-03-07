@@ -19,7 +19,6 @@ export interface IPost {
   reppleCount?: number;
 }
 
-
 export interface IUser {
   id: string;
   email: string | null;

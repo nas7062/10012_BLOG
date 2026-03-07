@@ -1,13 +1,14 @@
 import { test, expect } from "@playwright/test";
 import path from "path";
 
-
 test.describe("글 작성 로직 E2E", () => {
   test("글 작성 후 상세 페이지로 이동한다", async ({ page }) => {
     await page.goto("/write", { waitUntil: "domcontentloaded" });
 
     try {
-      await page.waitForSelector('[data-testid="write-title"]', { timeout: 20000 });
+      await page.waitForSelector('[data-testid="write-title"]', {
+        timeout: 20000,
+      });
     } catch {
       try {
         await page.waitForFunction(
@@ -18,7 +19,9 @@ test.describe("글 작성 로직 E2E", () => {
           { timeout: 15000 }
         );
       } catch {
-        await page.waitForLoadState("networkidle", { timeout: 10000 }).catch(() => { });
+        await page
+          .waitForLoadState("networkidle", { timeout: 10000 })
+          .catch(() => {});
       }
     }
 
@@ -33,15 +36,22 @@ test.describe("글 작성 로직 E2E", () => {
     await page.getByTestId("write-tag").press("Enter");
 
     // 에디터가 로드될 때까지 대기
-    await page.waitForSelector('[data-testid="write-editor"]', { timeout: 15000 });
-
-    await page.waitForSelector('[data-testid="write-editor"] textarea, .w-md-editor-text-input', {
+    await page.waitForSelector('[data-testid="write-editor"]', {
       timeout: 15000,
-      state: "visible"
     });
 
+    await page.waitForSelector(
+      '[data-testid="write-editor"] textarea, .w-md-editor-text-input',
+      {
+        timeout: 15000,
+        state: "visible",
+      }
+    );
+
     // 에디터 내용 입력
-    const editorTextarea = page.locator('[data-testid="write-editor"] textarea').first();
+    const editorTextarea = page
+      .locator('[data-testid="write-editor"] textarea')
+      .first();
     if (await editorTextarea.isVisible({ timeout: 2000 }).catch(() => false)) {
       await editorTextarea.fill("E2E 테스트 본문");
     } else {
@@ -62,28 +72,32 @@ test.describe("글 작성 로직 E2E", () => {
 
     // 네트워크 요청 대기
     const [response] = await Promise.all([
-      page.waitForResponse(
-        (response) => {
-          const url = response.url();
-          return (
-            url.includes("supabase.co") &&
-            response.request().method() === "POST" &&
-            url.includes("/rest/v1/Post")
-          );
-        },
-        { timeout: 30000 }
-      ).catch(() => null),
+      page
+        .waitForResponse(
+          (response) => {
+            const url = response.url();
+            return (
+              url.includes("supabase.co") &&
+              response.request().method() === "POST" &&
+              url.includes("/rest/v1/Post")
+            );
+          },
+          { timeout: 30000 }
+        )
+        .catch(() => null),
       submitButton.click(),
     ]);
 
     // 글이 작성되었다는 토스트 메시지 확인
-    await page.waitForSelector('text=글이 작성되었습니다', { timeout: 10000 }).catch(() => { });
+    await page
+      .waitForSelector("text=글이 작성되었습니다", { timeout: 10000 })
+      .catch(() => {});
 
     // 네비게이션 대기
     try {
       await page.waitForURL(/\/[^/]+\/\d+$/, { timeout: 30000 });
     } catch (error) {
-      // 네비게이션이 안 되면 응답에서 id 추출해서 직접 이동 
+      // 네비게이션이 안 되면 응답에서 id 추출해서 직접 이동
       if (response) {
         try {
           const responseData = await response.json();
@@ -91,22 +105,24 @@ test.describe("글 작성 로직 E2E", () => {
 
           if (Array.isArray(responseData) && responseData.length > 0) {
             postId = responseData[0]?.id;
-          } else if (responseData && typeof responseData === 'object') {
+          } else if (responseData && typeof responseData === "object") {
             postId = (responseData as any).id;
           }
 
           if (postId) {
             const userName = await page.evaluate(() => {
               try {
-                const sessionData = localStorage.getItem('nextauth.session');
+                const sessionData = localStorage.getItem("nextauth.session");
                 if (sessionData) {
                   const parsed = JSON.parse(sessionData);
                   return parsed?.user?.name || "e2e-user";
                 }
-              } catch { }
+              } catch {}
               return "e2e-user";
             });
-            await page.goto(`/${encodeURIComponent(userName)}/${postId}`, { waitUntil: "domcontentloaded" });
+            await page.goto(`/${encodeURIComponent(userName)}/${postId}`, {
+              waitUntil: "domcontentloaded",
+            });
           } else {
             throw error;
           }
@@ -115,7 +131,11 @@ test.describe("글 작성 로직 E2E", () => {
         }
       } else {
         // 에러 확인
-        const errorToast = page.locator('text=글 작성에 실패했습니다, text=제목 또는 내용을 입력 해주세요').first();
+        const errorToast = page
+          .locator(
+            "text=글 작성에 실패했습니다, text=제목 또는 내용을 입력 해주세요"
+          )
+          .first();
         if (await errorToast.isVisible({ timeout: 2000 }).catch(() => false)) {
           const errorText = await errorToast.textContent();
           throw new Error(`글 작성 실패: ${errorText}`);
@@ -123,7 +143,8 @@ test.describe("글 작성 로직 E2E", () => {
         throw error;
       }
     }
-    await expect(page.getByRole("heading", { name: title }))
-      .toBeVisible({ timeout: 20000 });
+    await expect(page.getByRole("heading", { name: title })).toBeVisible({
+      timeout: 20000,
+    });
   });
 });
