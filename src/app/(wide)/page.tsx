@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 30;
+export const revalidate = 60;
 
 export default async function Home() {
   const initialPosts = await getPostListServer();

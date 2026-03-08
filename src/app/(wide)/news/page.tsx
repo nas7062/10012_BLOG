@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const revalidate = 600;
+
 export default async function ItNewsPage() {
   const posts = await getItNewsPosts();
 
