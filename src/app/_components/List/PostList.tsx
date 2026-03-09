@@ -52,7 +52,7 @@ export default function PostListClient({ initialPosts }: Props) {
     <>
       {!hasPosts && (
         <div className="grid max-[450px]:grid-cols-1 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-8">
-          {Array.from({ length: 8 }).map((_, i) => (
+          {Array.from({ length: 5 }).map((_, i) => (
             <SkeletonPost key={i} />
           ))}
         </div>
@@ -68,7 +68,7 @@ export default function PostListClient({ initialPosts }: Props) {
 
       {/*  다음 페이지 로딩 */}
       {isFetchingNextPage && (
-        <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
+        <div className="grid  max-[450px]:grid-cols-1 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-8">
           {Array.from({ length: 5 }).map((_, i) => (
             <SkeletonPost key={i} />
           ))}
