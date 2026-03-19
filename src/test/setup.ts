@@ -10,11 +10,12 @@ afterEach(() => {
   cleanup();
 });
 
-// Next.js Image 컴포넌트 모킹
+// Next.js Image 컴포넌트 모킹 (blurDataURL 등 DOM에 없는 prop 제거)
 vi.mock("next/image", () => ({
   default: (props: ImgHTMLAttributes<HTMLImageElement>) => {
+    const { blurDataURL, ...imgProps } = props as ImgHTMLAttributes<HTMLImageElement> & { blurDataURL?: string };
     // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
-    return React.createElement("img", props);
+    return React.createElement("img", imgProps);
   },
 }));
 
